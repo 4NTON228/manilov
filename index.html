@@ -38,8 +38,8 @@ body {
 }
 
 img { display:block; max-width:100%; }
-a { color: inherit; }
-button { font-family: var(--sans); }
+a { color: inherit; text-decoration:none; }
+button { font-family: var(--sans); background:none; border:none; cursor:pointer; }
 
 /* ═══════════════════════════════
    DESKTOP CURSOR (только мышь)
@@ -53,6 +53,7 @@ button { font-family: var(--sans); }
 }
 @media (pointer: coarse) {
   #cur, #cur2 { display:none !important; }
+  body { cursor: auto; }
 }
 
 /* ═══════════════════════════════
@@ -90,25 +91,23 @@ nav.scrolled {
   box-shadow:0 2px 24px rgba(28,24,20,.06);
 }
 .logo {
-  font-family:var(--serif); font-weight:400; color:var(--ink); text-decoration:none;
+  font-family:var(--serif); font-weight:400; color:var(--ink); 
   letter-spacing:.1em; line-height:1; display:flex; flex-direction:column;
   font-size:1.4rem;
 }
 .logo-s { font-family:var(--sans); font-size:.42rem; letter-spacing:.5em; text-transform:uppercase; color:var(--gold); font-weight:300; margin-top:3px; }
 
-/* десктоп-ссылки */
 .nav-links { display:none; gap:40px; list-style:none; }
-.nav-links a { font-size:.6rem; letter-spacing:.38em; text-transform:uppercase; color:var(--ink3); text-decoration:none; position:relative; transition:color .3s; }
+.nav-links a { font-size:.6rem; letter-spacing:.38em; text-transform:uppercase; color:var(--ink3); position:relative; transition:color .3s; }
 .nav-links a::after { content:''; position:absolute; bottom:-3px; left:0; width:0; height:1px; background:var(--gold); transition:width .4s; }
 .nav-links a:hover { color:var(--gold); }
 .nav-links a:hover::after { width:100%; }
 
-.nav-phone-d { display:none; font-family:var(--serif); font-size:1rem; color:var(--ink); text-decoration:none; }
+.nav-phone-d { display:none; font-family:var(--serif); font-size:1rem; color:var(--ink); }
 .nav-phone-d:hover { color:var(--gold); }
 
-/* бургер */
 .burger {
-  display:flex; flex-direction:column; gap:5px; background:none; border:none;
+  display:flex; flex-direction:column; gap:5px; 
   padding:4px; cursor:pointer; z-index:710;
 }
 .bl { display:block; width:22px; height:1.5px; background:var(--ink); border-radius:2px; transition:all .35s ease; transform-origin:center; }
@@ -128,7 +127,7 @@ nav.scrolled {
 #mobmenu.on { opacity:1; pointer-events:all; }
 #mobmenu a {
   font-family:var(--serif); font-size:clamp(2rem,9vw,3rem); font-weight:300;
-  color:var(--ink); text-decoration:none; letter-spacing:.04em;
+  color:var(--ink); letter-spacing:.04em;
   padding:12px 0; transition:color .25s;
   transform:translateY(20px); opacity:0;
   transition:transform .4s ease, opacity .4s ease, color .25s;
@@ -155,7 +154,6 @@ nav.scrolled {
   background:url('https://manilovtver.ru/wp-content/uploads/2017/03/Kafe-Manilov-Tver-25.jpg') center/cover no-repeat;
   will-change:transform;
 }
-/* Тёмный оверлей снизу — чтобы текст читался */
 .hero-ov {
   position:absolute; inset:0;
   background:linear-gradient(
@@ -174,7 +172,7 @@ h1.hero-t {
   font-family:var(--serif); font-weight:300;
   font-size:clamp(3.8rem,18vw,10rem);
   line-height:.88; letter-spacing:-.02em;
-  color:#fff; /* белый — хорошо читается на тёмном оверлее */
+  color:#fff;
   margin-bottom:16px;
 }
 h1.hero-t em { font-style:italic; color:var(--goldl); display:block; }
@@ -189,7 +187,7 @@ h1.hero-t em { font-style:italic; color:var(--goldl); display:block; }
   display:inline-block; padding:13px 32px;
   border:1px solid var(--goldl); color:var(--goldl);
   font-size:.6rem; letter-spacing:.38em; text-transform:uppercase;
-  text-decoration:none; transition:all .3s;
+  transition:all .3s;
   background:transparent;
 }
 .hero-cta:active, .hero-cta:hover { background:var(--goldl); color:var(--ink); }
@@ -266,7 +264,6 @@ h2.sh em { font-style:italic; color:var(--gold); }
 .menu-panel { display:none; }
 .menu-panel.on { display:block; }
 
-/* Карточки блюд для мобильного */
 .dish-list { list-style:none; }
 .dish-item {
   display:flex; justify-content:space-between; align-items:flex-start;
@@ -284,7 +281,6 @@ h2.sh em { font-style:italic; color:var(--gold); }
 }
 .dish-cat-label:first-child { margin-top:0; }
 
-/* Лента еды */
 .food-reel { margin-top:56px; overflow:hidden; }
 .food-track { display:flex; gap:4px; animation:freel 50s linear infinite; width:max-content; }
 .food-track:hover { animation-play-state:paused; }
@@ -318,7 +314,7 @@ h2.sh em { font-style:italic; color:var(--gold); }
 ═══════════════════════════════ */
 #news { background:var(--bg); }
 .news-head { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:36px; flex-wrap:wrap; gap:12px; }
-.news-more { font-size:.58rem; letter-spacing:.35em; text-transform:uppercase; color:var(--ink3); text-decoration:none; }
+.news-more { font-size:.58rem; letter-spacing:.35em; text-transform:uppercase; color:var(--ink3); }
 .news-more:hover { color:var(--gold); }
 .news-grid { display:flex; flex-direction:column; gap:4px; }
 .nc { background:var(--bg2); overflow:hidden; display:flex; flex-direction:column; }
@@ -328,7 +324,7 @@ h2.sh em { font-style:italic; color:var(--gold); }
 .nc-date { font-size:.52rem; letter-spacing:.4em; text-transform:uppercase; color:var(--gold); margin-bottom:10px; }
 .nc-title { font-family:var(--serif); font-size:1.2rem; font-weight:400; color:var(--ink); line-height:1.3; margin-bottom:8px; }
 .nc-text { font-size:.85rem; line-height:1.7; color:var(--ink3); }
-.nc-link { display:inline-flex; align-items:center; gap:8px; font-size:.55rem; letter-spacing:.32em; text-transform:uppercase; color:var(--gold); text-decoration:none; margin-top:18px; }
+.nc-link { display:inline-flex; align-items:center; gap:8px; font-size:.55rem; letter-spacing:.32em; text-transform:uppercase; color:var(--gold); }
 .nc-link::after { content:'→'; }
 
 /* ═══════════════════════════════
@@ -341,7 +337,7 @@ h2.sh em { font-style:italic; color:var(--gold); }
 .ci:first-child { border-top:1px solid var(--line); }
 .ci-ico { width:36px; height:36px; border:1px solid var(--line); display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--gold); font-family:var(--serif); font-size:.95rem; }
 .ci-lbl { font-size:.52rem; letter-spacing:.35em; text-transform:uppercase; color:var(--ink3); margin-bottom:4px; }
-.ci-val { font-family:var(--serif); font-size:1rem; color:var(--ink); text-decoration:none; display:block; }
+.ci-val { font-family:var(--serif); font-size:1rem; color:var(--ink); display:block; }
 .ci-val:active { color:var(--gold); }
 .con-map { width:100%; height:280px; position:relative; overflow:hidden; }
 .con-map iframe { width:100%; height:100%; border:none; display:block; }
@@ -357,9 +353,9 @@ footer {
   display:flex; flex-direction:column; gap:20px;
   border-top:1px solid rgba(255,255,255,.06);
 }
-.f-logo { font-family:var(--serif); font-size:1.3rem; color:var(--goldl); text-decoration:none; letter-spacing:.1em; }
+.f-logo { font-family:var(--serif); font-size:1.3rem; color:var(--goldl); letter-spacing:.1em; }
 .f-links { display:flex; flex-wrap:wrap; gap:12px 20px; list-style:none; }
-.f-links a { font-size:.6rem; letter-spacing:.3em; text-transform:uppercase; color:rgba(255,255,255,.35); text-decoration:none; }
+.f-links a { font-size:.6rem; letter-spacing:.3em; text-transform:uppercase; color:rgba(255,255,255,.35); }
 .f-links a:active { color:var(--goldl); }
 .f-copy { font-size:.6rem; color:rgba(255,255,255,.2); }
 
@@ -499,7 +495,10 @@ footer {
     <li><a href="#contacts">Контакты</a></li>
   </ul>
   <a href="tel:+79040206603" class="nav-phone-d">+7 (904) 020-66-03</a>
-  <button class="burger" id="burger" onclick="toggleMob()" aria-label="Меню">
+  <button class="burger" id="burger" onclick="toggleMob()" 
+          aria-label="Открыть меню" 
+          aria-expanded="false"
+          aria-controls="mobmenu">
     <span class="bl"></span><span class="bl"></span><span class="bl"></span>
   </button>
 </nav>
@@ -566,12 +565,12 @@ footer {
 
     <div class="menu-tabs-wrap">
       <div class="menu-tabs">
-        <button class="tab on" onclick="showTab('cold',this)">Холодные</button>
-        <button class="tab" onclick="showTab('hot',this)">Горячие</button>
-        <button class="tab" onclick="showTab('soups',this)">Супы</button>
-        <button class="tab" onclick="showTab('main',this)">Основные</button>
-        <button class="tab" onclick="showTab('desserts',this)">Десерты</button>
-        <button class="tab" onclick="showTab('drinks',this)">Напитки</button>
+        <button class="tab on" onclick="showTab('cold', this)">Холодные</button>
+        <button class="tab" onclick="showTab('hot', this)">Горячие</button>
+        <button class="tab" onclick="showTab('soups', this)">Супы</button>
+        <button class="tab" onclick="showTab('main', this)">Основные</button>
+        <button class="tab" onclick="showTab('desserts', this)">Десерты</button>
+        <button class="tab" onclick="showTab('drinks', this)">Напитки</button>
       </div>
     </div>
 
@@ -808,7 +807,7 @@ footer {
   <div class="hours-row">
     <div class="hb"><div class="hb-tag">Воскресенье — Четверг</div><div class="hb-val">11:00 — 00:00</div></div>
     <div class="hb"><div class="hb-tag">Пятница — Суббота</div><div class="hb-val">11:00 — 01:00</div><div class="hb-note">Кухня до закрытия</div></div>
-    <div class="hb"><div class="hb-tag">Звоните для резервации</div><div class="hb-val"><a href="tel:+79040206603" style="color:var(--goldl);text-decoration:none">+7 (904) 020-66-03</a></div></div>
+    <div class="hb"><div class="hb-tag">Звоните для резервации</div><div class="hb-val"><a href="tel:+79040206603" style="color:var(--goldl);">+7 (904) 020-66-03</a></div></div>
   </div>
 </div>
 
@@ -820,7 +819,7 @@ footer {
         <div class="stag rv">Новости</div>
         <h2 class="sh rv d1">Что нового<br><em>в Манилове</em></h2>
       </div>
-      <a href="https://manilovtver.ru/novosti/" class="news-more" target="_blank">Все новости →</a>
+      <a href="https://manilovtver.ru/novosti/" class="news-more" target="_blank" rel="noopener">Все новости →</a>
     </div>
     <div class="news-grid">
       <div class="nc rv">
@@ -829,7 +828,7 @@ footer {
           <div class="nc-date">Апрель 2022</div>
           <div class="nc-title">Тыквенный крем-суп с семечками</div>
           <div class="nc-text">Нежный, бархатистый, с поджаренными семечками и мускатным орехом.</div>
-          <a href="https://manilovtver.ru/novosti/novinka-tykvennyj-krem-sup-s-semechkami/" class="nc-link" target="_blank">Читать</a>
+          <a href="https://manilovtver.ru/novosti/novinka-tykvennyj-krem-sup-s-semechkami/" class="nc-link" target="_blank" rel="noopener">Читать</a>
         </div>
       </div>
       <div class="nc rv d2">
@@ -838,7 +837,7 @@ footer {
           <div class="nc-date">Апрель 2022</div>
           <div class="nc-title">Мы его вернули</div>
           <div class="nc-text">Любимое блюдо гостей снова в ежедневном меню.</div>
-          <a href="https://manilovtver.ru/novosti/my-ego-vernuli/" class="nc-link" target="_blank">Читать</a>
+          <a href="https://manilovtver.ru/novosti/my-ego-vernuli/" class="nc-link" target="_blank" rel="noopener">Читать</a>
         </div>
       </div>
       <div class="nc rv d3">
@@ -847,7 +846,7 @@ footer {
           <div class="nc-date">Апрель 2022</div>
           <div class="nc-title">Новые вина в карте</div>
           <div class="nc-text">Обновили винную карту — новые позиции ждут вас.</div>
-          <a href="https://manilovtver.ru/novosti/new_wine/" class="nc-link" target="_blank">Читать</a>
+          <a href="https://manilovtver.ru/novosti/new_wine/" class="nc-link" target="_blank" rel="noopener">Читать</a>
         </div>
       </div>
     </div>
@@ -868,7 +867,7 @@ footer {
       </div>
     </div>
     <div class="con-map">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1120!2d35.9083!3d56.8596!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTbCsDUxJzM0LjYiTiAzNcKwNTQnMjkuOSJF!5e0!3m2!1sru!2sru!4v1" allowfullscreen loading="lazy"></iframe>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2240.588223587863!2d35.9083!3d56.8596!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b687b1e5a1a1a1%3A0x0!2zNTbCsDUxJzM0LjYiTiAzNcKwNTQnMjkuOSJF!5e0!3m2!1sru!2sru!4v1620000000000" allowfullscreen loading="lazy"></iframe>
       <div class="map-badge"><h4>Кафе Манилов</h4><p>Советская, 17 · Тверь</p></div>
     </div>
   </div>
@@ -890,23 +889,48 @@ footer {
 <script>
 /* ─── КУРСОР (только мышь) ─── */
 const isTouch = window.matchMedia('(pointer: coarse)').matches;
+
 if (!isTouch) {
   const dot = document.getElementById('cur');
   const ring = document.getElementById('cur2');
-  let mx=0, my=0, rx=0, ry=0;
-  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-  document.addEventListener('mouseleave', () => { dot.style.opacity='0'; ring.style.opacity='0'; });
-  document.addEventListener('mouseenter', () => { dot.style.opacity='1'; ring.style.opacity='1'; });
-  document.querySelectorAll('a,button').forEach(el => {
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  
+  dot.style.opacity = '1';
+  ring.style.opacity = '1';
+  
+  document.addEventListener('mousemove', e => { 
+    mx = e.clientX; 
+    my = e.clientY; 
+  });
+  
+  document.addEventListener('mouseleave', () => { 
+    dot.style.opacity = '0'; 
+    ring.style.opacity = '0'; 
+  });
+  
+  document.addEventListener('mouseenter', () => { 
+    dot.style.opacity = '1'; 
+    ring.style.opacity = '1'; 
+  });
+  
+  document.querySelectorAll('a, button').forEach(el => {
     el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
     el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
   });
-  (function loop() {
-    dot.style.left  = mx + 'px'; dot.style.top  = my + 'px';
-    rx += (mx - rx) * .12; ry += (my - ry) * .12;
-    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
-    requestAnimationFrame(loop);
-  })();
+  
+  function animateCursor() {
+    dot.style.left = mx + 'px'; 
+    dot.style.top = my + 'px';
+    rx += (mx - rx) * 0.12; 
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px'; 
+    ring.style.top = ry + 'px';
+    requestAnimationFrame(animateCursor);
+  }
+  animateCursor();
+} else {
+  // На тач-устройствах убираем кастомный курсор
+  document.body.style.cursor = 'auto';
 }
 
 /* ─── ЗАГРУЗКА ─── */
@@ -916,63 +940,137 @@ window.addEventListener('load', () => {
 
 /* ─── NAV SCROLL ─── */
 window.addEventListener('scroll', () => {
-  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
+  const nav = document.getElementById('nav');
+  if (nav) {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }
 }, { passive: true });
 
 /* ─── ПАРАЛЛАКС ГЕРОЙ (только десктоп) ─── */
 if (!isTouch) {
   const bg = document.getElementById('heroBg');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY < window.innerHeight) {
-      bg.style.transform = `translateY(${window.scrollY * 0.25}px)`;
-    }
-  }, { passive: true });
+  if (bg) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY < window.innerHeight) {
+        bg.style.transform = `translateY(${window.scrollY * 0.25}px)`;
+      }
+    }, { passive: true });
+  }
 }
 
 /* ─── МОБ-МЕНЮ ─── */
 let mobOpen = false;
+
 function toggleMob() {
   mobOpen = !mobOpen;
-  document.getElementById('mobmenu').classList.toggle('on', mobOpen);
-  document.getElementById('burger').classList.toggle('open', mobOpen);
+  const mobMenu = document.getElementById('mobmenu');
+  const burger = document.getElementById('burger');
+  
+  if (mobMenu) mobMenu.classList.toggle('on', mobOpen);
+  if (burger) {
+    burger.classList.toggle('open', mobOpen);
+    burger.setAttribute('aria-expanded', mobOpen);
+    burger.setAttribute('aria-label', mobOpen ? 'Закрыть меню' : 'Открыть меню');
+  }
+  
   document.body.style.overflow = mobOpen ? 'hidden' : '';
 }
+
 function closeMob() {
   mobOpen = false;
-  document.getElementById('mobmenu').classList.remove('on');
-  document.getElementById('burger').classList.remove('open');
+  const mobMenu = document.getElementById('mobmenu');
+  const burger = document.getElementById('burger');
+  
+  if (mobMenu) mobMenu.classList.remove('on');
+  if (burger) {
+    burger.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+    burger.setAttribute('aria-label', 'Открыть меню');
+  }
+  
   document.body.style.overflow = '';
 }
 
+// Закрываем мобильное меню при изменении размера окна на десктопный вид
+window.addEventListener('resize', function() {
+  if (window.innerWidth >= 900 && mobOpen) {
+    closeMob();
+  }
+});
+
 /* ─── ВКЛАДКИ МЕНЮ ─── */
-function showTab(id, btn) {
+function showTab(tabId, element) {
+  // Убираем активный класс у всех панелей и табов
   document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('on'));
   document.querySelectorAll('.tab').forEach(b => b.classList.remove('on'));
-  document.getElementById('tab-' + id).classList.add('on');
-  btn.classList.add('on');
+  
+  // Активируем нужную панель
+  const targetPanel = document.getElementById('tab-' + tabId);
+  if (targetPanel) {
+    targetPanel.classList.add('on');
+  }
+  
+  // Активируем нажатую кнопку
+  if (element) {
+    element.classList.add('on');
+  }
 }
 
 /* ─── REVEAL ─── */
-const io = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');
+      io.unobserve(entry.target);
+    }
   });
-}, { threshold: 0.1 });
-document.querySelectorAll('.rv').forEach(el => io.observe(el));
+}, { 
+  threshold: 0.1,
+  rootMargin: '50px'
+});
+
+document.querySelectorAll('.rv').forEach(el => {
+  if (el) io.observe(el);
+});
 
 /* ─── ЛЕНТА ЕДЫ ─── */
 const photos = [
-  'Fai-l_000','Fai-l_0002','Fai-l_0003','Fai-l_0012','Fai-l_0013','Fai-l_0014',
-  'Fai-l_0022','Fai-l_0023','Fai-l_0031','Fai-l_0041','Fai-l_0043','Fai-l_0051',
-  'Fai-l_0052','Fai-l_0061','Fai-l_0072','Fai-l_0081','Fai-l_0082','Fai-l_0101',
-  'Fai-l_0121','Fai-l_0131','Fai-l_0141','Fai-l_0142','Fai-l_0153','Fai-l_0162'
+  '2022-04-18_02_35_50',
+  '2022-04-21_22_11_32',
+  '2022-04-13_23_56_44_HEIC',
+  'Fai-l_002',
+  'Fai-l_007',
+  'Fai-l_0053',
+  'Fai-l_015',
+  'Fai-l_000',
+  'Fai-l_0012',
+  'Fai-l_0022',
+  'Fai-l_0031'
 ];
+
 const ft = document.getElementById('foodTrack');
-[...photos, ...photos].forEach(n => {
-  const d = document.createElement('div'); d.className = 'fc';
-  d.innerHTML = `<img src="https://manilovtver.ru/wp-content/uploads/2022/05/${n}.jpeg" alt="" loading="lazy">`;
-  ft.appendChild(d);
-});
+if (ft) {
+  // Дублируем массив для бесконечной ленты
+  const allPhotos = [...photos, ...photos];
+  
+  allPhotos.forEach(name => {
+    const d = document.createElement('div');
+    d.className = 'fc';
+    const img = document.createElement('img');
+    
+    // Пробуем загрузить .jpeg, если не получится - ставим заглушку
+    img.src = `https://manilovtver.ru/wp-content/uploads/2022/05/${name}.jpeg`;
+    img.alt = 'Блюдо кафе Манилов';
+    img.loading = 'lazy';
+    
+    img.onerror = function() {
+      this.src = 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'400\' viewBox=\'0 0 300 400\'%3E%3Crect width=\'300\' height=\'400\' fill=\'%23f3efe8\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dy=\'.3em\' fill=\'%23a8813a\' font-family=\'Georgia\' font-size=\'24\'%3EМанилов%3C/text%3E%3C/svg%3E';
+    };
+    
+    d.appendChild(img);
+    ft.appendChild(d);
+  });
+}
 </script>
 </body>
 </html>
