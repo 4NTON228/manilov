@@ -2,27 +2,30 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="theme-color" content="#faf8f4">
 <title>Кафе Манилов — Тверь</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-/* ── RESET & ROOT ── */
-*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior:smooth; }
+/* ═══════════════════════════════
+   RESET + ПЕРЕМЕННЫЕ
+═══════════════════════════════ */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
 
 :root {
-  --bg:       #faf8f4;
-  --bg2:      #f3efe8;
-  --bg3:      #edeae2;
-  --ink:      #1c1814;
-  --ink2:     #3d3429;
-  --ink3:     #7a6e5e;
-  --gold:     #a8813a;
-  --gold-l:   #c9a55a;
-  --gold-xl:  #e8d5a8;
-  --line:     rgba(168,129,58,.18);
-  --serif:    'Cormorant', Georgia, serif;
-  --sans:     'Jost', sans-serif;
+  --bg:    #faf8f4;
+  --bg2:   #f3efe8;
+  --bg3:   #eae5db;
+  --ink:   #1c1814;
+  --ink2:  #3d3429;
+  --ink3:  #7a6e5e;
+  --gold:  #a8813a;
+  --goldl: #c9a55a;
+  --line:  rgba(168,129,58,.15);
+  --serif: 'Cormorant', Georgia, serif;
+  --sans:  'Jost', sans-serif;
+  --pad:   20px;
 }
 
 body {
@@ -31,400 +34,461 @@ body {
   font-family: var(--sans);
   font-weight: 300;
   overflow-x: hidden;
-  cursor: none;
+  line-height: 1.6;
 }
 
-/* ── CURSOR ── */
-#cur  { position:fixed; width:7px; height:7px; background:var(--gold); border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); }
-#cur2 { position:fixed; width:36px; height:36px; border:1px solid rgba(168,129,58,.5); border-radius:50%; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); transition:width .3s,height .3s,border-color .3s; }
+img { display:block; max-width:100%; }
+a { color: inherit; }
+button { font-family: var(--sans); }
 
-/* ── LOADER ── */
+/* ═══════════════════════════════
+   DESKTOP CURSOR (только мышь)
+═══════════════════════════════ */
+@media (pointer: fine) {
+  body { cursor: none; }
+  * { cursor: none !important; }
+  #cur  { position:fixed; width:7px; height:7px; background:var(--gold); border-radius:50%; pointer-events:none; z-index:9999; top:0; left:0; transform:translate(-50%,-50%); transition:transform .1s; }
+  #cur2 { position:fixed; width:36px; height:36px; border:1px solid rgba(168,129,58,.5); border-radius:50%; pointer-events:none; z-index:9998; top:0; left:0; transform:translate(-50%,-50%); transition:width .3s, height .3s; }
+  body.hovering #cur2 { width:56px; height:56px; border-color:rgba(168,129,58,.7); }
+}
+@media (pointer: coarse) {
+  #cur, #cur2 { display:none !important; }
+}
+
+/* ═══════════════════════════════
+   ЗАГРУЗОЧНЫЙ ЭКРАН
+═══════════════════════════════ */
 #loader {
   position:fixed; inset:0; background:var(--bg); z-index:8000;
-  display:flex; align-items:center; justify-content:center; flex-direction:column; gap:28px;
-  transition:opacity .9s ease, visibility .9s;
+  display:flex; align-items:center; justify-content:center; flex-direction:column; gap:24px;
+  transition:opacity .8s ease, visibility .8s;
 }
 #loader.gone { opacity:0; visibility:hidden; pointer-events:none; }
-.ld-title { font-family:var(--serif); font-size:clamp(3.5rem,9vw,7.5rem); font-weight:300; color:var(--ink); letter-spacing:.06em; overflow:hidden; line-height:1; }
-.ld-title span { display:inline-block; transform:translateY(110%); animation:slideUp .9s cubic-bezier(.76,0,.24,1) .3s forwards; }
-.ld-line { width:0; height:1px; background:var(--gold); animation:lineGrow .8s ease .9s forwards; }
-.ld-sub { font-size:.6rem; letter-spacing:.6em; text-transform:uppercase; color:var(--gold); opacity:0; animation:fadeIn .5s ease 1.1s forwards; }
-@keyframes slideUp { to { transform:translateY(0); } }
-@keyframes lineGrow { to { width:180px; } }
-@keyframes fadeIn { to { opacity:1; } }
+.ld-word { font-family:var(--serif); font-size:clamp(3rem,13vw,7rem); font-weight:300; color:var(--ink); letter-spacing:.06em; overflow:hidden; line-height:1; }
+.ld-word span { display:inline-block; transform:translateY(110%); animation:slideUp .9s cubic-bezier(.76,0,.24,1) .3s forwards; }
+.ld-bar { width:0; height:1px; background:var(--gold); animation:barGrow .8s ease .9s forwards; }
+.ld-sub { font-size:clamp(.5rem,.9vw,.65rem); letter-spacing:.55em; text-transform:uppercase; color:var(--gold); opacity:0; animation:fadeUp .5s ease 1.1s forwards; white-space:nowrap; }
+@keyframes slideUp  { to { transform:translateY(0); } }
+@keyframes barGrow  { to { width: min(180px, 50vw); } }
+@keyframes fadeUp   { to { opacity:1; } }
 
-/* ── NAV ── */
+/* ═══════════════════════════════
+   НАВИГАЦИЯ
+═══════════════════════════════ */
 nav {
   position:fixed; top:0; left:0; right:0; z-index:700;
   display:flex; align-items:center; justify-content:space-between;
-  padding:30px 64px;
-  transition:padding .5s, background .5s, border .5s, box-shadow .5s;
+  padding:20px var(--pad);
+  transition:padding .4s, background .4s, border-color .4s, box-shadow .4s;
 }
-nav.s {
-  padding:16px 64px;
-  background:rgba(250,248,244,.95);
-  backdrop-filter:blur(20px);
+nav.scrolled {
+  padding:13px var(--pad);
+  background:rgba(250,248,244,.96);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
   border-bottom:1px solid var(--line);
-  box-shadow:0 2px 32px rgba(28,24,20,.05);
+  box-shadow:0 2px 24px rgba(28,24,20,.06);
 }
-.logo { font-family:var(--serif); font-size:1.65rem; font-weight:400; color:var(--ink); text-decoration:none; letter-spacing:.1em; line-height:1; display:flex; flex-direction:column; }
-.logo-s { font-family:var(--sans); font-size:.48rem; letter-spacing:.55em; text-transform:uppercase; color:var(--gold); font-weight:300; margin-top:3px; }
-.nav-links { display:flex; gap:44px; list-style:none; }
-.nav-links a { font-size:.65rem; letter-spacing:.38em; text-transform:uppercase; color:var(--ink3); text-decoration:none; position:relative; transition:color .3s; }
+.logo {
+  font-family:var(--serif); font-weight:400; color:var(--ink); text-decoration:none;
+  letter-spacing:.1em; line-height:1; display:flex; flex-direction:column;
+  font-size:1.4rem;
+}
+.logo-s { font-family:var(--sans); font-size:.42rem; letter-spacing:.5em; text-transform:uppercase; color:var(--gold); font-weight:300; margin-top:3px; }
+
+/* десктоп-ссылки */
+.nav-links { display:none; gap:40px; list-style:none; }
+.nav-links a { font-size:.6rem; letter-spacing:.38em; text-transform:uppercase; color:var(--ink3); text-decoration:none; position:relative; transition:color .3s; }
 .nav-links a::after { content:''; position:absolute; bottom:-3px; left:0; width:0; height:1px; background:var(--gold); transition:width .4s; }
 .nav-links a:hover { color:var(--gold); }
 .nav-links a:hover::after { width:100%; }
-.nav-phone { font-family:var(--serif); font-size:1rem; color:var(--ink); text-decoration:none; transition:color .3s; }
-.nav-phone:hover { color:var(--gold); }
-.nav-burger { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:none; }
-.nb { display:block; width:22px; height:1px; background:var(--ink); transition:all .3s; }
 
-/* ── MOB OVERLAY ── */
-#mob { position:fixed; inset:0; background:var(--bg); z-index:600; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:36px; opacity:0; pointer-events:none; transition:opacity .4s; }
-#mob.on { opacity:1; pointer-events:all; }
-#mob a { font-family:var(--serif); font-size:2.8rem; font-weight:300; color:var(--ink); text-decoration:none; letter-spacing:.04em; transition:color .3s; }
-#mob a:hover { color:var(--gold); }
-#mob .close-btn { position:absolute; top:28px; right:32px; font-size:1.5rem; background:none; border:none; color:var(--ink3); cursor:none; }
+.nav-phone-d { display:none; font-family:var(--serif); font-size:1rem; color:var(--ink); text-decoration:none; }
+.nav-phone-d:hover { color:var(--gold); }
 
-/* ── HERO ── */
-#hero { height:100vh; min-height:680px; position:relative; overflow:hidden; display:flex; align-items:flex-end; }
-.hero-img { position:absolute; inset:0; background:url('https://manilovtver.ru/wp-content/uploads/2017/03/Kafe-Manilov-Tver-25.jpg') center/cover no-repeat; will-change:transform; transition:transform 12s ease; }
-#hero:hover .hero-img { transform:scale(1.03); }
-.hero-vignette {
+/* бургер */
+.burger {
+  display:flex; flex-direction:column; gap:5px; background:none; border:none;
+  padding:4px; cursor:pointer; z-index:710;
+}
+.bl { display:block; width:22px; height:1.5px; background:var(--ink); border-radius:2px; transition:all .35s ease; transform-origin:center; }
+.burger.open .bl:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
+.burger.open .bl:nth-child(2) { opacity:0; transform:scaleX(0); }
+.burger.open .bl:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
+
+/* ═══════════════════════════════
+   МОБИЛЬНОЕ МЕНЮ ОВЕРЛЕЙ
+═══════════════════════════════ */
+#mobmenu {
+  position:fixed; inset:0; background:var(--bg); z-index:690;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px;
+  opacity:0; pointer-events:none;
+  transition:opacity .4s ease;
+}
+#mobmenu.on { opacity:1; pointer-events:all; }
+#mobmenu a {
+  font-family:var(--serif); font-size:clamp(2rem,9vw,3rem); font-weight:300;
+  color:var(--ink); text-decoration:none; letter-spacing:.04em;
+  padding:12px 0; transition:color .25s;
+  transform:translateY(20px); opacity:0;
+  transition:transform .4s ease, opacity .4s ease, color .25s;
+}
+#mobmenu.on a { transform:translateY(0); opacity:1; }
+#mobmenu.on a:nth-child(1){transition-delay:.05s}
+#mobmenu.on a:nth-child(2){transition-delay:.1s}
+#mobmenu.on a:nth-child(3){transition-delay:.15s}
+#mobmenu.on a:nth-child(4){transition-delay:.2s}
+#mobmenu.on a:nth-child(5){transition-delay:.25s}
+#mobmenu a:active, #mobmenu a:hover { color:var(--gold); }
+.mob-phone { font-family:var(--serif) !important; font-size:clamp(1.2rem,5vw,1.6rem) !important; color:var(--gold) !important; margin-top:24px; }
+
+/* ═══════════════════════════════
+   ГЕРОЙ
+═══════════════════════════════ */
+#hero {
+  height:100svh; min-height:580px;
+  position:relative; overflow:hidden;
+  display:flex; align-items:flex-end;
+}
+.hero-bg {
   position:absolute; inset:0;
-  background: linear-gradient(to top,
-    rgba(250,248,244,.98) 0%,
-    rgba(250,248,244,.55) 30%,
-    rgba(250,248,244,.1)  65%,
-    transparent 100%
+  background:url('https://manilovtver.ru/wp-content/uploads/2017/03/Kafe-Manilov-Tver-25.jpg') center/cover no-repeat;
+  will-change:transform;
+}
+/* Тёмный оверлей снизу — чтобы текст читался */
+.hero-ov {
+  position:absolute; inset:0;
+  background:linear-gradient(
+    to top,
+    rgba(20,16,12,.88) 0%,
+    rgba(20,16,12,.55) 28%,
+    rgba(20,16,12,.15) 60%,
+    rgba(20,16,12,.05) 100%
   );
 }
-.hero-content { position:relative; z-index:2; width:100%; padding:0 64px 80px; display:flex; justify-content:space-between; align-items:flex-end; gap:48px; }
-h1.hero-title { font-family:var(--serif); font-weight:300; font-size:clamp(5rem,11vw,9.5rem); line-height:.9; color:var(--ink); letter-spacing:-.02em; }
-h1.hero-title em { font-style:italic; color:var(--gold); display:block; }
-.hero-right { max-width:300px; text-align:right; flex-shrink:0; }
-.hero-tagline { font-family:var(--serif); font-style:italic; font-size:1.05rem; line-height:1.8; color:var(--ink3); margin-bottom:32px; }
-.hero-cta { display:inline-block; padding:13px 36px; border:1px solid var(--gold); color:var(--gold); font-size:.62rem; letter-spacing:.4em; text-transform:uppercase; text-decoration:none; transition:all .35s; }
-.hero-cta:hover { background:var(--gold); color:var(--bg); }
-.hero-scroll { position:absolute; left:64px; bottom:32px; display:flex; align-items:center; gap:14px; font-size:.55rem; letter-spacing:.5em; text-transform:uppercase; color:var(--ink3); }
-.hero-scroll-line { width:48px; height:1px; background:var(--gold-l); }
-
-/* ── MARQUEE ── */
-.marq { background:var(--ink); padding:15px 0; overflow:hidden; }
-.marq-track { display:flex; animation:mscroll 22s linear infinite; width:max-content; }
-.marq-track:hover { animation-play-state:paused; }
-.marq-item { font-family:var(--serif); font-size:1rem; color:var(--gold-l); letter-spacing:.2em; padding:0 56px; white-space:nowrap; display:flex; align-items:center; gap:56px; }
-.marq-item::after { content:'✦'; font-size:.5rem; color:var(--gold); }
-@keyframes mscroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
-
-/* ── SECTION COMMON ── */
-.sec { padding:120px 0; }
-.wrap { max-width:1360px; margin:0 auto; padding:0 64px; }
-.tag { font-size:.58rem; letter-spacing:.55em; text-transform:uppercase; color:var(--gold); margin-bottom:20px; display:flex; align-items:center; gap:16px; }
-.tag::before { content:''; width:30px; height:1px; background:var(--gold-l); }
-h2.h { font-family:var(--serif); font-weight:300; font-size:clamp(2.6rem,4.5vw,4.5rem); line-height:.95; color:var(--ink); letter-spacing:-.01em; }
-h2.h em { font-style:italic; color:var(--gold); }
-
-/* ── ABOUT ── */
-#about { background:var(--bg); padding:0; }
-.about-split { display:grid; grid-template-columns:1fr 1fr; min-height:88vh; }
-.about-photo { position:relative; overflow:hidden; }
-.about-photo img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 8s ease; }
-.about-photo:hover img { transform:scale(1.04); }
-.about-photo-cap { position:absolute; bottom:28px; left:28px; font-size:.56rem; letter-spacing:.4em; text-transform:uppercase; color:rgba(255,255,255,.5); }
-.about-body { display:flex; flex-direction:column; justify-content:center; padding:100px 80px; background:var(--bg2); }
-.about-pull { font-family:var(--serif); font-style:italic; font-size:clamp(1.5rem,2.2vw,2.1rem); line-height:1.45; color:var(--ink); margin:32px 0 36px; border-left:2px solid var(--gold); padding-left:28px; }
-.about-body p { font-size:.95rem; line-height:1.9; color:var(--ink3); margin-bottom:18px; }
-.about-hr { width:40px; height:1px; background:var(--gold-l); margin:36px 0; }
-.facts { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); }
-.fact { background:var(--bg2); padding:24px 20px; transition:background .3s; }
-.fact:hover { background:var(--bg3); }
-.fact-n { font-family:var(--serif); font-size:2.8rem; font-weight:300; color:var(--gold); line-height:1; display:block; margin-bottom:6px; }
-.fact-l { font-size:.78rem; color:var(--ink3); line-height:1.5; }
-
-/* ── MENU ── */
-#menu { background:var(--bg); }
-.menu-header { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:64px; }
-.menu-tabs { display:flex; gap:0; border-bottom:1px solid var(--line); margin-bottom:56px; }
-.tab {
-  font-family:var(--sans); font-size:.62rem; letter-spacing:.35em; text-transform:uppercase;
-  color:var(--ink3); padding:14px 32px; border:none; background:none;
-  border-bottom:2px solid transparent; margin-bottom:-1px;
-  transition:all .3s; cursor:none;
+.hero-body {
+  position:relative; z-index:2;
+  width:100%; padding:0 var(--pad) 52px;
 }
-.tab:hover { color:var(--ink); }
+h1.hero-t {
+  font-family:var(--serif); font-weight:300;
+  font-size:clamp(3.8rem,18vw,10rem);
+  line-height:.88; letter-spacing:-.02em;
+  color:#fff; /* белый — хорошо читается на тёмном оверлее */
+  margin-bottom:16px;
+}
+h1.hero-t em { font-style:italic; color:var(--goldl); display:block; }
+.hero-desc {
+  font-family:var(--serif); font-style:italic;
+  font-size:clamp(.9rem,3.5vw,1.05rem);
+  color:rgba(255,255,255,.75);
+  line-height:1.7; max-width:420px;
+  margin-bottom:28px;
+}
+.hero-cta {
+  display:inline-block; padding:13px 32px;
+  border:1px solid var(--goldl); color:var(--goldl);
+  font-size:.6rem; letter-spacing:.38em; text-transform:uppercase;
+  text-decoration:none; transition:all .3s;
+  background:transparent;
+}
+.hero-cta:active, .hero-cta:hover { background:var(--goldl); color:var(--ink); }
+
+/* ═══════════════════════════════
+   БЕГУЩАЯ СТРОКА
+═══════════════════════════════ */
+.marq { background:var(--ink); padding:13px 0; overflow:hidden; }
+.marq-track { display:flex; animation:mroll 22s linear infinite; width:max-content; }
+.marq-item {
+  font-family:var(--serif); font-size:clamp(.85rem,2.5vw,1rem);
+  color:var(--goldl); letter-spacing:.18em; padding:0 44px;
+  white-space:nowrap; display:flex; align-items:center; gap:44px;
+}
+.marq-item::after { content:'✦'; font-size:.45rem; color:var(--gold); }
+@keyframes mroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+/* ═══════════════════════════════
+   ОБЩИЕ СЕКЦИИ
+═══════════════════════════════ */
+.sec { padding:72px 0; }
+.wrap { max-width:1360px; margin:0 auto; padding:0 var(--pad); }
+.stag {
+  font-size:.55rem; letter-spacing:.5em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:16px;
+  display:flex; align-items:center; gap:14px;
+}
+.stag::before { content:''; width:26px; height:1px; background:var(--goldl); flex-shrink:0; }
+h2.sh {
+  font-family:var(--serif); font-weight:300;
+  font-size:clamp(2.2rem,8vw,4.5rem);
+  line-height:.95; color:var(--ink); letter-spacing:-.01em;
+  margin-bottom:0;
+}
+h2.sh em { font-style:italic; color:var(--gold); }
+
+/* ═══════════════════════════════
+   О НАС
+═══════════════════════════════ */
+#about { background:var(--bg); padding:0; }
+.about-photo { width:100%; aspect-ratio:4/3; overflow:hidden; position:relative; }
+.about-photo img { width:100%; height:100%; object-fit:cover; }
+.about-body { padding:48px var(--pad); background:var(--bg2); }
+.about-pull {
+  font-family:var(--serif); font-style:italic;
+  font-size:clamp(1.2rem,4.5vw,1.9rem); line-height:1.45;
+  color:var(--ink); margin:24px 0 28px;
+  border-left:2px solid var(--gold); padding-left:20px;
+}
+.about-body p { font-size:.95rem; line-height:1.9; color:var(--ink3); margin-bottom:16px; }
+.about-hr { width:36px; height:1px; background:var(--goldl); margin:28px 0; }
+.facts { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); }
+.fact { background:var(--bg2); padding:20px 16px; }
+.fact-n { font-family:var(--serif); font-size:2.4rem; font-weight:300; color:var(--gold); line-height:1; display:block; margin-bottom:5px; }
+.fact-l { font-size:.75rem; color:var(--ink3); line-height:1.5; }
+
+/* ═══════════════════════════════
+   МЕНЮ
+═══════════════════════════════ */
+#menu { background:var(--bg); }
+.menu-tabs-wrap { overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none; margin-bottom:36px; border-bottom:1px solid var(--line); }
+.menu-tabs-wrap::-webkit-scrollbar { display:none; }
+.menu-tabs { display:flex; white-space:nowrap; }
+.tab {
+  font-family:var(--sans); font-size:.6rem; letter-spacing:.3em; text-transform:uppercase;
+  color:var(--ink3); padding:13px 20px; border:none; background:none;
+  border-bottom:2px solid transparent; margin-bottom:-1px;
+  transition:all .25s; white-space:nowrap; cursor:pointer;
+  flex-shrink:0;
+}
+.tab:active, .tab:hover { color:var(--ink); }
 .tab.on { color:var(--gold); border-bottom-color:var(--gold); }
 
-/* каждая панель меню */
 .menu-panel { display:none; }
 .menu-panel.on { display:block; }
 
-/* таблица блюд */
-.dishes { width:100%; border-collapse:collapse; }
-.dishes thead tr { border-bottom:1px solid var(--line); }
-.dishes thead th { font-size:.55rem; letter-spacing:.45em; text-transform:uppercase; color:var(--ink3); text-align:left; padding-bottom:14px; font-weight:400; }
-.dishes thead th:last-child { text-align:right; }
-.dishes tbody tr { border-bottom:1px solid rgba(168,129,58,.08); transition:background .25s; }
-.dishes tbody tr:hover { background:var(--bg2); }
-.dish-name { font-family:var(--serif); font-size:1.2rem; font-weight:400; color:var(--ink); padding:22px 0 20px; width:35%; }
-.dish-desc { font-size:.85rem; color:var(--ink3); line-height:1.6; padding:22px 48px 20px 0; font-style:italic; }
-.dish-weight { font-size:.78rem; color:var(--ink3); white-space:nowrap; }
-.dish-price { font-family:var(--serif); font-size:1.15rem; color:var(--gold); text-align:right; padding:22px 0 20px; white-space:nowrap; font-weight:400; }
+/* Карточки блюд для мобильного */
+.dish-list { list-style:none; }
+.dish-item {
+  display:flex; justify-content:space-between; align-items:flex-start;
+  padding:18px 0; border-bottom:1px solid rgba(168,129,58,.09); gap:16px;
+}
+.dish-info { flex:1; }
+.dish-name { font-family:var(--serif); font-size:1.1rem; font-weight:400; color:var(--ink); margin-bottom:4px; }
+.dish-desc { font-size:.82rem; color:var(--ink3); line-height:1.55; font-style:italic; }
+.dish-weight { font-size:.7rem; color:var(--gold); margin-top:4px; letter-spacing:.05em; }
+.dish-price { font-family:var(--serif); font-size:1.05rem; color:var(--gold); white-space:nowrap; font-weight:400; flex-shrink:0; padding-top:2px; }
+.dish-cat-label {
+  padding:22px 0 8px; font-size:.53rem; letter-spacing:.5em;
+  text-transform:uppercase; color:var(--gold);
+  border-bottom:1px solid var(--line); margin-top:8px;
+}
+.dish-cat-label:first-child { margin-top:0; }
 
-/* разделители категорий внутри таблицы */
-.dish-cat td { padding:28px 0 10px; font-size:.55rem; letter-spacing:.5em; text-transform:uppercase; color:var(--gold); border-bottom:1px solid var(--line); border-top:none; background:none; }
-.dishes tbody tr.dish-cat:hover { background:transparent; }
-
-/* галерея еды */
-.food-reel { margin-top:80px; overflow:hidden; }
-.food-track { display:flex; gap:4px; animation:freel 55s linear infinite; width:max-content; }
+/* Лента еды */
+.food-reel { margin-top:56px; overflow:hidden; }
+.food-track { display:flex; gap:4px; animation:freel 50s linear infinite; width:max-content; }
 .food-track:hover { animation-play-state:paused; }
 @keyframes freel { from{transform:translateX(0)} to{transform:translateX(-50%)} }
-.food-card { width:280px; height:360px; flex-shrink:0; overflow:hidden; }
-.food-card:nth-child(3n+2) { height:310px; margin-top:50px; }
-.food-card:nth-child(5n) { width:230px; }
-.food-card img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .7s; }
-.food-card:hover img { transform:scale(1.07); }
+.fc { width:200px; height:260px; flex-shrink:0; overflow:hidden; }
+.fc img { width:100%; height:100%; object-fit:cover; display:block; }
 
-/* ── INTERIOR ── */
-#interior { background:var(--bg2); padding:120px 0 0; }
-.int-intro { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:flex-end; margin-bottom:72px; }
-.int-note { font-size:.92rem; line-height:1.9; color:var(--ink3); padding-top:12px; }
-.int-grid { display:grid; grid-template-columns:2fr 1fr 1fr; grid-template-rows:400px 280px; gap:4px; }
-.ig { overflow:hidden; position:relative; }
-.ig img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .8s, filter .5s; filter:brightness(.92); }
-.ig:hover img { transform:scale(1.05); filter:brightness(1); }
-.ig:nth-child(1) { grid-column:1; grid-row:1/3; }
-.ig:nth-child(2) { grid-column:2; grid-row:1; }
-.ig:nth-child(3) { grid-column:3; grid-row:1; }
-.ig:nth-child(4) { grid-column:2/4; grid-row:2; }
-.ig-cap { position:absolute; bottom:0; left:0; right:0; padding:16px 20px; background:linear-gradient(to top, rgba(28,24,20,.7), transparent); font-size:.56rem; letter-spacing:.38em; text-transform:uppercase; color:rgba(255,255,255,.75); opacity:0; transition:opacity .4s; }
-.ig:hover .ig-cap { opacity:1; }
+/* ═══════════════════════════════
+   ИНТЕРЬЕР
+═══════════════════════════════ */
+#interior { background:var(--bg2); padding:72px 0 0; }
+.int-head { padding:0 var(--pad) 40px; }
+.int-note { font-size:.9rem; line-height:1.85; color:var(--ink3); margin-top:20px; }
+.int-photos { display:grid; gap:4px; grid-template-columns:1fr 1fr; }
+.ig { overflow:hidden; aspect-ratio:1; position:relative; }
+.ig:first-child { grid-column:1/3; aspect-ratio:16/9; }
+.ig img { width:100%; height:100%; object-fit:cover; display:block; }
 
-/* ── HOURS BAR ── */
+/* ═══════════════════════════════
+   ЧАСЫ РАБОТЫ
+═══════════════════════════════ */
 #hours { background:var(--ink); padding:0; }
-.hours-row { display:grid; grid-template-columns:repeat(3,1fr); }
-.hb { padding:60px 64px; border-right:1px solid rgba(255,255,255,.07); transition:background .3s; }
-.hb:last-child { border-right:none; }
-.hb:hover { background:rgba(255,255,255,.03); }
-.hb-tag { font-size:.56rem; letter-spacing:.5em; text-transform:uppercase; color:rgba(255,255,255,.35); margin-bottom:14px; }
-.hb-val { font-family:var(--serif); font-size:2rem; font-weight:300; color:var(--gold-l); line-height:1.2; }
-.hb-note { font-size:.78rem; color:rgba(255,255,255,.3); margin-top:8px; font-style:italic; font-family:var(--serif); }
+.hb { padding:36px var(--pad); border-bottom:1px solid rgba(255,255,255,.07); }
+.hb:last-child { border-bottom:none; }
+.hb-tag { font-size:.53rem; letter-spacing:.45em; text-transform:uppercase; color:rgba(255,255,255,.35); margin-bottom:10px; }
+.hb-val { font-family:var(--serif); font-size:1.8rem; font-weight:300; color:var(--goldl); line-height:1.2; }
+.hb-note { font-size:.8rem; color:rgba(255,255,255,.3); margin-top:6px; font-style:italic; font-family:var(--serif); }
 
-/* ── NEWS ── */
+/* ═══════════════════════════════
+   НОВОСТИ
+═══════════════════════════════ */
 #news { background:var(--bg); }
-.news-head { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:60px; }
-.news-more { font-size:.6rem; letter-spacing:.38em; text-transform:uppercase; color:var(--ink3); text-decoration:none; transition:color .3s; }
+.news-head { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:36px; flex-wrap:wrap; gap:12px; }
+.news-more { font-size:.58rem; letter-spacing:.35em; text-transform:uppercase; color:var(--ink3); text-decoration:none; }
 .news-more:hover { color:var(--gold); }
-.news-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:4px; }
-.nc { background:var(--bg2); overflow:hidden; display:flex; flex-direction:column; transition:background .3s; }
-.nc:hover { background:var(--bg3); }
-.nc-img { aspect-ratio:4/3; overflow:hidden; }
-.nc-img img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .7s; }
-.nc:hover .nc-img img { transform:scale(1.06); }
-.nc-body { padding:28px 26px; flex:1; display:flex; flex-direction:column; }
-.nc-date { font-size:.54rem; letter-spacing:.42em; text-transform:uppercase; color:var(--gold); margin-bottom:12px; }
-.nc-title { font-family:var(--serif); font-size:1.3rem; font-weight:400; color:var(--ink); line-height:1.3; margin-bottom:10px; }
-.nc-text { font-size:.84rem; line-height:1.75; color:var(--ink3); flex:1; }
-.nc-link { display:inline-flex; align-items:center; gap:8px; font-size:.56rem; letter-spacing:.35em; text-transform:uppercase; color:var(--gold); text-decoration:none; margin-top:22px; transition:gap .3s; }
-.nc-link:hover { gap:16px; }
+.news-grid { display:flex; flex-direction:column; gap:4px; }
+.nc { background:var(--bg2); overflow:hidden; display:flex; flex-direction:column; }
+.nc-img { aspect-ratio:16/9; overflow:hidden; }
+.nc-img img { width:100%; height:100%; object-fit:cover; display:block; }
+.nc-body { padding:22px 18px; }
+.nc-date { font-size:.52rem; letter-spacing:.4em; text-transform:uppercase; color:var(--gold); margin-bottom:10px; }
+.nc-title { font-family:var(--serif); font-size:1.2rem; font-weight:400; color:var(--ink); line-height:1.3; margin-bottom:8px; }
+.nc-text { font-size:.85rem; line-height:1.7; color:var(--ink3); }
+.nc-link { display:inline-flex; align-items:center; gap:8px; font-size:.55rem; letter-spacing:.32em; text-transform:uppercase; color:var(--gold); text-decoration:none; margin-top:18px; }
 .nc-link::after { content:'→'; }
 
-/* ── CONTACTS ── */
+/* ═══════════════════════════════
+   КОНТАКТЫ
+═══════════════════════════════ */
 #contacts { background:var(--bg2); padding:0; }
-.con-wrap { display:grid; grid-template-columns:1fr 1.5fr; }
-.con-info { padding:100px 72px; }
-.con-items { margin-top:44px; }
-.ci { display:flex; gap:20px; padding:24px 0; border-bottom:1px solid var(--line); align-items:flex-start; }
+.con-info { padding:56px var(--pad) 48px; }
+.con-items { margin-top:32px; }
+.ci { display:flex; gap:16px; padding:18px 0; border-bottom:1px solid var(--line); align-items:center; }
 .ci:first-child { border-top:1px solid var(--line); }
-.ci-ico { width:40px; height:40px; border:1px solid var(--line); display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--gold); font-family:var(--serif); font-size:1rem; transition:all .3s; }
-.ci:hover .ci-ico { border-color:var(--gold-l); background:rgba(168,129,58,.05); }
-.ci-lbl { font-size:.56rem; letter-spacing:.38em; text-transform:uppercase; color:var(--ink3); margin-bottom:5px; }
-.ci-val { font-family:var(--serif); font-size:1.1rem; color:var(--ink); text-decoration:none; display:block; transition:color .3s; }
-.ci-val:hover { color:var(--gold); }
-.con-map { position:relative; overflow:hidden; min-height:520px; }
-.con-map iframe { width:100%; height:100%; border:none; display:block; filter:sepia(.15) contrast(1.05) brightness(.97); }
-.map-tag { position:absolute; top:28px; left:28px; background:var(--bg); padding:18px 24px; border-left:2px solid var(--gold); box-shadow:0 8px 32px rgba(28,24,20,.1); }
-.map-tag h4 { font-family:var(--serif); font-size:1.1rem; color:var(--ink); font-weight:400; }
-.map-tag p { font-size:.72rem; color:var(--ink3); margin-top:4px; }
+.ci-ico { width:36px; height:36px; border:1px solid var(--line); display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--gold); font-family:var(--serif); font-size:.95rem; }
+.ci-lbl { font-size:.52rem; letter-spacing:.35em; text-transform:uppercase; color:var(--ink3); margin-bottom:4px; }
+.ci-val { font-family:var(--serif); font-size:1rem; color:var(--ink); text-decoration:none; display:block; }
+.ci-val:active { color:var(--gold); }
+.con-map { width:100%; height:280px; position:relative; overflow:hidden; }
+.con-map iframe { width:100%; height:100%; border:none; display:block; }
+.map-badge { position:absolute; top:16px; left:16px; background:var(--bg); padding:14px 18px; border-left:2px solid var(--gold); }
+.map-badge h4 { font-family:var(--serif); font-size:1rem; color:var(--ink); font-weight:400; }
+.map-badge p { font-size:.68rem; color:var(--ink3); margin-top:3px; }
 
-/* ── FOOTER ── */
-footer { background:var(--ink); padding:52px 64px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:24px; border-top:1px solid rgba(255,255,255,.06); }
-.f-logo { font-family:var(--serif); font-size:1.4rem; font-weight:400; color:var(--gold-l); text-decoration:none; letter-spacing:.12em; }
-.f-links { display:flex; gap:32px; list-style:none; }
-.f-links a { font-size:.6rem; letter-spacing:.35em; text-transform:uppercase; color:rgba(255,255,255,.3); text-decoration:none; transition:color .3s; }
-.f-links a:hover { color:var(--gold-l); }
-.f-copy { font-size:.62rem; color:rgba(255,255,255,.22); }
+/* ═══════════════════════════════
+   ФУТЕР
+═══════════════════════════════ */
+footer {
+  background:var(--ink); padding:36px var(--pad);
+  display:flex; flex-direction:column; gap:20px;
+  border-top:1px solid rgba(255,255,255,.06);
+}
+.f-logo { font-family:var(--serif); font-size:1.3rem; color:var(--goldl); text-decoration:none; letter-spacing:.1em; }
+.f-links { display:flex; flex-wrap:wrap; gap:12px 20px; list-style:none; }
+.f-links a { font-size:.6rem; letter-spacing:.3em; text-transform:uppercase; color:rgba(255,255,255,.35); text-decoration:none; }
+.f-links a:active { color:var(--goldl); }
+.f-copy { font-size:.6rem; color:rgba(255,255,255,.2); }
 
-/* ── REVEAL ── */
-.rv { opacity:0; transform:translateY(36px); transition:opacity .85s ease, transform .85s ease; }
+/* ═══════════════════════════════
+   АНИМАЦИИ ПОЯВЛЕНИЯ
+═══════════════════════════════ */
+.rv { opacity:0; transform:translateY(28px); transition:opacity .8s ease, transform .8s ease; }
 .rv.in { opacity:1; transform:none; }
-.d1{transition-delay:.1s} .d2{transition-delay:.2s} .d3{transition-delay:.3s}
-.d4{transition-delay:.4s} .d5{transition-delay:.5s}
+.d1{transition-delay:.1s} .d2{transition-delay:.2s} .d3{transition-delay:.3s} .d4{transition-delay:.4s}
 
-/* ── RESPONSIVE: TABLET ── */
-@media(max-width:1024px){
-  nav{padding:20px 24px;}
-  nav.s{padding:14px 24px;}
-  .nav-links,.nav-phone{display:none;}
-  .nav-burger{display:flex;}
-  .wrap{padding:0 24px;}
-  .hero-content{padding:0 24px 56px; flex-direction:column; align-items:flex-start; gap:24px;}
-  .hero-right{text-align:left; max-width:100%;}
-  .hero-scroll{left:24px;}
-  .about-split{grid-template-columns:1fr;}
-  .about-photo{height:55vw; min-height:260px;}
-  .about-body{padding:56px 32px;}
-  .facts{grid-template-columns:1fr 1fr;}
-  .menu-tabs{overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none;}
-  .menu-tabs::-webkit-scrollbar{display:none;}
-  .int-intro{grid-template-columns:1fr; gap:20px; padding:0 24px; margin-bottom:48px;}
-  .int-grid{grid-template-columns:1fr 1fr; grid-template-rows:auto;}
-  .ig:nth-child(1){grid-column:1/3; grid-row:1; height:280px;}
-  .ig:nth-child(2){grid-column:1; grid-row:2; height:200px;}
-  .ig:nth-child(3){grid-column:2; grid-row:2; height:200px;}
-  .ig:nth-child(4){grid-column:1/3; grid-row:3; height:200px;}
-  .hours-row{grid-template-columns:1fr;}
-  .hb{border-right:none; border-bottom:1px solid rgba(255,255,255,.07); padding:40px 24px;}
-  .news-grid{grid-template-columns:1fr 1fr;}
-  .news-head{flex-direction:column; align-items:flex-start; gap:14px;}
-  .con-wrap{grid-template-columns:1fr;}
-  .con-info{padding:60px 24px;}
-  .con-map{min-height:360px;}
-  footer{flex-direction:column; align-items:flex-start; padding:36px 24px; gap:20px;}
-  .f-links{flex-wrap:wrap; gap:16px 28px;}
-  .sec{padding:80px 0;}
-  #interior{padding:80px 0 0;}
+/* ═══════════════════════════════
+   ПЛАНШЕТ: 600px+
+═══════════════════════════════ */
+@media(min-width:600px){
+  :root { --pad:32px; }
+
+  h1.hero-t { font-size:clamp(5rem,14vw,9rem); }
+  .hero-body { padding:0 var(--pad) 64px; }
+
+  .about-photo { aspect-ratio:16/7; }
+
+  .int-photos { grid-template-columns:1fr 1fr; }
+  .ig:first-child { grid-column:1/3; aspect-ratio:16/8; }
+  .ig:nth-child(2), .ig:nth-child(3) { aspect-ratio:1; }
+  .ig:nth-child(4) { grid-column:1/3; aspect-ratio:16/6; }
+
+  .news-grid { display:grid; grid-template-columns:1fr 1fr; }
+
+  .hb { padding:44px var(--pad); }
+
+  .fc { width:240px; height:300px; }
+
+  .tab { padding:13px 28px; font-size:.62rem; }
 }
 
-/* ── RESPONSIVE: MOBILE ── */
-@media(max-width:600px){
-  /* Курсор на телефоне не нужен */
-  #cur,#cur2{display:none;}
-  body{cursor:auto;}
-  *{cursor:auto !important;}
+/* ═══════════════════════════════
+   ДЕСКТОП: 900px+
+═══════════════════════════════ */
+@media(min-width:900px){
+  :root { --pad:64px; }
 
-  /* Nav */
-  nav{padding:16px 18px;}
-  nav.s{padding:12px 18px;}
-  .logo{font-size:1.35rem;}
+  nav { padding:28px var(--pad); }
+  nav.scrolled { padding:15px var(--pad); }
+  .nav-links { display:flex; }
+  .nav-phone-d { display:block; }
+  .burger { display:none; }
+  .logo { font-size:1.65rem; }
 
-  /* Wrap */
-  .wrap{padding:0 18px;}
+  .sec { padding:120px 0; }
 
-  /* Hero */
-  #hero{min-height:100svh;}
-  .hero-content{padding:0 18px 48px; gap:20px;}
-  h1.hero-title{font-size:clamp(3.8rem,17vw,5.5rem);}
-  .hero-tagline{font-size:.95rem; margin-bottom:24px;}
-  .hero-cta{padding:12px 28px; font-size:.6rem;}
-  .hero-scroll{display:none;}
+  h1.hero-t { font-size:clamp(6rem,11vw,10rem); }
+  .hero-body { padding:0 var(--pad) 80px; display:flex; justify-content:space-between; align-items:flex-end; gap:48px; }
+  .hero-desc { margin-bottom:0; max-width:320px; text-align:right; }
+  .hero-desc-wrap { text-align:right; flex-shrink:0; max-width:300px; }
+  .hero-cta { display:block; margin-top:28px; text-align:center; }
 
-  /* Marquee */
-  .marq-item{font-size:.9rem; padding:0 32px; gap:32px;}
+  #about { padding:0; }
+  .about-split { display:grid; grid-template-columns:1fr 1fr; min-height:90vh; }
+  .about-photo { aspect-ratio:auto; }
+  .about-body { padding:100px 80px; justify-content:center; display:flex; flex-direction:column; }
 
-  /* About */
-  .about-photo{height:70vw;}
-  .about-body{padding:44px 18px;}
-  .about-pull{font-size:1.25rem; padding-left:18px;}
-  .about-body p{font-size:.9rem;}
-  /* Факты — 2 колонки на телефоне */
-  .facts{grid-template-columns:1fr 1fr; gap:1px;}
-  .fact{padding:18px 14px;}
-  .fact-n{font-size:2.2rem;}
-  .fact-l{font-size:.72rem;}
+  .dish-list { display:table; width:100%; border-collapse:collapse; }
+  .dish-cat-label { display:table-row; }
+  .dish-cat-label span { display:table-cell; padding:26px 0 10px; font-size:.53rem; letter-spacing:.5em; text-transform:uppercase; color:var(--gold); border-bottom:1px solid var(--line); }
+  .dish-item { display:table-row; }
+  .dish-item:hover { background:var(--bg2); }
+  .dish-info { display:contents; }
+  .dish-name { display:table-cell; font-family:var(--serif); font-size:1.15rem; font-weight:400; color:var(--ink); padding:22px 0 20px; width:32%; vertical-align:middle; }
+  .dish-desc { display:table-cell; padding:22px 40px 20px 0; font-size:.85rem; color:var(--ink3); font-style:italic; line-height:1.6; vertical-align:middle; }
+  .dish-weight { display:table-cell; font-size:.78rem; color:var(--ink3); white-space:nowrap; padding:22px 24px 20px 0; vertical-align:middle; }
+  .dish-price { display:table-cell; font-family:var(--serif); font-size:1.1rem; color:var(--gold); text-align:right; white-space:nowrap; padding:22px 0 20px; vertical-align:middle; }
 
-  /* Menu */
-  .sec{padding:56px 0;}
-  .menu-header{margin-bottom:36px;}
-  .menu-tabs{gap:0; border-bottom:1px solid var(--line);}
-  .tab{padding:12px 16px; font-size:.58rem; letter-spacing:.28em; white-space:nowrap;}
+  .fc { width:280px; height:360px; }
+  .fc:nth-child(3n+2) { height:310px; margin-top:50px; }
+  .fc:nth-child(5n) { width:230px; }
 
-  /* Таблица меню — адаптируем под маленький экран */
-  .dishes{display:block;}
-  .dishes thead{display:none;} /* скрываем заголовок таблицы */
-  .dishes tbody{display:block;}
-  .dishes tr{display:block; border-bottom:1px solid rgba(168,129,58,.1); padding:16px 0;}
-  .dishes tr.dish-cat{padding:20px 0 8px;}
-  .dishes tr.dish-cat td{display:block; font-size:.55rem; letter-spacing:.45em; padding:0;}
-  .dish-name{display:block; font-size:1.1rem; padding:0 0 4px; width:auto;}
-  .dish-desc{display:block; padding:0 0 6px; font-size:.82rem;}
-  .dish-weight{display:inline; font-size:.78rem; color:var(--ink3);}
-  .dish-price{display:inline; font-size:1rem; float:right; padding:0; text-align:right;}
-  /* Строчка вес + цена */
-  .dishes td:nth-child(3)::after{content:' · ';}
+  #interior { padding:120px 0 0; }
+  .int-head { padding:0 var(--pad) 64px; display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:flex-end; }
+  .int-note { margin-top:0; }
+  .int-photos { grid-template-columns:2fr 1fr 1fr; grid-template-rows:380px 260px; }
+  .ig { aspect-ratio:auto; }
+  .ig:first-child { grid-column:1; grid-row:1/3; aspect-ratio:auto; }
+  .ig:nth-child(2) { grid-column:2; grid-row:1; }
+  .ig:nth-child(3) { grid-column:3; grid-row:1; }
+  .ig:nth-child(4) { grid-column:2/4; grid-row:2; }
+  .ig-cap { position:absolute; bottom:0; left:0; right:0; padding:14px 18px; background:linear-gradient(to top,rgba(28,24,20,.7),transparent); font-size:.54rem; letter-spacing:.35em; text-transform:uppercase; color:rgba(255,255,255,.8); opacity:0; transition:opacity .35s; }
+  .ig:hover .ig-cap { opacity:1; }
 
-  /* Food reel */
-  .food-reel{margin-top:48px;}
-  .food-card{width:200px; height:260px;}
-  .food-card:nth-child(3n+2){height:220px; margin-top:40px;}
-  .food-card:nth-child(5n){width:170px;}
+  .hours-row { display:grid; grid-template-columns:repeat(3,1fr); }
+  .hb { border-bottom:none; border-right:1px solid rgba(255,255,255,.07); padding:60px var(--pad); }
+  .hb:last-child { border-right:none; }
+  .hb-val { font-size:2.1rem; }
 
-  /* Interior */
-  #interior{padding:56px 0 0;}
-  .int-intro{padding:0 18px; margin-bottom:32px;}
-  .int-note{font-size:.88rem;}
-  /* На телефоне — одна колонка */
-  .int-grid{grid-template-columns:1fr; grid-template-rows:auto;}
-  .ig:nth-child(1){grid-column:1; grid-row:1; height:260px;}
-  .ig:nth-child(2){grid-column:1; grid-row:2; height:200px;}
-  .ig:nth-child(3){grid-column:1; grid-row:3; height:200px;}
-  .ig:nth-child(4){grid-column:1; grid-row:4; height:200px;}
-  .ig-cap{opacity:1; background:linear-gradient(to top,rgba(28,24,20,.65),transparent);}
+  .news-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:4px; }
+  .nc-img { aspect-ratio:4/3; }
 
-  /* Hours */
-  .hb{padding:32px 18px;}
-  .hb-val{font-size:1.6rem;}
+  .con-wrap { display:grid; grid-template-columns:1fr 1.4fr; }
+  .con-info { padding:100px var(--pad); }
+  .con-map { height:auto; min-height:480px; }
 
-  /* News */
-  .news-grid{grid-template-columns:1fr;}
-  .news-head{margin-bottom:40px; gap:12px;}
-  .nc-body{padding:22px 18px;}
-
-  /* Contacts */
-  .con-info{padding:48px 18px;}
-  .con-map{min-height:280px;}
-  .map-tag{top:16px; left:16px; padding:14px 18px;}
-  .ci{padding:18px 0;}
-  .ci-val{font-size:1rem;}
-
-  /* Footer */
-  footer{padding:28px 18px; gap:18px;}
-  .f-links{gap:14px 20px;}
-  .f-links a{font-size:.58rem;}
-
-  /* Mob overlay */
-  #mob a{font-size:2.2rem;}
-
-  /* Loader */
-  .ld-title{font-size:clamp(3rem,16vw,5rem);}
+  footer { flex-direction:row; justify-content:space-between; align-items:center; padding:48px var(--pad); }
+  .f-links { gap:28px; }
 }
 </style>
 </head>
 <body>
 
-<!-- CURSOR -->
+<!-- КУРСОР (только десктоп) -->
 <div id="cur"></div>
 <div id="cur2"></div>
 
-<!-- LOADER -->
+<!-- ЗАГРУЗКА -->
 <div id="loader">
-  <div class="ld-title"><span>Манилов</span></div>
-  <div class="ld-line"></div>
+  <div class="ld-word"><span>Манилов</span></div>
+  <div class="ld-bar"></div>
   <div class="ld-sub">Кафе · Тверь · Советская 17</div>
 </div>
 
-<!-- MOB OVERLAY -->
-<div id="mob">
-  <button class="close-btn" onclick="closeMob()">✕</button>
+<!-- МОБ-МЕНЮ -->
+<div id="mobmenu">
   <a href="#about"    onclick="closeMob()">О нас</a>
   <a href="#menu"     onclick="closeMob()">Меню</a>
   <a href="#interior" onclick="closeMob()">Интерьер</a>
   <a href="#news"     onclick="closeMob()">Новости</a>
   <a href="#contacts" onclick="closeMob()">Контакты</a>
+  <a href="tel:+79040206603" class="mob-phone" onclick="closeMob()">+7 (904) 020-66-03</a>
 </div>
 
-<!-- NAV -->
+<!-- НАВ -->
 <nav id="nav">
   <a href="#" class="logo">МАНИЛОВ<span class="logo-s">Кафе · Тверь</span></a>
   <ul class="nav-links">
@@ -434,27 +498,26 @@ footer { background:var(--ink); padding:52px 64px; display:flex; justify-content
     <li><a href="#news">Новости</a></li>
     <li><a href="#contacts">Контакты</a></li>
   </ul>
-  <a href="tel:+79040206603" class="nav-phone">+7 (904) 020-66-03</a>
-  <button class="nav-burger" id="burger" onclick="toggleMob()">
-    <span class="nb"></span><span class="nb"></span><span class="nb"></span>
+  <a href="tel:+79040206603" class="nav-phone-d">+7 (904) 020-66-03</a>
+  <button class="burger" id="burger" onclick="toggleMob()" aria-label="Меню">
+    <span class="bl"></span><span class="bl"></span><span class="bl"></span>
   </button>
 </nav>
 
-<!-- HERO -->
+<!-- ГЕРОЙ -->
 <section id="hero">
-  <div class="hero-img" id="heroBg"></div>
-  <div class="hero-vignette"></div>
-  <div class="hero-scroll"><div class="hero-scroll-line"></div>Листать</div>
-  <div class="hero-content">
-    <h1 class="hero-title">Кафе<br><em>Манилов</em></h1>
-    <div class="hero-right">
-      <p class="hero-tagline">«Для основательных людей, которые знают толк во всём и имеют вкус к изящному»</p>
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-ov"></div>
+  <div class="hero-body">
+    <h1 class="hero-t">Кафе<br><em>Манилов</em></h1>
+    <div class="hero-desc-wrap">
+      <p class="hero-desc">«Для основательных людей, которые знают толк во всём и имеют вкус к изящному»</p>
       <a href="#menu" class="hero-cta">Смотреть меню</a>
     </div>
   </div>
 </section>
 
-<!-- MARQUEE -->
+<!-- БЕГУЩАЯ СТРОКА -->
 <div class="marq">
   <div class="marq-track">
     <div class="marq-item">Русская кухня</div>
@@ -462,222 +525,315 @@ footer { background:var(--ink); padding:52px 64px; display:flex; justify-content
     <div class="marq-item">Советская 17 · Тверь</div>
     <div class="marq-item">Хлеб своей выпечки</div>
     <div class="marq-item">Соленья домашние</div>
-    <div class="marq-item">Вс–Чт до 00:00</div>
-    <div class="marq-item">Пт–Сб до 01:00</div>
+    <div class="marq-item">Вс–Чт до полуночи</div>
     <div class="marq-item">Русская кухня</div>
     <div class="marq-item">Обновляется каждый день</div>
     <div class="marq-item">Советская 17 · Тверь</div>
     <div class="marq-item">Хлеб своей выпечки</div>
     <div class="marq-item">Соленья домашние</div>
-    <div class="marq-item">Вс–Чт до 00:00</div>
-    <div class="marq-item">Пт–Сб до 01:00</div>
+    <div class="marq-item">Вс–Чт до полуночи</div>
   </div>
 </div>
 
-<!-- ABOUT -->
-<section id="about" style="padding:0">
+<!-- О НАС -->
+<section id="about">
   <div class="about-split">
     <div class="about-photo rv">
-      <img src="https://manilovtver.ru/wp-content/uploads/2017/03/Fai-l_0021.jpeg" alt="Интерьер кафе Манилов">
-      <div class="about-photo-cap">Интерьер кафе · Тверь</div>
+      <img src="https://manilovtver.ru/wp-content/uploads/2017/03/Fai-l_0021.jpeg" alt="Интерьер кафе Манилов" loading="lazy">
     </div>
     <div class="about-body">
-      <div class="tag rv">О заведении</div>
-      <h2 class="h rv d1">Дамы<br><em>и господа</em></h2>
+      <div class="stag rv">О заведении</div>
+      <h2 class="sh rv d1">Дамы<br><em>и господа</em></h2>
       <blockquote class="about-pull rv d2">«Манилов» — кафе для основательных людей, которые знают годы жизни Гоголя и отличают «Чайку» от «Трёх Сестёр»</blockquote>
       <p class="rv d3">Много сделано для того, чтобы посетитель мог погрузиться в атмосферу гостеприимного русского дома. Каждый день — обновлённое меню из холодных закусок, горячих блюд, супов и основного курса.</p>
-      <p class="rv d3">Здесь сами делают хрен, солят грибы и капусту, пекут хлеб и булки, варят варенье. Здесь стараются по-настоящему.</p>
+      <p class="rv d3">Здесь сами делают хрен, солят грибы и капусту, пекут хлеб и булки, варят варенье.</p>
       <div class="about-hr rv d4"></div>
       <div class="facts rv d4">
-        <div class="fact"><span class="fact-n">XIV</span><span class="fact-l">Лет атмосферы подлинного русского дома</span></div>
-        <div class="fact"><span class="fact-n">∞</span><span class="fact-l">Меню обновляется каждый день</span></div>
+        <div class="fact"><span class="fact-n">XIV</span><span class="fact-l">Лет атмосферы русского дома</span></div>
+        <div class="fact"><span class="fact-n">∞</span><span class="fact-l">Меню — каждый день новое</span></div>
         <div class="fact"><span class="fact-n">100%</span><span class="fact-l">Хлеб и соленья своего производства</span></div>
-        <div class="fact"><span class="fact-n">17</span><span class="fact-l">Советская — в самом сердце Твери</span></div>
+        <div class="fact"><span class="fact-n">17</span><span class="fact-l">Советская — сердце Твери</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- MENU -->
+<!-- МЕНЮ -->
 <section class="sec" id="menu">
   <div class="wrap">
-    <div class="menu-header">
-      <div>
-        <div class="tag rv">Кухня</div>
-        <h2 class="h rv d1">Наше <em>меню</em></h2>
+    <div class="stag rv">Кухня</div>
+    <h2 class="sh rv d1" style="margin-bottom:36px">Наше <em>меню</em></h2>
+
+    <div class="menu-tabs-wrap">
+      <div class="menu-tabs">
+        <button class="tab on" onclick="showTab('cold',this)">Холодные</button>
+        <button class="tab" onclick="showTab('hot',this)">Горячие</button>
+        <button class="tab" onclick="showTab('soups',this)">Супы</button>
+        <button class="tab" onclick="showTab('main',this)">Основные</button>
+        <button class="tab" onclick="showTab('desserts',this)">Десерты</button>
+        <button class="tab" onclick="showTab('drinks',this)">Напитки</button>
       </div>
     </div>
 
-    <!-- TABS -->
-    <div class="menu-tabs">
-      <button class="tab on" onclick="showTab('cold',this)">Холодные закуски</button>
-      <button class="tab" onclick="showTab('hot',this)">Горячие закуски</button>
-      <button class="tab" onclick="showTab('soups',this)">Супы</button>
-      <button class="tab" onclick="showTab('main',this)">Основные блюда</button>
-      <button class="tab" onclick="showTab('desserts',this)">Десерты</button>
-      <button class="tab" onclick="showTab('drinks',this)">Напитки</button>
-    </div>
-
-    <!-- COLD -->
+    <!-- ХОЛОДНЫЕ -->
     <div class="menu-panel on" id="tab-cold">
-      <table class="dishes">
-        <thead><tr><th>Блюдо</th><th>Состав</th><th>Выход</th><th>Цена</th></tr></thead>
-        <tbody>
-          <tr class="dish-cat"><td colspan="4">Фирменные закуски</td></tr>
-          <tr><td class="dish-name">Форшмак авторский</td><td class="dish-desc">Сельдь, яблоко, лук, сливочное масло, ржаные тосты</td><td class="dish-weight">180 г</td><td class="dish-price">390 ₽</td></tr>
-          <tr><td class="dish-name">Студень говяжий</td><td class="dish-desc">Домашний, с хреном собственного приготовления и горчицей</td><td class="dish-weight">200 г</td><td class="dish-price">420 ₽</td></tr>
-          <tr><td class="dish-name">Грибы солёные</td><td class="dish-desc">Боровики и опята домашней засолки, лук, подсолнечное масло</td><td class="dish-weight">150 г</td><td class="dish-price">350 ₽</td></tr>
-          <tr><td class="dish-name">Капуста квашеная</td><td class="dish-desc">С клюквой, тмином, подсолнечным маслом</td><td class="dish-weight">150 г</td><td class="dish-price">280 ₽</td></tr>
-          <tr class="dish-cat"><td colspan="4">Салаты</td></tr>
-          <tr><td class="dish-name">Салат «Манилов»</td><td class="dish-desc">Говяжий язык, свёкла, чернослив, грецкий орех, соус из хрена</td><td class="dish-weight">220 г</td><td class="dish-price">480 ₽</td></tr>
-          <tr><td class="dish-name">Винегрет домашний</td><td class="dish-desc">Свёкла, картофель, морковь, солёный огурец, квашеная капуста</td><td class="dish-weight">200 г</td><td class="dish-price">290 ₽</td></tr>
-          <tr><td class="dish-name">Оливье классический</td><td class="dish-desc">Варёная говядина, картофель, огурец, горошек, яйцо, майонез домашний</td><td class="dish-weight">220 г</td><td class="dish-price">360 ₽</td></tr>
-          <tr><td class="dish-name">Сельдь под шубой</td><td class="dish-desc">По классическому рецепту, домашний майонез</td><td class="dish-weight">220 г</td><td class="dish-price">340 ₽</td></tr>
-        </tbody>
-      </table>
+      <ul class="dish-list">
+        <li class="dish-cat-label"><span>Фирменные закуски</span></li>
+        <li class="dish-item">
+          <div class="dish-info"><div class="dish-name">Форшмак авторский</div><div class="dish-desc">Сельдь, яблоко, лук, сливочное масло, ржаные тосты</div><div class="dish-weight">180 г</div></div>
+          <div class="dish-price">390 ₽</div>
+        </li>
+        <li class="dish-item">
+          <div class="dish-info"><div class="dish-name">Студень говяжий</div><div class="dish-desc">Домашний, с хреном и горчицей собственного приготовления</div><div class="dish-weight">200 г</div></div>
+          <div class="dish-price">420 ₽</div>
+        </li>
+        <li class="dish-item">
+          <div class="dish-info"><div class="dish-name">Грибы солёные</div><div class="dish-desc">Боровики и опята домашней засолки, лук, масло</div><div class="dish-weight">150 г</div></div>
+          <div class="dish-price">350 ₽</div>
+        </li>
+        <li class="dish-item">
+          <div class="dish-info"><div class="dish-name">Капуста квашеная</div><div class="dish-desc">С клюквой, тмином, подсолнечным маслом</div><div class="dish-weight">150 г</div></div>
+          <div class="dish-price">280 ₽</div>
+        </li>
+        <li class="dish-cat-label"><span>Салаты</span></li>
+        <li class="dish-item">
+          <div class="dish-info"><div class="dish-name">Салат «Манилов»</div><div class="dish-desc">Говяжий язык, свёкла, чернослив, грецкий орех, хрен</div><div class="dish-weight">220 г</div></div>
+          <div class="dish-price">480 ₽</div>
+        </li>
+        <li class="dish-item">
+          <div class="dish-info"><div class="dish-name">Винегрет домашний</div><div class="dish-desc">Свёкла, картофель, морковь, солёный огурец, квашеная капуста</div><div class="dish-weight">200 г</div></div>
+          <div class="dish-price">290 ₽</div>
+        </li>
+        <li class="dish-item">
+          <div class="dish-info"><div class="dish-name">Оливье классический</div><div class="dish-desc">Варёная говядина, картофель, огурец, горошек, яйцо, майонез домашний</div><div class="dish-weight">220 г</div></div>
+          <div class="dish-price">360 ₽</div>
+        </li>
+        <li class="dish-item">
+          <div class="dish-info"><div class="dish-name">Сельдь под шубой</div><div class="dish-desc">По классическому рецепту, домашний майонез</div><div class="dish-weight">220 г</div></div>
+          <div class="dish-price">340 ₽</div>
+        </li>
+      </ul>
     </div>
 
-    <!-- HOT -->
+    <!-- ГОРЯЧИЕ -->
     <div class="menu-panel" id="tab-hot">
-      <table class="dishes">
-        <thead><tr><th>Блюдо</th><th>Состав</th><th>Выход</th><th>Цена</th></tr></thead>
-        <tbody>
-          <tr><td class="dish-name">Драник «Манилов»</td><td class="dish-desc">Картофельный, с грибами и луком, сметана домашняя</td><td class="dish-weight">180 г</td><td class="dish-price">390 ₽</td></tr>
-          <tr><td class="dish-name">Жульен грибной</td><td class="dish-desc">Белые грибы, сливки, сыр, в кокотнице</td><td class="dish-weight">160 г</td><td class="dish-price">420 ₽</td></tr>
-          <tr><td class="dish-name">Печень куриная</td><td class="dish-desc">В сметанном соусе с луком, домашний хлеб</td><td class="dish-weight">180 г</td><td class="dish-price">380 ₽</td></tr>
-          <tr><td class="dish-name">Яйца по-казачьи</td><td class="dish-desc">Жареные с ветчиной, зелёным луком и хлебом</td><td class="dish-weight">180 г</td><td class="dish-price">320 ₽</td></tr>
-          <tr><td class="dish-name">Блины с икрой</td><td class="dish-desc">Тонкие блины, красная икра, сливочное масло</td><td class="dish-weight">120 г</td><td class="dish-price">580 ₽</td></tr>
-        </tbody>
-      </table>
+      <ul class="dish-list">
+        <li class="dish-item">
+          <div class="dish-info"><div class="dish-name">Драник «Манилов»</div><div class="dish-desc">Картофельный, с грибами и луком, сметана домашняя</div><div class="dish-weight">180 г</div></div>
+          <div class="dish-price">390 ₽</div>
+        </li>
+        <li class="dish-item">
+          <div class="dish-info"><div class="dish-name">Жульен грибной</div><div class="dish-desc">Белые грибы, сливки, сыр, в кокотнице</div><div class="dish-weight">160 г</div></div>
+          <div class="dish-price">420 ₽</div>
+        </li>
+        <li class="dish-item">
+          <div class="dish-info"><div class="dish-name">Печень куриная</div><div class="dish-desc">В сметанном соусе с луком, домашний хлеб</div><div class="dish-weight">180 г</div></div>
+          <div class="dish-price">380 ₽</div>
+        </li>
+        <li class="dish-item">
+          <div class="dish-info"><div class="dish-name">Яйца по-казачьи</div><div class="dish-desc">Жареные с ветчиной, зелёным луком и хлебом</div><div class="dish-weight">180 г</div></div>
+          <div class="dish-price">320 ₽</div>
+        </li>
+        <li class="dish-item">
+          <div class="dish-info"><div class="dish-name">Блины с икрой</div><div class="dish-desc">Тонкие блины, красная икра, сливочное масло</div><div class="dish-weight">120 г</div></div>
+          <div class="dish-price">580 ₽</div>
+        </li>
+      </ul>
     </div>
 
-    <!-- SOUPS -->
+    <!-- СУПЫ -->
     <div class="menu-panel" id="tab-soups">
-      <table class="dishes">
-        <thead><tr><th>Блюдо</th><th>Состав</th><th>Выход</th><th>Цена</th></tr></thead>
-        <tbody>
-          <tr><td class="dish-name">Борщ московский</td><td class="dish-desc">Говядина, свёкла, капуста, фасоль, томат. Подаётся со сметаной и домашним хлебом</td><td class="dish-weight">350 г</td><td class="dish-price">380 ₽</td></tr>
-          <tr><td class="dish-name">Щи суточные</td><td class="dish-desc">Томлёные, из квашеной капусты, на говяжьем бульоне. Со сметаной</td><td class="dish-weight">350 г</td><td class="dish-price">360 ₽</td></tr>
-          <tr><td class="dish-name">Рассольник домашний</td><td class="dish-desc">С перловкой, солёными огурцами, почками и говядиной</td><td class="dish-weight">350 г</td><td class="dish-price">370 ₽</td></tr>
-          <tr><td class="dish-name">Уха из судака</td><td class="dish-desc">Тройная, с зеленью и ржаным хлебом</td><td class="dish-weight">350 г</td><td class="dish-price">420 ₽</td></tr>
-          <tr><td class="dish-name">Крем-суп тыквенный</td><td class="dish-desc">С поджаренными семечками, сливками и мускатным орехом</td><td class="dish-weight">300 г</td><td class="dish-price">350 ₽</td></tr>
-          <tr><td class="dish-name">Солянка мясная</td><td class="dish-desc">С ассорти из мясных деликатесов, оливками и лимоном</td><td class="dish-weight">350 г</td><td class="dish-price">430 ₽</td></tr>
-        </tbody>
-      </table>
+      <ul class="dish-list">
+        <li class="dish-item">
+          <div class="dish-info"><div class="dish-name">Борщ московский</div><div class="dish-desc">Говядина, свёкла, капуста, фасоль. Со сметаной и хлебом</div><div class="dish-weight">350 г</div></div>
+          <div class="dish-price">380 ₽</div>
+        </li>
+        <li class="dish-item">
+          <div class="dish-info"><div class="dish-name">Щи суточные</div><div class="dish-desc">Томлёные, из квашеной капусты, на говяжьем бульоне. Со сметаной</div><div class="dish-weight">350 г</div></div>
+          <div class="dish-price">360 ₽</div>
+        </li>
+        <li class="dish-item">
+          <div class="dish-info"><div class="dish-name">Рассольник</div><div class="dish-desc">С перловкой, солёными огурцами, почками и говядиной</div><div class="dish-weight">350 г</div></div>
+          <div class="dish-price">370 ₽</div>
+        </li>
+        <li class="dish-item">
+          <div class="dish-info"><div class="dish-name">Уха из судака</div><div class="dish-desc">Тройная, с зеленью и ржаным хлебом</div><div class="dish-weight">350 г</div></div>
+          <div class="dish-price">420 ₽</div>
+        </li>
+        <li class="dish-item">
+          <div class="dish-info"><div class="dish-name">Крем-суп тыквенный</div><div class="dish-desc">С поджаренными семечками, сливками и мускатным орехом</div><div class="dish-weight">300 г</div></div>
+          <div class="dish-price">350 ₽</div>
+        </li>
+        <li class="dish-item">
+          <div class="dish-info"><div class="dish-name">Солянка мясная</div><div class="dish-desc">С ассорти деликатесов, оливками и лимоном</div><div class="dish-weight">350 г</div></div>
+          <div class="dish-price">430 ₽</div>
+        </li>
+      </ul>
     </div>
 
-    <!-- MAIN -->
+    <!-- ОСНОВНЫЕ -->
     <div class="menu-panel" id="tab-main">
-      <table class="dishes">
-        <thead><tr><th>Блюдо</th><th>Состав</th><th>Выход</th><th>Цена</th></tr></thead>
-        <tbody>
-          <tr class="dish-cat"><td colspan="4">Мясо</td></tr>
-          <tr><td class="dish-name">Говядина тушёная</td><td class="dish-desc">С кореньями, лавровым листом и ароматными травами. Гречневая каша</td><td class="dish-weight">280 г</td><td class="dish-price">620 ₽</td></tr>
-          <tr><td class="dish-name">Котлета пожарская</td><td class="dish-desc">Куриный фарш, белый хлеб, масло. Картофельное пюре, соус</td><td class="dish-weight">250 г</td><td class="dish-price">520 ₽</td></tr>
-          <tr><td class="dish-name">Свинина по-домашнему</td><td class="dish-desc">Запечённая с чесноком и травами. Квашеная капуста</td><td class="dish-weight">280 г</td><td class="dish-price">580 ₽</td></tr>
-          <tr><td class="dish-name">Бефстроганов</td><td class="dish-desc">Говяжья вырезка, сметанный соус с грибами. Картофель отварной</td><td class="dish-weight">280 г</td><td class="dish-price">680 ₽</td></tr>
-          <tr class="dish-cat"><td colspan="4">Птица</td></tr>
-          <tr><td class="dish-name">Куриные котлеты</td><td class="dish-desc">С начинкой из сливочного масла и зелени. Пюре, соус</td><td class="dish-weight">250 г</td><td class="dish-price">490 ₽</td></tr>
-          <tr><td class="dish-name">Гусь тушёный</td><td class="dish-desc">С яблоком и черносливом. Гречка с обжаренным луком</td><td class="dish-weight">300 г</td><td class="dish-price">720 ₽</td></tr>
-          <tr class="dish-cat"><td colspan="4">Рыба</td></tr>
-          <tr><td class="dish-name">Судак в сметане</td><td class="dish-desc">Запечённый со сметаной и зеленью. Картофель</td><td class="dish-weight">280 г</td><td class="dish-price">590 ₽</td></tr>
-          <tr class="dish-cat"><td colspan="4">Гарниры</td></tr>
-          <tr><td class="dish-name">Каша гречневая</td><td class="dish-desc">С грибами и луком, томлёная в горшочке</td><td class="dish-weight">200 г</td><td class="dish-price">220 ₽</td></tr>
-          <tr><td class="dish-name">Пюре картофельное</td><td class="dish-desc">Со сливочным маслом и молоком</td><td class="dish-weight">200 г</td><td class="dish-price">190 ₽</td></tr>
-          <tr><td class="dish-name">Картофель отварной</td><td class="dish-desc">С укропом и маслом</td><td class="dish-weight">200 г</td><td class="dish-price">170 ₽</td></tr>
-        </tbody>
-      </table>
+      <ul class="dish-list">
+        <li class="dish-cat-label"><span>Мясо</span></li>
+        <li class="dish-item">
+          <div class="dish-info"><div class="dish-name">Говядина тушёная</div><div class="dish-desc">С кореньями и травами. Гречневая каша</div><div class="dish-weight">280 г</div></div>
+          <div class="dish-price">620 ₽</div>
+        </li>
+        <li class="dish-item">
+          <div class="dish-info"><div class="dish-name">Котлета пожарская</div><div class="dish-desc">Куриный фарш, белый хлеб, масло. Пюре, соус</div><div class="dish-weight">250 г</div></div>
+          <div class="dish-price">520 ₽</div>
+        </li>
+        <li class="dish-item">
+          <div class="dish-info"><div class="dish-name">Бефстроганов</div><div class="dish-desc">Говяжья вырезка, сметанный соус с грибами. Картофель</div><div class="dish-weight">280 г</div></div>
+          <div class="dish-price">680 ₽</div>
+        </li>
+        <li class="dish-cat-label"><span>Птица</span></li>
+        <li class="dish-item">
+          <div class="dish-info"><div class="dish-name">Котлета куриная</div><div class="dish-desc">С начинкой из масла и зелени. Пюре, соус</div><div class="dish-weight">250 г</div></div>
+          <div class="dish-price">490 ₽</div>
+        </li>
+        <li class="dish-item">
+          <div class="dish-info"><div class="dish-name">Гусь тушёный</div><div class="dish-desc">С яблоком и черносливом. Гречка с луком</div><div class="dish-weight">300 г</div></div>
+          <div class="dish-price">720 ₽</div>
+        </li>
+        <li class="dish-cat-label"><span>Рыба</span></li>
+        <li class="dish-item">
+          <div class="dish-info"><div class="dish-name">Судак в сметане</div><div class="dish-desc">Запечённый со сметаной и зеленью. Картофель</div><div class="dish-weight">280 г</div></div>
+          <div class="dish-price">590 ₽</div>
+        </li>
+        <li class="dish-cat-label"><span>Гарниры</span></li>
+        <li class="dish-item">
+          <div class="dish-info"><div class="dish-name">Каша гречневая</div><div class="dish-desc">С грибами и луком, томлёная в горшочке</div><div class="dish-weight">200 г</div></div>
+          <div class="dish-price">220 ₽</div>
+        </li>
+        <li class="dish-item">
+          <div class="dish-info"><div class="dish-name">Пюре картофельное</div><div class="dish-desc">Со сливочным маслом и молоком</div><div class="dish-weight">200 г</div></div>
+          <div class="dish-price">190 ₽</div>
+        </li>
+      </ul>
     </div>
 
-    <!-- DESSERTS -->
+    <!-- ДЕСЕРТЫ -->
     <div class="menu-panel" id="tab-desserts">
-      <table class="dishes">
-        <thead><tr><th>Блюдо</th><th>Состав</th><th>Выход</th><th>Цена</th></tr></thead>
-        <tbody>
-          <tr><td class="dish-name">Блины с вареньем</td><td class="dish-desc">Тонкие блины, домашнее варенье (смородина / вишня / яблоко)</td><td class="dish-weight">200 г</td><td class="dish-price">320 ₽</td></tr>
-          <tr><td class="dish-name">Пирог яблочный</td><td class="dish-desc">Домашний, с корицей, подаётся тёплым со сметаной</td><td class="dish-weight">150 г</td><td class="dish-price">280 ₽</td></tr>
-          <tr><td class="dish-name">Творожная запеканка</td><td class="dish-desc">С изюмом и ванилью. Сметана, варенье</td><td class="dish-weight">180 г</td><td class="dish-price">300 ₽</td></tr>
-          <tr><td class="dish-name">Кисель ягодный</td><td class="dish-desc">Домашний, из смородины и клюквы</td><td class="dish-weight">250 г</td><td class="dish-price">180 ₽</td></tr>
-          <tr><td class="dish-name">Медовик</td><td class="dish-desc">По классическому рецепту, со сметанным кремом</td><td class="dish-weight">150 г</td><td class="dish-price">320 ₽</td></tr>
-        </tbody>
-      </table>
+      <ul class="dish-list">
+        <li class="dish-item">
+          <div class="dish-info"><div class="dish-name">Блины с вареньем</div><div class="dish-desc">Тонкие блины, домашнее варенье (смородина / вишня)</div><div class="dish-weight">200 г</div></div>
+          <div class="dish-price">320 ₽</div>
+        </li>
+        <li class="dish-item">
+          <div class="dish-info"><div class="dish-name">Пирог яблочный</div><div class="dish-desc">Домашний, с корицей, подаётся тёплым со сметаной</div><div class="dish-weight">150 г</div></div>
+          <div class="dish-price">280 ₽</div>
+        </li>
+        <li class="dish-item">
+          <div class="dish-info"><div class="dish-name">Творожная запеканка</div><div class="dish-desc">С изюмом и ванилью. Сметана, варенье</div><div class="dish-weight">180 г</div></div>
+          <div class="dish-price">300 ₽</div>
+        </li>
+        <li class="dish-item">
+          <div class="dish-info"><div class="dish-name">Медовик</div><div class="dish-desc">По классическому рецепту, со сметанным кремом</div><div class="dish-weight">150 г</div></div>
+          <div class="dish-price">320 ₽</div>
+        </li>
+        <li class="dish-item">
+          <div class="dish-info"><div class="dish-name">Кисель ягодный</div><div class="dish-desc">Домашний, из смородины и клюквы</div><div class="dish-weight">250 г</div></div>
+          <div class="dish-price">180 ₽</div>
+        </li>
+      </ul>
     </div>
 
-    <!-- DRINKS -->
+    <!-- НАПИТКИ -->
     <div class="menu-panel" id="tab-drinks">
-      <table class="dishes">
-        <thead><tr><th>Напиток</th><th>Описание</th><th>Объём</th><th>Цена</th></tr></thead>
-        <tbody>
-          <tr class="dish-cat"><td colspan="4">Безалкогольные</td></tr>
-          <tr><td class="dish-name">Чай травяной</td><td class="dish-desc">Иван-чай, шиповник, мята — на выбор</td><td class="dish-weight">500 мл</td><td class="dish-price">220 ₽</td></tr>
-          <tr><td class="dish-name">Чай чёрный / зелёный</td><td class="dish-desc">Крупнолистовой, заварочный чайник</td><td class="dish-weight">500 мл</td><td class="dish-price">200 ₽</td></tr>
-          <tr><td class="dish-name">Кофе «Американо»</td><td class="dish-desc">Двойная порция эспрессо с водой</td><td class="dish-weight">200 мл</td><td class="dish-price">220 ₽</td></tr>
-          <tr><td class="dish-name">Морс клюквенный</td><td class="dish-desc">Домашний, из свежей клюквы</td><td class="dish-weight">300 мл</td><td class="dish-price">180 ₽</td></tr>
-          <tr><td class="dish-name">Квас хлебный</td><td class="dish-desc">Домашний</td><td class="dish-weight">300 мл</td><td class="dish-price">160 ₽</td></tr>
-          <tr class="dish-cat"><td colspan="4">Алкоголь</td></tr>
-          <tr><td class="dish-name">Настойка смородиновая</td><td class="dish-desc">Домашняя, 40°</td><td class="dish-weight">50 мл</td><td class="dish-price">280 ₽</td></tr>
-          <tr><td class="dish-name">Наливка вишнёвая</td><td class="dish-desc">Домашняя, 18°</td><td class="dish-weight">100 мл</td><td class="dish-price">260 ₽</td></tr>
-          <tr><td class="dish-name">Вина — карта</td><td class="dish-desc">Актуальная карта вин уточняется у официанта</td><td class="dish-weight">—</td><td class="dish-price">от 350 ₽</td></tr>
-          <tr><td class="dish-name">Пиво разливное</td><td class="dish-desc">Светлое / тёмное</td><td class="dish-weight">500 мл</td><td class="dish-price">от 280 ₽</td></tr>
-        </tbody>
-      </table>
+      <ul class="dish-list">
+        <li class="dish-cat-label"><span>Безалкогольные</span></li>
+        <li class="dish-item">
+          <div class="dish-info"><div class="dish-name">Чай травяной</div><div class="dish-desc">Иван-чай, шиповник, мята — на выбор</div><div class="dish-weight">500 мл</div></div>
+          <div class="dish-price">220 ₽</div>
+        </li>
+        <li class="dish-item">
+          <div class="dish-info"><div class="dish-name">Чай чёрный / зелёный</div><div class="dish-desc">Крупнолистовой, заварочный чайник</div><div class="dish-weight">500 мл</div></div>
+          <div class="dish-price">200 ₽</div>
+        </li>
+        <li class="dish-item">
+          <div class="dish-info"><div class="dish-name">Кофе «Американо»</div><div class="dish-desc">Двойной эспрессо с водой</div><div class="dish-weight">200 мл</div></div>
+          <div class="dish-price">220 ₽</div>
+        </li>
+        <li class="dish-item">
+          <div class="dish-info"><div class="dish-name">Морс клюквенный</div><div class="dish-desc">Домашний, из свежей клюквы</div><div class="dish-weight">300 мл</div></div>
+          <div class="dish-price">180 ₽</div>
+        </li>
+        <li class="dish-item">
+          <div class="dish-info"><div class="dish-name">Квас хлебный</div><div class="dish-desc">Домашний</div><div class="dish-weight">300 мл</div></div>
+          <div class="dish-price">160 ₽</div>
+        </li>
+        <li class="dish-cat-label"><span>Алкоголь</span></li>
+        <li class="dish-item">
+          <div class="dish-info"><div class="dish-name">Настойка смородиновая</div><div class="dish-desc">Домашняя, 40°</div><div class="dish-weight">50 мл</div></div>
+          <div class="dish-price">280 ₽</div>
+        </li>
+        <li class="dish-item">
+          <div class="dish-info"><div class="dish-name">Наливка вишнёвая</div><div class="dish-desc">Домашняя, 18°</div><div class="dish-weight">100 мл</div></div>
+          <div class="dish-price">260 ₽</div>
+        </li>
+        <li class="dish-item">
+          <div class="dish-info"><div class="dish-name">Вина</div><div class="dish-desc">Актуальная карта — уточняйте у официанта</div><div class="dish-weight">—</div></div>
+          <div class="dish-price">от 350 ₽</div>
+        </li>
+      </ul>
     </div>
 
-    <!-- FOOD REEL -->
+    <!-- ЛЕНТА ЕДЫ -->
     <div class="food-reel">
       <div class="food-track" id="foodTrack"></div>
     </div>
   </div>
 </section>
 
-<!-- INTERIOR -->
+<!-- ИНТЕРЬЕР -->
 <section id="interior">
-  <div class="int-intro wrap">
+  <div class="int-head wrap">
     <div>
-      <div class="tag rv">Интерьер</div>
-      <h2 class="h rv d1">Атмосфера<br><em>русского дома</em></h2>
+      <div class="stag rv">Интерьер</div>
+      <h2 class="sh rv d1">Атмосфера<br><em>русского дома</em></h2>
     </div>
-    <p class="int-note rv d2">Гостеприимный интерьер, антикварные детали, мягкий свет — всё создано для того, чтобы гость чувствовал себя как дома. В настоящем старом доме.</p>
+    <p class="int-note rv d2">Гостеприимный интерьер, антикварные детали, мягкий свет — всё создано для того, чтобы гость чувствовал себя как дома.</p>
   </div>
-  <div class="int-grid">
-    <div class="ig rv"><img src="https://manilovtver.ru/wp-content/uploads/2017/03/Fai-l_002.jpeg" alt="Зал"><div class="ig-cap">Главный зал</div></div>
-    <div class="ig rv d1"><img src="https://manilovtver.ru/wp-content/uploads/2017/03/Fai-l_007.jpeg" alt="Детали"><div class="ig-cap">Детали</div></div>
-    <div class="ig rv d2"><img src="https://manilovtver.ru/wp-content/uploads/2017/03/Fai-l_0053.jpeg" alt="Уголок"><div class="ig-cap">Уголок</div></div>
-    <div class="ig rv d3"><img src="https://manilovtver.ru/wp-content/uploads/2017/03/Fai-l_015.jpeg" alt="Вечер"><div class="ig-cap">Вечернее настроение</div></div>
+  <div class="int-photos">
+    <div class="ig rv"><img src="https://manilovtver.ru/wp-content/uploads/2017/03/Fai-l_002.jpeg" alt="Зал" loading="lazy"><div class="ig-cap">Главный зал</div></div>
+    <div class="ig rv d1"><img src="https://manilovtver.ru/wp-content/uploads/2017/03/Fai-l_007.jpeg" alt="Детали" loading="lazy"><div class="ig-cap">Детали</div></div>
+    <div class="ig rv d2"><img src="https://manilovtver.ru/wp-content/uploads/2017/03/Fai-l_0053.jpeg" alt="Уголок" loading="lazy"><div class="ig-cap">Уголок</div></div>
+    <div class="ig rv d3"><img src="https://manilovtver.ru/wp-content/uploads/2017/03/Fai-l_015.jpeg" alt="Вечер" loading="lazy"><div class="ig-cap">Вечернее</div></div>
   </div>
 </section>
 
-<!-- HOURS -->
+<!-- ЧАСЫ -->
 <div id="hours">
   <div class="hours-row">
     <div class="hb"><div class="hb-tag">Воскресенье — Четверг</div><div class="hb-val">11:00 — 00:00</div></div>
     <div class="hb"><div class="hb-tag">Пятница — Суббота</div><div class="hb-val">11:00 — 01:00</div><div class="hb-note">Кухня до закрытия</div></div>
-    <div class="hb"><div class="hb-tag">Заказ столика</div><div class="hb-val">+7 (904) 020-66-03</div><div class="hb-note">Звоните в любое время работы</div></div>
+    <div class="hb"><div class="hb-tag">Звоните для резервации</div><div class="hb-val"><a href="tel:+79040206603" style="color:var(--goldl);text-decoration:none">+7 (904) 020-66-03</a></div></div>
   </div>
 </div>
 
-<!-- NEWS -->
+<!-- НОВОСТИ -->
 <section class="sec" id="news">
   <div class="wrap">
     <div class="news-head">
       <div>
-        <div class="tag rv">Новости</div>
-        <h2 class="h rv d1">Что нового<br><em>в Манилове</em></h2>
+        <div class="stag rv">Новости</div>
+        <h2 class="sh rv d1">Что нового<br><em>в Манилове</em></h2>
       </div>
       <a href="https://manilovtver.ru/novosti/" class="news-more" target="_blank">Все новости →</a>
     </div>
     <div class="news-grid">
       <div class="nc rv">
-        <div class="nc-img"><img src="https://manilovtver.ru/wp-content/uploads/2022/05/2022-04-18_02_35_50.jpeg" alt="Суп"></div>
+        <div class="nc-img"><img src="https://manilovtver.ru/wp-content/uploads/2022/05/2022-04-18_02_35_50.jpeg" alt="Тыквенный суп" loading="lazy"></div>
         <div class="nc-body">
           <div class="nc-date">Апрель 2022</div>
           <div class="nc-title">Тыквенный крем-суп с семечками</div>
-          <div class="nc-text">Нежный, бархатистый, с поджаренными семечками и ароматом мускатного ореха.</div>
+          <div class="nc-text">Нежный, бархатистый, с поджаренными семечками и мускатным орехом.</div>
           <a href="https://manilovtver.ru/novosti/novinka-tykvennyj-krem-sup-s-semechkami/" class="nc-link" target="_blank">Читать</a>
         </div>
       </div>
       <div class="nc rv d2">
-        <div class="nc-img"><img src="https://manilovtver.ru/wp-content/uploads/2022/05/2022-04-21_22_11_32.jpeg" alt="Драник"></div>
+        <div class="nc-img"><img src="https://manilovtver.ru/wp-content/uploads/2022/05/2022-04-21_22_11_32.jpeg" alt="Русский драник" loading="lazy"></div>
         <div class="nc-body">
           <div class="nc-date">Апрель 2022</div>
           <div class="nc-title">Мы его вернули</div>
@@ -686,11 +842,11 @@ footer { background:var(--ink); padding:52px 64px; display:flex; justify-content
         </div>
       </div>
       <div class="nc rv d3">
-        <div class="nc-img"><img src="https://manilovtver.ru/wp-content/uploads/2017/03/2022-04-13_23_56_44_HEIC.jpeg" alt="Вина"></div>
+        <div class="nc-img"><img src="https://manilovtver.ru/wp-content/uploads/2017/03/2022-04-13_23_56_44_HEIC.jpeg" alt="Вина" loading="lazy"></div>
         <div class="nc-body">
           <div class="nc-date">Апрель 2022</div>
           <div class="nc-title">Новые вина в карте</div>
-          <div class="nc-text">Обновили винную карту — новые позиции ждут ваших оценок.</div>
+          <div class="nc-text">Обновили винную карту — новые позиции ждут вас.</div>
           <a href="https://manilovtver.ru/novosti/new_wine/" class="nc-link" target="_blank">Читать</a>
         </div>
       </div>
@@ -698,27 +854,27 @@ footer { background:var(--ink); padding:52px 64px; display:flex; justify-content
   </div>
 </section>
 
-<!-- CONTACTS -->
-<section id="contacts" style="padding:0">
+<!-- КОНТАКТЫ -->
+<section id="contacts">
   <div class="con-wrap">
     <div class="con-info">
-      <div class="tag rv">Контакты</div>
-      <h2 class="h rv d1">Найдите<br><em>нас</em></h2>
+      <div class="stag rv">Контакты</div>
+      <h2 class="sh rv d1">Найдите<br><em>нас</em></h2>
       <div class="con-items">
         <div class="ci rv d1"><div class="ci-ico">✆</div><div><div class="ci-lbl">Телефон</div><a href="tel:+79040206603" class="ci-val">+7 (904) 020-66-03</a></div></div>
-        <div class="ci rv d2"><div class="ci-ico">✉</div><div><div class="ci-lbl">Email</div><a href="/cdn-cgi/l/email-protection#1c717d727570736a2d2b777d7a795c7b717d7570327f7371" class="ci-val"><span class="__cf_email__" data-cfemail="bad7dbd4d3d6d5cc8b8dd1dbdcdffaddd7dbd3d694d9d5d7">[email&#160;protected]</span></a></div></div>
+        <div class="ci rv d2"><div class="ci-ico">✉</div><div><div class="ci-lbl">Email</div><a href="mailto:manilov17kafe@gmail.com" class="ci-val">manilov17kafe@gmail.com</a></div></div>
         <div class="ci rv d3"><div class="ci-ico">◉</div><div><div class="ci-lbl">Адрес</div><span class="ci-val">Тверь, ул. Советская, 17</span></div></div>
         <div class="ci rv d4"><div class="ci-ico">◷</div><div><div class="ci-lbl">Часы</div><span class="ci-val">Вс–Чт 11:00–00:00 · Пт–Сб 11:00–01:00</span></div></div>
       </div>
     </div>
     <div class="con-map">
       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1120!2d35.9083!3d56.8596!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTbCsDUxJzM0LjYiTiAzNcKwNTQnMjkuOSJF!5e0!3m2!1sru!2sru!4v1" allowfullscreen loading="lazy"></iframe>
-      <div class="map-tag"><h4>Кафе Манилов</h4><p>Советская, 17 · Тверь</p></div>
+      <div class="map-badge"><h4>Кафе Манилов</h4><p>Советская, 17 · Тверь</p></div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ФУТЕР -->
 <footer>
   <a href="#" class="f-logo">МАНИЛОВ</a>
   <ul class="f-links">
@@ -731,43 +887,92 @@ footer { background:var(--ink); padding:52px 64px; display:flex; justify-content
   <div class="f-copy">© 2024 Кафе Манилов, Тверь</div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-/* CURSOR */
-const dot=document.getElementById('cur'), ring=document.getElementById('cur2');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
-(function loop(){
-  dot.style.left=mx+'px'; dot.style.top=my+'px';
-  rx+=(mx-rx)*.11; ry+=(my-ry)*.11;
-  ring.style.left=rx+'px'; ring.style.top=ry+'px';
-  requestAnimationFrame(loop);
-})();
+<script>
+/* ─── КУРСОР (только мышь) ─── */
+const isTouch = window.matchMedia('(pointer: coarse)').matches;
+if (!isTouch) {
+  const dot = document.getElementById('cur');
+  const ring = document.getElementById('cur2');
+  let mx=0, my=0, rx=0, ry=0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  document.addEventListener('mouseleave', () => { dot.style.opacity='0'; ring.style.opacity='0'; });
+  document.addEventListener('mouseenter', () => { dot.style.opacity='1'; ring.style.opacity='1'; });
+  document.querySelectorAll('a,button').forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+  });
+  (function loop() {
+    dot.style.left  = mx + 'px'; dot.style.top  = my + 'px';
+    rx += (mx - rx) * .12; ry += (my - ry) * .12;
+    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+    requestAnimationFrame(loop);
+  })();
+}
 
-/* LOADER */
-window.addEventListener('load',()=>setTimeout(()=>document.getElementById('loader').classList.add('gone'),1900));
+/* ─── ЗАГРУЗКА ─── */
+window.addEventListener('load', () => {
+  setTimeout(() => document.getElementById('loader').classList.add('gone'), 1900);
+});
 
-/* NAV SCROLL */
-window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('s',scrollY>70));
+/* ─── NAV SCROLL ─── */
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
 
-/* MOB */
-function toggleMob(){document.getElementById('mob').classList.toggle('on');}
-function closeMob(){document.getElementById('mob').classList.remove('on');}
+/* ─── ПАРАЛЛАКС ГЕРОЙ (только десктоп) ─── */
+if (!isTouch) {
+  const bg = document.getElementById('heroBg');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY < window.innerHeight) {
+      bg.style.transform = `translateY(${window.scrollY * 0.25}px)`;
+    }
+  }, { passive: true });
+}
 
-/* MENU TABS */
-function showTab(id,btn){
-  document.querySelectorAll('.menu-panel').forEach(p=>p.classList.remove('on'));
-  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
-  document.getElementById('tab-'+id).classList.add('on');
+/* ─── МОБ-МЕНЮ ─── */
+let mobOpen = false;
+function toggleMob() {
+  mobOpen = !mobOpen;
+  document.getElementById('mobmenu').classList.toggle('on', mobOpen);
+  document.getElementById('burger').classList.toggle('open', mobOpen);
+  document.body.style.overflow = mobOpen ? 'hidden' : '';
+}
+function closeMob() {
+  mobOpen = false;
+  document.getElementById('mobmenu').classList.remove('on');
+  document.getElementById('burger').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+/* ─── ВКЛАДКИ МЕНЮ ─── */
+function showTab(id, btn) {
+  document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(b => b.classList.remove('on'));
+  document.getElementById('tab-' + id).classList.add('on');
   btn.classList.add('on');
 }
 
-/* REVEAL */
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.1});
-document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+/* ─── REVEAL ─── */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.rv').forEach(el => io.observe(el));
 
-/* FOOD REEL */
-const names=['Fai-l_000','Fai-l_0002','Fai-l_0003','Fai-l_0012','Fai-l_0013','Fai-l_0014','Fai-l_0022','Fai-l_0023','Fai-l_0031','Fai-l_0041','Fai-l_0043','Fai-l_0051','Fai-l_0052','Fai-l_0061','Fai-l_0072','Fai-l_0081','Fai-l_0082','Fai-l_0101','Fai-l_0121','Fai-l_0131','Fai-l_0141','Fai-l_0142','Fai-l_0153','Fai-l_0162'];
-const ft=document.getElementById('foodTrack');
-[...names,...names].forEach(n=>{
-  const d=document.createElement('div'); d.className='food-card';
-  d.innerHTML=`<img src="https://manilovtver.ru/wp-content/uploads/2022/05/${n}.jpeg" alt="" loading
+/* ─── ЛЕНТА ЕДЫ ─── */
+const photos = [
+  'Fai-l_000','Fai-l_0002','Fai-l_0003','Fai-l_0012','Fai-l_0013','Fai-l_0014',
+  'Fai-l_0022','Fai-l_0023','Fai-l_0031','Fai-l_0041','Fai-l_0043','Fai-l_0051',
+  'Fai-l_0052','Fai-l_0061','Fai-l_0072','Fai-l_0081','Fai-l_0082','Fai-l_0101',
+  'Fai-l_0121','Fai-l_0131','Fai-l_0141','Fai-l_0142','Fai-l_0153','Fai-l_0162'
+];
+const ft = document.getElementById('foodTrack');
+[...photos, ...photos].forEach(n => {
+  const d = document.createElement('div'); d.className = 'fc';
+  d.innerHTML = `<img src="https://manilovtver.ru/wp-content/uploads/2022/05/${n}.jpeg" alt="" loading="lazy">`;
+  ft.appendChild(d);
+});
+</script>
+</body>
+</html>
