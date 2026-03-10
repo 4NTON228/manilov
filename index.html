@@ -245,19 +245,46 @@ h2.sh em { font-style:italic; color:var(--gold); }
 .fact-l { font-size:.75rem; color:var(--ink3); line-height:1.5; }
 
 /* ═══════════════════════════════
-   МЕНЮ
+   МЕНЮ - ИСПРАВЛЕНО!
 ═══════════════════════════════ */
 #menu { background:var(--bg); }
-.menu-tabs-wrap { overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none; margin-bottom:36px; border-bottom:1px solid var(--line); }
-.menu-tabs-wrap::-webkit-scrollbar { display:none; }
-.menu-tabs { display:flex; white-space:nowrap; }
-.tab {
-  font-family:var(--sans); font-size:.6rem; letter-spacing:.3em; text-transform:uppercase;
-  color:var(--ink3); padding:13px 20px; border:none; background:none;
-  border-bottom:2px solid transparent; margin-bottom:-1px;
-  transition:all .25s; white-space:nowrap; cursor:pointer;
-  flex-shrink:0;
+.menu-tabs-wrap { 
+  overflow-x: auto; 
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch; 
+  scrollbar-width: none; 
+  margin-bottom: 36px; 
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
 }
+
+.menu-tabs-wrap::-webkit-scrollbar { 
+  display: none; 
+}
+
+.menu-tabs { 
+  display: inline-flex;
+  flex-wrap: nowrap;
+  min-width: 100%;
+}
+
+.tab {
+  font-family: var(--sans); 
+  font-size: .6rem; 
+  letter-spacing: .3em; 
+  text-transform: uppercase;
+  color: var(--ink3); 
+  padding: 13px 20px; 
+  border: none; 
+  background: none;
+  border-bottom: 2px solid transparent; 
+  margin-bottom: -1px;
+  transition: all .25s; 
+  white-space: nowrap; 
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
 .tab:active, .tab:hover { color:var(--ink); }
 .tab.on { color:var(--gold); border-bottom-color:var(--gold); }
 
@@ -388,7 +415,10 @@ footer {
 
   .fc { width:240px; height:300px; }
 
-  .tab { padding:13px 28px; font-size:.62rem; }
+  .tab { 
+    padding: 13px 28px; 
+    font-size: .62rem; 
+  }
 }
 
 /* ═══════════════════════════════
