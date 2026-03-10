@@ -262,35 +262,142 @@ footer { background:var(--ink); padding:52px 64px; display:flex; justify-content
 .d1{transition-delay:.1s} .d2{transition-delay:.2s} .d3{transition-delay:.3s}
 .d4{transition-delay:.4s} .d5{transition-delay:.5s}
 
-/* ── RESPONSIVE ── */
+/* ── RESPONSIVE: TABLET ── */
 @media(max-width:1024px){
-  nav{padding:20px 24px;} nav.s{padding:14px 24px;}
+  nav{padding:20px 24px;}
+  nav.s{padding:14px 24px;}
   .nav-links,.nav-phone{display:none;}
   .nav-burger{display:flex;}
   .wrap{padding:0 24px;}
-  .hero-content{padding:0 24px 60px; flex-direction:column; align-items:flex-start; gap:28px;}
+  .hero-content{padding:0 24px 56px; flex-direction:column; align-items:flex-start; gap:24px;}
   .hero-right{text-align:left; max-width:100%;}
   .hero-scroll{left:24px;}
   .about-split{grid-template-columns:1fr;}
-  .about-photo{height:60vw; min-height:260px;}
-  .about-body{padding:56px 24px;}
-  .menu-tabs{overflow-x:auto; -webkit-overflow-scrolling:touch;}
+  .about-photo{height:55vw; min-height:260px;}
+  .about-body{padding:56px 32px;}
+  .facts{grid-template-columns:1fr 1fr;}
+  .menu-tabs{overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none;}
+  .menu-tabs::-webkit-scrollbar{display:none;}
+  .int-intro{grid-template-columns:1fr; gap:20px; padding:0 24px; margin-bottom:48px;}
   .int-grid{grid-template-columns:1fr 1fr; grid-template-rows:auto;}
-  .ig:nth-child(1){grid-column:1/3;grid-row:1;height:280px;}
-  .ig:nth-child(2){grid-row:2;height:200px;}
-  .ig:nth-child(3){grid-row:2;height:200px;}
-  .ig:nth-child(4){grid-column:1/3;grid-row:3;height:200px;}
-  .int-intro{grid-template-columns:1fr;gap:20px; padding:0 24px;}
+  .ig:nth-child(1){grid-column:1/3; grid-row:1; height:280px;}
+  .ig:nth-child(2){grid-column:1; grid-row:2; height:200px;}
+  .ig:nth-child(3){grid-column:2; grid-row:2; height:200px;}
+  .ig:nth-child(4){grid-column:1/3; grid-row:3; height:200px;}
   .hours-row{grid-template-columns:1fr;}
-  .hb{border-right:none;border-bottom:1px solid rgba(255,255,255,.07);padding:40px 24px;}
-  .news-grid{grid-template-columns:1fr;}
-  .news-head{flex-direction:column;align-items:flex-start;gap:14px;}
+  .hb{border-right:none; border-bottom:1px solid rgba(255,255,255,.07); padding:40px 24px;}
+  .news-grid{grid-template-columns:1fr 1fr;}
+  .news-head{flex-direction:column; align-items:flex-start; gap:14px;}
   .con-wrap{grid-template-columns:1fr;}
   .con-info{padding:60px 24px;}
-  .con-map{min-height:320px;}
-  footer{flex-direction:column;align-items:flex-start;padding:36px 24px;}
+  .con-map{min-height:360px;}
+  footer{flex-direction:column; align-items:flex-start; padding:36px 24px; gap:20px;}
+  .f-links{flex-wrap:wrap; gap:16px 28px;}
   .sec{padding:80px 0;}
   #interior{padding:80px 0 0;}
+}
+
+/* ── RESPONSIVE: MOBILE ── */
+@media(max-width:600px){
+  /* Курсор на телефоне не нужен */
+  #cur,#cur2{display:none;}
+  body{cursor:auto;}
+  *{cursor:auto !important;}
+
+  /* Nav */
+  nav{padding:16px 18px;}
+  nav.s{padding:12px 18px;}
+  .logo{font-size:1.35rem;}
+
+  /* Wrap */
+  .wrap{padding:0 18px;}
+
+  /* Hero */
+  #hero{min-height:100svh;}
+  .hero-content{padding:0 18px 48px; gap:20px;}
+  h1.hero-title{font-size:clamp(3.8rem,17vw,5.5rem);}
+  .hero-tagline{font-size:.95rem; margin-bottom:24px;}
+  .hero-cta{padding:12px 28px; font-size:.6rem;}
+  .hero-scroll{display:none;}
+
+  /* Marquee */
+  .marq-item{font-size:.9rem; padding:0 32px; gap:32px;}
+
+  /* About */
+  .about-photo{height:70vw;}
+  .about-body{padding:44px 18px;}
+  .about-pull{font-size:1.25rem; padding-left:18px;}
+  .about-body p{font-size:.9rem;}
+  /* Факты — 2 колонки на телефоне */
+  .facts{grid-template-columns:1fr 1fr; gap:1px;}
+  .fact{padding:18px 14px;}
+  .fact-n{font-size:2.2rem;}
+  .fact-l{font-size:.72rem;}
+
+  /* Menu */
+  .sec{padding:56px 0;}
+  .menu-header{margin-bottom:36px;}
+  .menu-tabs{gap:0; border-bottom:1px solid var(--line);}
+  .tab{padding:12px 16px; font-size:.58rem; letter-spacing:.28em; white-space:nowrap;}
+
+  /* Таблица меню — адаптируем под маленький экран */
+  .dishes{display:block;}
+  .dishes thead{display:none;} /* скрываем заголовок таблицы */
+  .dishes tbody{display:block;}
+  .dishes tr{display:block; border-bottom:1px solid rgba(168,129,58,.1); padding:16px 0;}
+  .dishes tr.dish-cat{padding:20px 0 8px;}
+  .dishes tr.dish-cat td{display:block; font-size:.55rem; letter-spacing:.45em; padding:0;}
+  .dish-name{display:block; font-size:1.1rem; padding:0 0 4px; width:auto;}
+  .dish-desc{display:block; padding:0 0 6px; font-size:.82rem;}
+  .dish-weight{display:inline; font-size:.78rem; color:var(--ink3);}
+  .dish-price{display:inline; font-size:1rem; float:right; padding:0; text-align:right;}
+  /* Строчка вес + цена */
+  .dishes td:nth-child(3)::after{content:' · ';}
+
+  /* Food reel */
+  .food-reel{margin-top:48px;}
+  .food-card{width:200px; height:260px;}
+  .food-card:nth-child(3n+2){height:220px; margin-top:40px;}
+  .food-card:nth-child(5n){width:170px;}
+
+  /* Interior */
+  #interior{padding:56px 0 0;}
+  .int-intro{padding:0 18px; margin-bottom:32px;}
+  .int-note{font-size:.88rem;}
+  /* На телефоне — одна колонка */
+  .int-grid{grid-template-columns:1fr; grid-template-rows:auto;}
+  .ig:nth-child(1){grid-column:1; grid-row:1; height:260px;}
+  .ig:nth-child(2){grid-column:1; grid-row:2; height:200px;}
+  .ig:nth-child(3){grid-column:1; grid-row:3; height:200px;}
+  .ig:nth-child(4){grid-column:1; grid-row:4; height:200px;}
+  .ig-cap{opacity:1; background:linear-gradient(to top,rgba(28,24,20,.65),transparent);}
+
+  /* Hours */
+  .hb{padding:32px 18px;}
+  .hb-val{font-size:1.6rem;}
+
+  /* News */
+  .news-grid{grid-template-columns:1fr;}
+  .news-head{margin-bottom:40px; gap:12px;}
+  .nc-body{padding:22px 18px;}
+
+  /* Contacts */
+  .con-info{padding:48px 18px;}
+  .con-map{min-height:280px;}
+  .map-tag{top:16px; left:16px; padding:14px 18px;}
+  .ci{padding:18px 0;}
+  .ci-val{font-size:1rem;}
+
+  /* Footer */
+  footer{padding:28px 18px; gap:18px;}
+  .f-links{gap:14px 20px;}
+  .f-links a{font-size:.58rem;}
+
+  /* Mob overlay */
+  #mob a{font-size:2.2rem;}
+
+  /* Loader */
+  .ld-title{font-size:clamp(3rem,16vw,5rem);}
 }
 </style>
 </head>
@@ -599,7 +706,7 @@ footer { background:var(--ink); padding:52px 64px; display:flex; justify-content
       <h2 class="h rv d1">Найдите<br><em>нас</em></h2>
       <div class="con-items">
         <div class="ci rv d1"><div class="ci-ico">✆</div><div><div class="ci-lbl">Телефон</div><a href="tel:+79040206603" class="ci-val">+7 (904) 020-66-03</a></div></div>
-        <div class="ci rv d2"><div class="ci-ico">✉</div><div><div class="ci-lbl">Email</div><a href="mailto:manilov17kafe@gmail.com" class="ci-val">manilov17kafe@gmail.com</a></div></div>
+        <div class="ci rv d2"><div class="ci-ico">✉</div><div><div class="ci-lbl">Email</div><a href="/cdn-cgi/l/email-protection#1c717d727570736a2d2b777d7a795c7b717d7570327f7371" class="ci-val"><span class="__cf_email__" data-cfemail="bad7dbd4d3d6d5cc8b8dd1dbdcdffaddd7dbd3d694d9d5d7">[email&#160;protected]</span></a></div></div>
         <div class="ci rv d3"><div class="ci-ico">◉</div><div><div class="ci-lbl">Адрес</div><span class="ci-val">Тверь, ул. Советская, 17</span></div></div>
         <div class="ci rv d4"><div class="ci-ico">◷</div><div><div class="ci-lbl">Часы</div><span class="ci-val">Вс–Чт 11:00–00:00 · Пт–Сб 11:00–01:00</span></div></div>
       </div>
@@ -624,7 +731,7 @@ footer { background:var(--ink); padding:52px 64px; display:flex; justify-content
   <div class="f-copy">© 2024 Кафе Манилов, Тверь</div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* CURSOR */
 const dot=document.getElementById('cur'), ring=document.getElementById('cur2');
 let mx=0,my=0,rx=0,ry=0;
@@ -663,13 +770,4 @@ const names=['Fai-l_000','Fai-l_0002','Fai-l_0003','Fai-l_0012','Fai-l_0013','Fa
 const ft=document.getElementById('foodTrack');
 [...names,...names].forEach(n=>{
   const d=document.createElement('div'); d.className='food-card';
-  d.innerHTML=`<img src="https://manilovtver.ru/wp-content/uploads/2022/05/${n}.jpeg" alt="" loading="lazy">`;
-  ft.appendChild(d);
-});
-
-/* HERO PARALLAX */
-const hbg=document.getElementById('heroBg');
-window.addEventListener('scroll',()=>{if(scrollY<window.innerHeight)hbg.style.transform=`translateY(${scrollY*.28}px)`;});
-</script>
-</body>
-</html>
+  d.innerHTML=`<img src="https://manilovtver.ru/wp-content/uploads/2022/05/${n}.jpeg" alt="" loading
