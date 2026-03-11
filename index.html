@@ -291,14 +291,15 @@ h2.SH em { font-style: italic; color: var(--gold); }
 ================================================ */
 #menu { background: var(--bg); }
 .tab-bar {
-  overflow-x: auto; -webkit-overflow-scrolling: touch;
+  overflow-x: auto;
+  overflow-y: hidden;
   scrollbar-width: none;
   border-bottom: 1px solid var(--line);
   margin-bottom: 28px;
-  touch-action: pan-x;
+  overscroll-behavior-x: contain;
 }
 .tab-bar::-webkit-scrollbar { display: none; }
-.tabs { display: flex; flex-wrap: nowrap; white-space: nowrap; min-width: max-content; touch-action: pan-x; }
+.tabs { display: flex; flex-wrap: nowrap; white-space: nowrap; min-width: max-content; }
 .tab {
   flex-shrink: 0;
   font-family: var(--sans); font-size: .85rem;
@@ -955,6 +956,26 @@ function closeNews(e) {
   document.getElementById('newsModal').classList.remove('on');
   document.body.style.overflow = '';
 }
+
+/* ─── ТАБЫ МЕНЮ — горизонтальный скролл на touch ─── */
+(function() {
+  const bar = document.querySelector('.tab-bar');
+  if (!bar) return;
+  let startX = 0, startScroll = 0, isDragging = false;
+  bar.addEventListener('touchstart', function(e) {
+    startX = e.touches[0].clientX;
+    startScroll = bar.scrollLeft;
+    isDragging = true;
+  }, { passive: true });
+  bar.addEventListener('touchmove', function(e) {
+    if (!isDragging) return;
+    const dx = startX - e.touches[0].clientX;
+    bar.scrollLeft = startScroll + dx;
+    // всегда блокируем вертикальный скролл страницы пока касаемся таб-бара
+    if (e.cancelable) e.preventDefault();
+  }, { passive: false });
+  bar.addEventListener('touchend', function() { isDragging = false; }, { passive: true });
+})();
 
 /* ─── ТАБЫ МЕНЮ ─── */
 function sTab(id, btn) {
