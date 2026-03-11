@@ -532,6 +532,19 @@ footer {
   <div class="lb"></div>
   <div class="ls">Кафе · Тверь · Советская 17</div>
 </div>
+<script>
+// Убираем лоадер гарантированно — не ждём window.load
+(function() {
+  function hide() {
+    var l = document.getElementById('LDR');
+    if (l) l.classList.add('off');
+  }
+  // Анимация лоадера длится ~1.6с — убираем через 2с
+  setTimeout(hide, 2000);
+  // Страховка: если что-то подвисло — убираем через 3с в любом случае
+  setTimeout(hide, 3000);
+})();
+</script>
 
 <!-- МОБ-МЕНЮ -->
 <div id="MOB">
@@ -806,18 +819,6 @@ if (isMouse) {
     R.style.top  = ry + 'px';
     requestAnimationFrame(loop);
   })();
-}
-
-/* ─── ЗАГРУЗКА ─── */
-function hideLdr() {
-  const ldr = document.getElementById('LDR');
-  if (ldr) ldr.classList.add('off');
-}
-setTimeout(hideLdr, 2500);
-if (document.readyState === 'complete') {
-  setTimeout(hideLdr, 1900);
-} else {
-  window.addEventListener('load', () => setTimeout(hideLdr, 1900));
 }
 
 /* ─── NAV ─── */
