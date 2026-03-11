@@ -297,7 +297,7 @@ h2.SH em { font-style: italic; color: var(--gold); }
   margin-bottom: 28px;
 }
 .tab-bar::-webkit-scrollbar { display: none; }
-.tabs { display: flex; }
+.tabs { display: flex; flex-wrap: nowrap; white-space: nowrap; min-width: max-content; }
 .tab {
   flex-shrink: 0;
   font-family: var(--sans); font-size: .85rem;
