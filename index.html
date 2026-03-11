@@ -766,7 +766,7 @@ footer {
       <h2 class="SH rv d1">Найдите<br><em>нас</em></h2>
       <div class="ci-list" style="margin-top:28px">
         <div class="ci rv d1"><div class="ci-ic">✆</div><div><div class="ci-lb">Телефон</div><a href="tel:+79040206603" class="ci-vl">+7 (904) 020-66-03</a></div></div>
-        <div class="ci rv d2"><div class="ci-ic">✉</div><div><div class="ci-lb">Email</div><a href="/cdn-cgi/l/email-protection#472a26292e2b283176702c26212207202a262e2b6924282a" class="ci-vl"><span class="__cf_email__" data-cfemail="781519161114170e494f13191e1d381f15191114561b1715">[email&#160;protected]</span></a></div></div>
+        <div class="ci rv d2"><div class="ci-ic">✉</div><div><div class="ci-lb">Email</div><a href="mailto:manilov17kafe@gmail.com" class="ci-vl">manilov17kafe@gmail.com</a></div></div>
         <div class="ci rv d3"><div class="ci-ic">◉</div><div><div class="ci-lb">Адрес</div><span class="ci-vl">Тверь, ул. Советская, 17</span></div></div>
         <div class="ci rv d4"><div class="ci-ic">◷</div><div><div class="ci-lb">Часы</div><span class="ci-vl">Вс–Чт 11–00 · Пт–Сб 11–01</span></div></div>
       </div>
@@ -791,7 +791,7 @@ footer {
   <div class="f-cp">© 2024 Кафе Манилов, Тверь</div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 /* ─── CURSOR (только мышь) ─── */
 const isMouse = window.matchMedia('(pointer: fine)').matches;
 if (isMouse) {
@@ -876,4 +876,14 @@ const phs = [
   'Fai-l_0121','Fai-l_0131','Fai-l_0141','Fai-l_0142','Fai-l_0153','Fai-l_0162'
 ];
 const FT = document.getElementById('FT');
-[...phs, ...phs
+if (FT) {
+  [...phs, ...phs].forEach(n => {
+    const d = document.createElement('div');
+    d.className = 'fc';
+    d.innerHTML = '<img src="https://manilovtver.ru/wp-content/uploads/2022/05/' + n + '.jpeg" alt="" loading="lazy">';
+    FT.appendChild(d);
+  });
+}
+</script>
+</body>
+</html>
