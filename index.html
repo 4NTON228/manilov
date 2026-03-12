@@ -186,7 +186,7 @@ nav.sc {
 }
 .h-bg {
   position: absolute; inset: 0;
-  background: url('https://manilovtver.ru/wp-content/uploads/2017/03/Kafe-Manilov-Tver-25.jpg') center/cover no-repeat;
+  background: url('img/interior/RDO_0001.jpg') center/cover no-repeat;
 }
 /* ВАЖНО: тёмный оверлей снизу, чтобы белый текст читался */
 .h-ov {
@@ -697,7 +697,7 @@ footer {
 <section id="about">
   <div class="ab-split">
     <div class="ab-photo rv">
-      <img src="https://manilovtver.ru/wp-content/uploads/2017/03/Fai-l_0021.jpeg" alt="Интерьер" loading="lazy">
+      <img src="img/interior/RDO_0019.jpg" alt="Интерьер" loading="lazy">
     </div>
     <div class="ab-body">
       <div class="stag rv">О заведении</div>
@@ -892,10 +892,10 @@ footer {
     <p class="int-note rv d2">Гостеприимный интерьер, антикварные детали, мягкий свет — всё создано для того, чтобы гость чувствовал себя как дома.</p>
   </div>
   <div class="int-grid">
-    <div class="ig rv"><img src="https://manilovtver.ru/wp-content/uploads/2017/03/Fai-l_002.jpeg" alt="Главный зал" loading="lazy"></div>
-    <div class="ig rv d1"><img src="https://manilovtver.ru/wp-content/uploads/2017/03/Fai-l_007.jpeg" alt="Детали" loading="lazy"></div>
-    <div class="ig rv d2"><img src="https://manilovtver.ru/wp-content/uploads/2017/03/Fai-l_0053.jpeg" alt="Уголок" loading="lazy"></div>
-    <div class="ig rv d3"><img src="https://manilovtver.ru/wp-content/uploads/2017/03/Fai-l_015.jpeg" alt="Вечер" loading="lazy"></div>
+    <div class="ig rv"><img src="img/interior/RDO_0002.jpg" alt="Главный зал" loading="lazy"></div>
+    <div class="ig rv d1"><img src="img/interior/RDO_0007.jpg" alt="Детали" loading="lazy"></div>
+    <div class="ig rv d2"><img src="img/interior/RDO_0010.jpg" alt="Уголок" loading="lazy"></div>
+    <div class="ig rv d3"><img src="img/interior/RDO_0015.jpg" alt="Вечер" loading="lazy"></div>
   </div>
 </section>
 
@@ -1131,17 +1131,25 @@ document.querySelectorAll('.rv').forEach(el => obs.observe(el));
 
 /* ─── ЛЕНТА ЕДЫ ─── */
 const phs = [
-  'Fai-l_000','Fai-l_0002','Fai-l_0003','Fai-l_0012','Fai-l_0013','Fai-l_0014',
-  'Fai-l_0022','Fai-l_0023','Fai-l_0031','Fai-l_0041','Fai-l_0043','Fai-l_0051',
-  'Fai-l_0052','Fai-l_0061','Fai-l_0072','Fai-l_0081','Fai-l_0082','Fai-l_0101',
-  'Fai-l_0121','Fai-l_0131','Fai-l_0141','Fai-l_0142','Fai-l_0153','Fai-l_0162'
+  'img/menu/cold/RDO_0044.jpg','img/menu/cold/RDO_0053.jpg','img/menu/cold/RDO_0065.jpg',
+  'img/menu/hot/RDO_0008.jpg','img/menu/hot/RDO_0027.jpg','img/menu/hot/RDO_0030.jpg',
+  'img/menu/hot/RDO_0032.jpg','img/menu/hot/RDO_0035.jpg','img/menu/hot/RDO_0037.jpg',
+  'img/menu/hot/RDO_0060.jpg','img/menu/hot/RDO_0067.jpg','img/menu/hot/RDO_0079.jpg',
+  'img/menu/hot/RDO_0084.jpg','img/menu/hot/RDO_0089.jpg','img/menu/hot/RDO_0093.jpg',
+  'img/menu/hot/RDO_0102.jpg','img/menu/hot/RDO_0107.jpg','img/menu/hot/RDO_0133.jpg',
+  'img/menu/hot/RDO_0144.jpg','img/menu/hot/RDO_0152.jpg',
+  'img/menu/soups/RDO_0001.jpg','img/menu/soups/RDO_0038.jpg','img/menu/soups/RDO_0044.jpg',
+  'img/menu/soups/RDO_0051.jpg','img/menu/soups/RDO_0056.jpg','img/menu/soups/RDO_0063.jpg',
+  'img/menu/desserts/RDO_0072.jpg','img/menu/desserts/RDO_0073.jpg',
+  'img/menu/desserts/RDO_0113.jpg','img/menu/desserts/RDO_0138.jpg',
+  'img/menu/drinks/RDO_0127.jpg','img/menu/drinks/RDO_0129.jpg','img/menu/drinks/RDO_0131.jpg'
 ];
 const FT = document.getElementById('FT');
 if (FT) {
   [...phs, ...phs].forEach(n => {
     const d = document.createElement("div");
     d.className = "fc";
-    d.innerHTML = "<img src='https://manilovtver.ru/wp-content/uploads/2022/05/" + n + ".jpeg' alt='' loading='lazy'>";
+    d.innerHTML = "<img src='" + n + "' alt='' loading='lazy'>";
     FT.appendChild(d);
   });
 }
