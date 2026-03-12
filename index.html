@@ -121,27 +121,11 @@ nav.sc {
   box-shadow: 0 2px 20px rgba(28,24,20,.06);
 }
 .logo {
-  display: flex; flex-direction: column; align-items: flex-start;
-  text-decoration: none; gap: 2px;
+  font-family: var(--serif); font-weight: 400;
+  font-size: 1.35rem; letter-spacing: .1em; color: var(--ink);
+  line-height: 1; display: flex; flex-direction: column;
 }
-.logo-img {
-  height: 34px; width: auto;
-  object-fit: contain; object-position: left center;
-  display: block;
-}
-nav:not(.sc) .logo-img { filter: brightness(0) invert(1); }
-nav.sc .logo-img { filter: brightness(0); }
-.logo-s { font-family: var(--sans); font-size: .42rem; letter-spacing: .5em; text-transform: uppercase; color: var(--gold); font-weight: 300; }
-
-/* Овальная печать кафе — угол героя */
-.h-logo-seal {
-  position: absolute; z-index: 3;
-  bottom: 36px; right: 24px;
-  width: 108px;
-  pointer-events: none;
-  filter: drop-shadow(0 4px 20px rgba(0,0,0,.55));
-}
-.h-logo-seal img { width: 100%; height: auto; display: block; border-radius: 50%; }
+.logo-s { font-family: var(--sans); font-size: .42rem; letter-spacing: .5em; text-transform: uppercase; color: var(--gold); font-weight: 300; margin-top: 3px; }
 
 /* десктоп-ссылки — скрыты на мобильном */
 .nl { display: none; gap: 40px; list-style: none; }
@@ -569,8 +553,7 @@ footer {
   .nl { display: flex; }
   .nav-ph { display: block; }
   .brg { display: none; }
-  .logo-img { height: 42px; }
-  .h-logo-seal { width: 148px; bottom: 52px; right: 64px; }
+  .logo { font-size: 1.65rem; }
 
   .sec { padding: 110px 0; }
 
@@ -677,10 +660,7 @@ footer {
 
 <!-- НАВ -->
 <nav id="NAV">
-  <a href="#" class="logo">
-    <img src="img/logo/logo-text.jpg" alt="Манилов" class="logo-img">
-    <span class="logo-s">Кафе · Тверь</span>
-  </a>
+  <a href="#" class="logo">МАНИЛОВ<span class="logo-s">Кафе · Тверь</span></a>
   <ul class="nl">
     <li><a href="#about">О нас</a></li>
     <li><a href="#menu">Меню</a></li>
@@ -698,9 +678,7 @@ footer {
 <section id="hero">
   <div class="h-bg" id="HBG"></div>
   <div class="h-ov"></div>
-  <div class="h-logo-seal rv">
-    <img src="img/logo/logo-oval.jpg" alt="Манилов">
-  </div>
+
   <div class="h-body">
     <div>
       <h1 class="ht">Кафе<br><em>Манилов</em></h1>
