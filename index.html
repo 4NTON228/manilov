@@ -121,36 +121,12 @@ nav.sc {
   box-shadow: 0 2px 20px rgba(28,24,20,.06);
 }
 .logo {
-  display: flex; flex-direction: column; align-items: flex-start;
-  text-decoration: none; gap: 4px;
+  font-family: var(--serif); font-weight: 400;
+  font-size: 1.35rem; letter-spacing: .1em; color: var(--ink);
+  line-height: 1; display: flex; flex-direction: column;
 }
-.logo-img {
-  height: 36px; width: auto;
-  object-fit: contain; object-position: left center;
-  display: block;
-  /* Логотип на белом фоне — инвертируем на тёмном навбаре */
-  filter: brightness(0); /* делаем чёрным */
-}
-/* Когда навбар прозрачный (на герое с тёмным фото) — логотип белый */
-nav:not(.sc) .logo-img { filter: brightness(0) invert(1); }
-/* Когда навбар светлый (проскролили) — логотип тёмный */
-nav.sc .logo-img { filter: brightness(0); }
-.logo-s { font-family: var(--sans); font-size: .4rem; letter-spacing: .5em; text-transform: uppercase; color: var(--gold); font-weight: 300; }
+.logo-s { font-family: var(--sans); font-size: .42rem; letter-spacing: .5em; text-transform: uppercase; color: var(--gold); font-weight: 300; margin-top: 3px; }
 
-/* Овальный логотип на герое */
-.h-logo-oval {
-  position: absolute; z-index: 3;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -60%);
-  width: min(280px, 52vw);
-  pointer-events: none;
-}
-.hero-oval-img {
-  width: 100%; height: auto; display: block;
-  /* Белый фон картинки — убираем через mix-blend-mode */
-  mix-blend-mode: multiply;
-  filter: drop-shadow(0 8px 32px rgba(0,0,0,.4));
-}
 
 /* десктоп-ссылки — скрыты на мобильном */
 .nl { display: none; gap: 40px; list-style: none; }
@@ -495,8 +471,7 @@ footer {
   .sec { padding: 48px 0; }
 
 
-  /* Овальный логотип мобильный */
-  .h-logo-oval { width: min(220px, 60vw); }
+
   /* Герой — кнопки крупнее */
   .h-cta {
     font-size: .75rem;
@@ -584,11 +559,6 @@ footer {
   .sec { padding: 110px 0; }
 
 
-  /* Овальный логотип на десктопе */
-  .h-logo-oval {
-    width: min(340px, 28vw);
-    transform: translate(-50%, -58%);
-  }
 
   /* герой — горизонтальный layout */
   .h-body { padding: 0 64px 80px; display: flex; justify-content: space-between; align-items: flex-end; gap: 48px; }
@@ -691,10 +661,7 @@ footer {
 
 <!-- НАВ -->
 <nav id="NAV">
-  <a href="#" class="logo">
-    <img src="logo-text.jpg" alt="Манилов" class="logo-img">
-    <span class="logo-s">Кафе · Тверь</span>
-  </a>
+  <a href="#" class="logo">МАНИЛОВ<span class="logo-s">Кафе · Тверь</span></a>
   <ul class="nl">
     <li><a href="#about">О нас</a></li>
     <li><a href="#menu">Меню</a></li>
@@ -712,9 +679,7 @@ footer {
 <section id="hero">
   <div class="h-bg" id="HBG"></div>
   <div class="h-ov"></div>
-  <div class="h-logo-oval rv">
-    <img src="logo-oval.jpg" alt="Манилов" class="hero-oval-img">
-  </div>
+
   <div class="h-body">
     <div>
       <h1 class="ht">Кафе<br><em>Манилов</em></h1>
