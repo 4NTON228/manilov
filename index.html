@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Кафе Манилов — Тверь</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 
 /* ================================================
@@ -19,6 +19,7 @@
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 
 :root {
+  font-variant-numeric: lining-nums tabular-nums;
   --bg:    #faf8f4;
   --bg2:   #f3efe8;
   --bg3:   #e8e3da;
@@ -28,7 +29,7 @@ html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
   --gold:  #a8813a;
   --gl:    #c9a55a;
   --line:  rgba(168,129,58,.15);
-  --serif: 'Cormorant', Georgia, serif;
+  --serif: 'Cormorant Garant', Georgia, serif;
   --sans:  'Jost', sans-serif;
 }
 
@@ -90,7 +91,7 @@ button { font-family: var(--sans); }
 }
 #LDR.off { opacity: 0; visibility: hidden; pointer-events: none; }
 .lw {
-  font-family: var(--serif); font-weight: 300;
+  font-family: var(--serif); font-weight: 400;
   font-size: clamp(3rem, 14vw, 7rem);
   color: var(--ink); letter-spacing: .06em;
   overflow: hidden; line-height: 1;
@@ -248,7 +249,7 @@ h1.ht em { font-style: italic; color: var(--gl); display: block; }
 }
 .stag::before { content: ''; width: 24px; height: 1px; background: var(--gl); flex-shrink: 0; }
 h2.SH {
-  font-family: var(--serif); font-weight: 300;
+  font-family: var(--serif); font-weight: 400;
   font-size: clamp(2.2rem, 9vw, 4.5rem);
   line-height: .93; color: var(--ink); letter-spacing: -.01em;
 }
@@ -280,7 +281,7 @@ h2.SH em { font-style: italic; color: var(--gold); }
 .ab-hr { width: 34px; height: 1px; background: var(--gl); margin: 26px 0; }
 .facts { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); }
 .fact { background: var(--bg2); padding: 20px 16px; }
-.fact-n { font-family: var(--serif); font-size: 2.4rem; font-weight: 300; color: var(--gold); line-height: 1; display: block; margin-bottom: 5px; }
+.fact-n { font-family: var(--serif); font-size: 2.4rem; font-weight: 300; color: var(--gold); line-height: 1; display: block; margin-bottom: 5px; font-variant-numeric: lining-nums tabular-nums; }
 .fact-l { font-size: .9rem; color: var(--ink3); line-height: 1.5; }
 
 /* ================================================
@@ -332,7 +333,7 @@ h2.SH em { font-style: italic; color: var(--gold); }
 .di-n { font-family: var(--serif); font-size: 1.25rem; font-weight: 400; color: var(--ink); margin-bottom: 5px; }
 .di-d { font-size: 1rem; color: var(--ink3); line-height: 1.55; font-style: italic; }
 .di-w { font-size: .85rem; color: var(--gold); margin-top: 5px; }
-.di-p { font-family: var(--serif); font-size: 1.2rem; color: var(--gold); font-weight: 400; flex-shrink: 0; white-space: nowrap; padding-top: 2px; }
+.di-p { font-family: var(--serif); font-size: 1.2rem; color: var(--gold); font-weight: 400; flex-shrink: 0; white-space: nowrap; padding-top: 2px;  font-variant-numeric: lining-nums tabular-nums; }
 
 /* лента фото еды */
 .freel { margin-top: 52px; overflow: hidden; }
@@ -372,7 +373,7 @@ h2.SH em { font-style: italic; color: var(--gold); }
 .hb { padding: 34px 20px; border-bottom: 1px solid rgba(255,255,255,.07); }
 .hb:last-child { border-bottom: none; }
 .hb-tag { font-size: .72rem; letter-spacing: .3em; text-transform: uppercase; color: rgba(255,255,255,.35); margin-bottom: 10px; }
-.hb-val { font-family: var(--serif); font-size: 1.8rem; font-weight: 300; color: var(--gl); line-height: 1.2; }
+.hb-val { font-family: var(--serif); font-size: 1.8rem; font-weight: 300; color: var(--gl); line-height: 1.2; font-variant-numeric: lining-nums tabular-nums; }
 .hb-note { font-size: 1rem; color: rgba(255,255,255,.3); margin-top: 6px; font-style: italic; font-family: var(--serif); }
 
 /* ================================================
@@ -461,6 +462,63 @@ footer {
 /* ================================================
    ПЛАНШЕТ 600px+
 ================================================ */
+/* ================================================
+   МОБИЛЬНЫЙ — дополнительные улучшения
+================================================ */
+@media (max-width: 599px) {
+  /* Секции — меньше отступы */
+  .sec { padding: 48px 0; }
+
+  /* Герой — кнопки крупнее */
+  .h-cta {
+    font-size: .75rem;
+    letter-spacing: .2em;
+    padding: 16px 28px;
+    width: 100%;
+    text-align: center;
+    display: block;
+  }
+  .h-btns { flex-direction: column; gap: 10px; }
+
+  /* Заголовок кафе на мобильном */
+  h1.ht { font-size: clamp(3.8rem, 18vw, 5.5rem); line-height: .92; }
+
+  /* Цитата на герое */
+  .h-sub { font-size: 1rem; }
+
+  /* Табы меню — крупнее на телефоне */
+  .tab { font-size: .78rem; padding: 14px 16px; letter-spacing: .12em; }
+
+  /* Блюда на мобильном — стек */
+  .di { display: flex; flex-direction: column; padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .di-n { font-size: 1.15rem; margin-bottom: 3px; }
+  .di-d { font-size: .95rem; }
+  .di-p { font-size: 1.1rem; margin-top: 6px; }
+  .di-i { flex: 1; }
+
+  /* Факты — 2 колонки */
+  .facts { grid-template-columns: 1fr 1fr !important; gap: 20px !important; }
+  .fact-n { font-size: 2rem; }
+
+  /* Часы — отступы */
+  .hb { padding: 28px 20px; }
+  .hb-val { font-size: 1.6rem; }
+
+  /* Контакты */
+  .ci { padding: 18px 0; gap: 14px; }
+  .ci-ic { width: 44px; height: 44px; }
+
+  /* Новости */
+  .nc-bd { padding: 18px 16px 22px; }
+
+  /* Навигация */
+  nav { padding: 16px 20px; }
+
+  /* Футер */
+  footer { padding: 32px 20px; gap: 16px; }
+  .f-lk { flex-wrap: wrap; gap: 10px 20px; }
+}
+
 @media (min-width: 600px) {
   .W { padding: 0 32px; }
   nav { padding: 22px 32px; }
