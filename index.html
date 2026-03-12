@@ -660,85 +660,157 @@ footer {
 
     <div class="tab-bar">
       <div class="tabs">
-        <button class="tab on" onclick="sTab('cold',this)">Холодные</button>
-        <button class="tab" onclick="sTab('hot',this)">Горячие</button>
-        <button class="tab" onclick="sTab('soups',this)">Супы</button>
-        <button class="tab" onclick="sTab('main',this)">Основные</button>
-        <button class="tab" onclick="sTab('desserts',this)">Десерты</button>
-        <button class="tab" onclick="sTab('drinks',this)">Напитки</button>
+        <button class="tab on"  onclick="sTab('cold',this)">Холодные</button>
+        <button class="tab"     onclick="sTab('hot',this)">Горячие закуски</button>
+        <button class="tab"     onclick="sTab('soups',this)">Супы</button>
+        <button class="tab"     onclick="sTab('main',this)">Основные</button>
+        <button class="tab"     onclick="sTab('pots',this)">В горшочках</button>
+        <button class="tab"     onclick="sTab('desserts',this)">Десерты</button>
+        <button class="tab"     onclick="sTab('drinks',this)">Напитки</button>
       </div>
     </div>
 
     <!-- ХОЛОДНЫЕ -->
     <div class="mp on" id="t-cold"><ul class="dl">
-      <li class="dc"><span>Фирменные закуски</span></li>
-      <li class="di"><div class="di-i"><div class="di-n">Форшмак авторский</div><div class="di-d">Сельдь, яблоко, лук, сливочное масло, ржаные тосты</div><div class="di-w">180 г</div></div><div class="di-p">390 ₽</div></li>
-      <li class="di"><div class="di-i"><div class="di-n">Студень говяжий</div><div class="di-d">Домашний, с хреном и горчицей собственного приготовления</div><div class="di-w">200 г</div></div><div class="di-p">420 ₽</div></li>
-      <li class="di"><div class="di-i"><div class="di-n">Грибы солёные</div><div class="di-d">Боровики и опята домашней засолки, лук, масло</div><div class="di-w">150 г</div></div><div class="di-p">350 ₽</div></li>
-      <li class="di"><div class="di-i"><div class="di-n">Капуста квашеная</div><div class="di-d">С клюквой, тмином, подсолнечным маслом</div><div class="di-w">150 г</div></div><div class="di-p">280 ₽</div></li>
+      <li class="dc"><span>Холодные кушанья</span></li>
+      <li class="di"><div class="di-i"><div class="di-n">Грибочки домашние</div><div class="di-d">Со сметаной и красным луком</div></div><div class="di-p">560 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Паштет из печени индейки с гренками от хозяйки</div><div class="di-d">Подаётся на гренках с карамелизированным луком и грушей</div></div><div class="di-p">490 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Сельдь слабосолёная домашнего посола</div><div class="di-d">С печёной картошкой, луком и хрустящими гренками</div></div><div class="di-p">390 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Соленья разнообразные с квашеной капустой и грибочками</div><div class="di-d">Квашеная капуста, маринованные грибы, солёные огурцы — всё что хрустит и будит аппетит</div></div><div class="di-p">440 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Русский закусон</div><div class="di-d">Говядина, буженина, копчёная курица, подаётся с хреном и горчицей</div></div><div class="di-p">670 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Винная закуска</div><div class="di-d">Три вида сыра, с мёдом, грушей и оливками</div></div><div class="di-p">630 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Овощная корзина с зеленью и ароматным маслом</div><div class="di-d">Сочный огурец, сочный томат, сладкий болгарский перец, пучок зелени — всё полито оливковым маслом</div></div><div class="di-p">420 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Сыр домашний с гренками и горчицей</div></div><div class="di-p">470 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Квашеная капуста с клюквой от тёти</div><div class="di-d">Квашеная капуста, солёный огурец и клюква. Полито оливковым маслом. Подано в деревянной миске — с душой</div></div><div class="di-p">320 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Фруктовая корзина</div></div><div class="di-p">470 ₽</div></li>
       <li class="dc"><span>Салаты</span></li>
-      <li class="di"><div class="di-i"><div class="di-n">Салат «Манилов»</div><div class="di-d">Говяжий язык, свёкла, чернослив, грецкий орех, хрен</div><div class="di-w">220 г</div></div><div class="di-p">480 ₽</div></li>
-      <li class="di"><div class="di-i"><div class="di-n">Винегрет домашний</div><div class="di-d">Свёкла, картофель, морковь, солёный огурец, квашеная капуста</div><div class="di-w">200 г</div></div><div class="di-p">290 ₽</div></li>
-      <li class="di"><div class="di-i"><div class="di-n">Оливье классический</div><div class="di-d">Варёная говядина, картофель, огурец, горошек, яйцо, майонез</div><div class="di-w">220 г</div></div><div class="di-p">360 ₽</div></li>
-      <li class="di"><div class="di-i"><div class="di-n">Сельдь под шубой</div><div class="di-d">По классическому рецепту, домашний майонез</div><div class="di-w">220 г</div></div><div class="di-p">340 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Салат «Манилов»</div><div class="di-d">С пикантной свиной вырезкой, томатами, грибами, солёными и свежим огурцом и зелёным луком</div></div><div class="di-p">560 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Оливье с говядиной</div></div><div class="di-p">480 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Сельдь под шубой</div></div><div class="di-p">420 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Салат Опричник в кисло-сладком соусе</div><div class="di-d">Свиная вырезка обжаренная с болгарским перцем, баклажанами и томатами черри</div></div><div class="di-p">520 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Оливье по-царски</div></div><div class="di-p">520 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Барин-боярин</div><div class="di-d">Печень куриная выкладывается на обжаренные овощи (картофель, морковь, лук, кориандр, грибы), заправляется майонезом</div></div><div class="di-p">490 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Баклажаны хрустящие</div></div><div class="di-p">480 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Овощной с брынзой</div></div><div class="di-p">480 ₽</div></li>
     </ul></div>
 
-    <!-- ГОРЯЧИЕ -->
+    <!-- ГОРЯЧИЕ ЗАКУСКИ -->
     <div class="mp" id="t-hot"><ul class="dl">
-      <li class="di"><div class="di-i"><div class="di-n">Драник «Манилов»</div><div class="di-d">Картофельный, с грибами и луком, домашняя сметана</div><div class="di-w">180 г</div></div><div class="di-p">390 ₽</div></li>
-      <li class="di"><div class="di-i"><div class="di-n">Жульен грибной</div><div class="di-d">Белые грибы, сливки, сыр, в кокотнице</div><div class="di-w">160 г</div></div><div class="di-p">420 ₽</div></li>
-      <li class="di"><div class="di-i"><div class="di-n">Печень куриная</div><div class="di-d">В сметанном соусе с луком, домашний хлеб</div><div class="di-w">180 г</div></div><div class="di-p">380 ₽</div></li>
-      <li class="di"><div class="di-i"><div class="di-n">Яйца по-казачьи</div><div class="di-d">Жареные с ветчиной, зелёным луком и хлебом</div><div class="di-w">180 г</div></div><div class="di-p">320 ₽</div></li>
-      <li class="di"><div class="di-i"><div class="di-n">Блины с икрой</div><div class="di-d">Тонкие блины, красная икра, сливочное масло</div><div class="di-w">120 г</div></div><div class="di-p">580 ₽</div></li>
+      <li class="dc"><span>Горячие закуски</span></li>
+      <li class="di"><div class="di-i"><div class="di-n">Закуска купеческая с грибами</div><div class="di-d">Нежная курица, дикие белые грибы и густые сливки — всё вместе, в кокотнице, под золотистой корочкой</div></div><div class="di-p">520 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Закуска Барская</div><div class="di-d">Нежный судак, дикие белые грибы и густые сливки — всё вместе, в кокотнице, под золотистой корочкой</div></div><div class="di-p">480 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Драники картофельные со сметаной</div></div><div class="di-p">390 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Гренки с домашним чесночным соусом</div></div><div class="di-p">320 ₽</div></li>
+      <li class="dc"><span>На сковородках</span></li>
+      <li class="di"><div class="di-i"><div class="di-n">Жарёха с судаком, овощами и картофелем под сыром</div><div class="di-d">Филе судака на подушке из картофеля и помидоров. Залито сливками, посыпано сыром — запечено до золотистой корочки</div></div><div class="di-p">520 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Скоблянка</div><div class="di-d">Жареный картофель, лук, грибы, буженина, сало, карбонат. В центре — яйцо, сверху — сырная шапка. Запечено до хруста. Национальное русское блюдо</div></div><div class="di-p">540 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Русская сковорода</div><div class="di-d">На дне — воздушное пюре. Поверх — говядина с луком, морковью, грибами. Сыр. И шапка из слоёного теста — запечённая до хруста. Подаётся в тугане — горячая, дымящаяся, как из печи</div></div><div class="di-p">980 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Чорыг тверской</div><div class="di-d">Нежная рыба в воздушном омлете. Поливается сливочным маслом прямо перед подачей. Украшается мелко нарезанным луком, как будто с берега реки</div></div><div class="di-p">480 ₽</div></li>
     </ul></div>
 
     <!-- СУПЫ -->
     <div class="mp" id="t-soups"><ul class="dl">
-      <li class="di"><div class="di-i"><div class="di-n">Борщ московский</div><div class="di-d">Говядина, свёкла, капуста, фасоль. Со сметаной и хлебом</div><div class="di-w">350 г</div></div><div class="di-p">380 ₽</div></li>
-      <li class="di"><div class="di-i"><div class="di-n">Щи суточные</div><div class="di-d">Томлёные, из квашеной капусты, на говяжьем бульоне</div><div class="di-w">350 г</div></div><div class="di-p">360 ₽</div></li>
-      <li class="di"><div class="di-i"><div class="di-n">Рассольник</div><div class="di-d">С перловкой, солёными огурцами, почками и говядиной</div><div class="di-w">350 г</div></div><div class="di-p">370 ₽</div></li>
-      <li class="di"><div class="di-i"><div class="di-n">Уха из судака</div><div class="di-d">Тройная, с зеленью и ржаным хлебом</div><div class="di-w">350 г</div></div><div class="di-p">420 ₽</div></li>
-      <li class="di"><div class="di-i"><div class="di-n">Крем-суп тыквенный</div><div class="di-d">С семечками, сливками и мускатным орехом</div><div class="di-w">300 г</div></div><div class="di-p">350 ₽</div></li>
-      <li class="di"><div class="di-i"><div class="di-n">Солянка мясная</div><div class="di-d">С деликатесами, оливками и лимоном</div><div class="di-w">350 г</div></div><div class="di-p">430 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Солянка старорусская</div></div><div class="di-p">550 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Борщ с пампушками</div><div class="di-d">С чесноком и салом</div></div><div class="di-p">480 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Щи суточные</div><div class="di-d">С домашней сметаной</div></div><div class="di-p">420 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Крем-суп с гренками</div><div class="di-d">Сезонный (из белых грибов, тыквенный, овощной, кабачковый с грибами)</div></div><div class="di-p">—</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Похлёбка из белых грибов</div><div class="di-d">Сытная, с говядиной, с картофелем, луком, морковью и огурцами</div></div><div class="di-p">480 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Уха рыбацкая с расстегаем</div></div><div class="di-p">550 ₽</div></li>
     </ul></div>
 
     <!-- ОСНОВНЫЕ -->
     <div class="mp" id="t-main"><ul class="dl">
-      <li class="dc"><span>Мясо</span></li>
-      <li class="di"><div class="di-i"><div class="di-n">Говядина тушёная</div><div class="di-d">С кореньями и травами. Гречневая каша</div><div class="di-w">280 г</div></div><div class="di-p">620 ₽</div></li>
-      <li class="di"><div class="di-i"><div class="di-n">Котлета пожарская</div><div class="di-d">Куриный фарш, белый хлеб, масло. Пюре, соус</div><div class="di-w">250 г</div></div><div class="di-p">520 ₽</div></li>
-      <li class="di"><div class="di-i"><div class="di-n">Бефстроганов</div><div class="di-d">Говяжья вырезка, сметанный соус с грибами. Картофель</div><div class="di-w">280 г</div></div><div class="di-p">680 ₽</div></li>
-      <li class="dc"><span>Птица</span></li>
-      <li class="di"><div class="di-i"><div class="di-n">Котлета куриная</div><div class="di-d">С начинкой из масла и зелени. Пюре, соус</div><div class="di-w">250 г</div></div><div class="di-p">490 ₽</div></li>
-      <li class="di"><div class="di-i"><div class="di-n">Гусь тушёный</div><div class="di-d">С яблоком и черносливом. Гречка с луком</div><div class="di-w">300 г</div></div><div class="di-p">720 ₽</div></li>
-      <li class="dc"><span>Рыба</span></li>
-      <li class="di"><div class="di-i"><div class="di-n">Судак в сметане</div><div class="di-d">Запечённый со сметаной и зеленью. Картофель</div><div class="di-w">280 г</div></div><div class="di-p">590 ₽</div></li>
+      <li class="dc"><span>Котлета Пожарская</span></li>
+      <li class="di"><div class="di-i"><div class="di-n">С квашеной капустой</div><div class="di-d">Сочная, нежная, с лёгким ароматом сливочного масла — готовится, как в XIX веке. Подаётся с квашеной капустой и клюквенным соусом</div></div><div class="di-p">590 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">С грибами и сыром</div><div class="di-d">Курица, хруст, внутри — грибы и сыр. Подаётся с квашеной капустой и клюквенным соусом</div></div><div class="di-p">580 ₽</div></li>
+      <li class="dc"><span>Основные блюда</span></li>
+      <li class="di"><div class="di-i"><div class="di-n">Пельмени мясные</div><div class="di-d">С домашней сметаной и зеленью</div></div><div class="di-p">480 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Пельмени мясные жареные</div><div class="di-d">С домашней сметаной и жареным луком</div></div><div class="di-p">480 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Бефстроганов с грибами и картофельным пюре</div><div class="di-d">Нежная говядина, лесные грибы, сливочный соус. С пышным картофельным пюре</div></div><div class="di-p">890 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Говяжьи щёчки с картофелем</div><div class="di-d">Томятся 12 часов, с дольками с пышным пюре и пикантным соусом</div></div><div class="di-p">920 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Драник по-русски со свининой</div><div class="di-d">Нежная свинина, шампиньоны, лук — всё тушится в сметане. Запечатана в хрустящий картофельный драник</div></div><div class="di-p">620 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Горбуша на овощах в сливочном соусе</div><div class="di-d">Нежная красная рыба на подушке из цукини, баклажанов и перца. Запечена с густыми сливками, мягко, ароматно, по-домашнему</div></div><div class="di-p">980 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Судак с Польским соусом</div><div class="di-d">Нежное филе судака подано с хрустящим айсбергом и кисло-сладким соусом</div></div><div class="di-p">840 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Кокорки тверские</div><div class="di-d">«Пирожки» из картофельного теста, подаются с чесночной сметаной</div></div><div class="di-p">460 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Рагу из куриных потрошков</div><div class="di-d">Куриные потрошки, тушеные с луком — до мягкости и аромата</div></div><div class="di-p">460 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Кролик томлёный в травах с имбирём</div></div><div class="di-p">890 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Голубцы с домашней сметаной</div></div><div class="di-p">620 ₽</div></li>
       <li class="dc"><span>Гарниры</span></li>
-      <li class="di"><div class="di-i"><div class="di-n">Каша гречневая</div><div class="di-d">С грибами и луком, томлёная в горшочке</div><div class="di-w">200 г</div></div><div class="di-p">220 ₽</div></li>
-      <li class="di"><div class="di-i"><div class="di-n">Пюре картофельное</div><div class="di-d">Со сливочным маслом и молоком</div><div class="di-w">200 г</div></div><div class="di-p">190 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Греча с белыми грибами</div></div><div class="di-p">310 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Картофельное пюре</div></div><div class="di-p">280 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Дольки по-деревенски</div></div><div class="di-p">190 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Тушёная капуста с морковью</div></div><div class="di-p">160 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Рис с овощами</div></div><div class="di-p">160 ₽</div></li>
+    </ul></div>
+
+    <!-- В ГОРШОЧКАХ -->
+    <div class="mp" id="t-pots"><ul class="dl">
+      <li class="di"><div class="di-i"><div class="di-n">Жаркое из свинины</div><div class="di-d">Свинина. Картофель. Грибы. Перец. Всё — в глиняном горшочке, с луком и специями и домашней сметаной</div></div><div class="di-p">520 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Говядина кусковая в травах</div><div class="di-d">Нежные куски говядины, тушёные с луком спелыми помидорами и травами с добавлением ароматного масла</div></div><div class="di-p">810 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Судак с картофелем в сливках</div><div class="di-d">Нежное филе судака. Картофель, лук, болгарский перец. Запечено в густых сливках с ароматными специями. Мягко. Сочно. По-домашнему</div></div><div class="di-p">840 ₽</div></li>
     </ul></div>
 
     <!-- ДЕСЕРТЫ -->
     <div class="mp" id="t-desserts"><ul class="dl">
-      <li class="di"><div class="di-i"><div class="di-n">Блины с вареньем</div><div class="di-d">Тонкие блины, домашнее варенье</div><div class="di-w">200 г</div></div><div class="di-p">320 ₽</div></li>
-      <li class="di"><div class="di-i"><div class="di-n">Пирог яблочный</div><div class="di-d">Домашний, с корицей, подаётся тёплым со сметаной</div><div class="di-w">150 г</div></div><div class="di-p">280 ₽</div></li>
-      <li class="di"><div class="di-i"><div class="di-n">Творожная запеканка</div><div class="di-d">С изюмом и ванилью. Сметана, варенье</div><div class="di-w">180 г</div></div><div class="di-p">300 ₽</div></li>
-      <li class="di"><div class="di-i"><div class="di-n">Медовик</div><div class="di-d">По классическому рецепту, со сметанным кремом</div><div class="di-w">150 г</div></div><div class="di-p">320 ₽</div></li>
-      <li class="di"><div class="di-i"><div class="di-n">Кисель ягодный</div><div class="di-d">Домашний, из смородины и клюквы</div><div class="di-w">250 г</div></div><div class="di-p">180 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Шарлотка с вишней</div></div><div class="di-p">290 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Коврижка медовая старорусская с орехами и мёдом</div></div><div class="di-p">310 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Морковный</div></div><div class="di-p">310 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Прага</div></div><div class="di-p">310 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Наполеон</div></div><div class="di-p">320 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Медовик</div></div><div class="di-p">340 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Эклер с земляникой</div></div><div class="di-p">290 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Мороженое в ассортименте</div></div><div class="di-p">120 ₽</div></li>
+      <li class="dc"><span>Хлеб собственного приготовления</span></li>
+      <li class="di"><div class="di-i"><div class="di-n">Ржаной с тыквенными семечками и геркулесом</div></div><div class="di-p">65 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Пшеничный с белым кунжутом</div></div><div class="di-p">65 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Мясной пирог</div><div class="di-d">С начинкой из белой рыбы, риса, яиц и зелёного лука</div></div><div class="di-p">360 ₽</div></li>
     </ul></div>
 
     <!-- НАПИТКИ -->
     <div class="mp" id="t-drinks"><ul class="dl">
-      <li class="dc"><span>Безалкогольные</span></li>
-      <li class="di"><div class="di-i"><div class="di-n">Чай травяной</div><div class="di-d">Иван-чай, шиповник, мята — на выбор</div><div class="di-w">500 мл</div></div><div class="di-p">220 ₽</div></li>
-      <li class="di"><div class="di-i"><div class="di-n">Чай чёрный / зелёный</div><div class="di-d">Крупнолистовой, заварочный чайник</div><div class="di-w">500 мл</div></div><div class="di-p">200 ₽</div></li>
-      <li class="di"><div class="di-i"><div class="di-n">Кофе «Американо»</div><div class="di-d">Двойной эспрессо с водой</div><div class="di-w">200 мл</div></div><div class="di-p">220 ₽</div></li>
-      <li class="di"><div class="di-i"><div class="di-n">Морс клюквенный</div><div class="di-d">Домашний, из свежей клюквы</div><div class="di-w">300 мл</div></div><div class="di-p">180 ₽</div></li>
-      <li class="di"><div class="di-i"><div class="di-n">Квас хлебный</div><div class="di-d">Домашний</div><div class="di-w">300 мл</div></div><div class="di-p">160 ₽</div></li>
-      <li class="dc"><span>Алкоголь</span></li>
-      <li class="di"><div class="di-i"><div class="di-n">Настойка смородиновая</div><div class="di-d">Домашняя, 40°</div><div class="di-w">50 мл</div></div><div class="di-p">280 ₽</div></li>
-      <li class="di"><div class="di-i"><div class="di-n">Наливка вишнёвая</div><div class="di-d">Домашняя, 18°</div><div class="di-w">100 мл</div></div><div class="di-p">260 ₽</div></li>
-      <li class="di"><div class="di-i"><div class="di-n">Вина</div><div class="di-d">Актуальная карта — уточняйте у официанта</div><div class="di-w">—</div></div><div class="di-p">от 350 ₽</div></li>
+      <li class="dc"><span>Безалкогольные напитки</span></li>
+      <li class="di"><div class="di-i"><div class="di-n">Морс</div><div class="di-d">Клюква / облепиха / чёрная смородина</div></div><div class="di-p">160 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Квас монастырский Афанасий</div></div><div class="di-p">260 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Глинтвейн в ассортименте</div></div><div class="di-p">340 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Взвар медовый</div></div><div class="di-p">240 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Сбитень на меду</div></div><div class="di-p">260 ₽</div></li>
+      <li class="dc"><span>Нечайные чаи с садовыми фруктами и ягодами</span></li>
+      <li class="di"><div class="di-i"><div class="di-n">Малиновый с мятой и лаймом</div></div><div class="di-p">410 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Облепиховый с имбирём</div></div><div class="di-p">410 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Яблочный с клюквой</div></div><div class="di-p">390 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Хвойный с чёрной смородиной</div></div><div class="di-p">410 ₽</div></li>
+      <li class="dc"><span>Чай</span></li>
+      <li class="di"><div class="di-i"><div class="di-n">Иван-чай</div></div><div class="di-p">320 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Сибирский</div></div><div class="di-p">320 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Таёжный</div><div class="di-d">Ягоды и листья брусники, черники, голубики, лепестки василька и календулы</div></div><div class="di-p">320 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Ассам</div></div><div class="di-p">320 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Эрл Грей</div><div class="di-d">Чёрный чай с бергамотом</div></div><div class="di-p">340 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Кавказский</div><div class="di-d">Листья и соцветия чабреца</div></div><div class="di-p">340 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Сенча</div></div><div class="di-p">320 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Зелёный с мятой и мелиссой</div></div><div class="di-p">360 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Молочный улун</div></div><div class="di-p">360 ₽</div></li>
+      <li class="dc"><span>Кофе</span></li>
+      <li class="di"><div class="di-i"><div class="di-n">Эспрессо</div></div><div class="di-p">150 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Двойной эспрессо</div></div><div class="di-p">180 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Капучино</div></div><div class="di-p">290 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Латте</div></div><div class="di-p">310 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Гляссе</div></div><div class="di-p">300 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Американо</div></div><div class="di-p">210 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Горячий шоколад</div></div><div class="di-p">360 ₽</div></li>
+      <li class="dc"><span>Свежевыжатые соки</span></li>
+      <li class="di"><div class="di-i"><div class="di-n">Апельсиновый</div></div><div class="di-p">320 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Грейпфрутовый</div></div><div class="di-p">320 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Морковный со сливками</div></div><div class="di-p">310 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Яблочный</div></div><div class="di-p">310 ₽</div></li>
+      <li class="dc"><span>Лимонады домашние</span></li>
+      <li class="di"><div class="di-i"><div class="di-n">Цитрусовый</div><div class="di-d">0,4 л / 1 л</div></div><div class="di-p">280 / 610 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Клубничный</div><div class="di-d">0,4 л / 1 л</div></div><div class="di-p">290 / 640 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Мятно-имбирный</div><div class="di-d">0,4 л / 1 л</div></div><div class="di-p">290 / 640 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Облепиховый</div><div class="di-d">0,4 л / 1 л</div></div><div class="di-p">280 / 610 ₽</div></li>
+      <li class="dc"><span>Молочные коктейли</span></li>
+      <li class="di"><div class="di-i"><div class="di-n">Ванильный</div></div><div class="di-p">320 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Клубничный</div></div><div class="di-p">320 ₽</div></li>
+      <li class="di"><div class="di-i"><div class="di-n">Шоколадный</div></div><div class="di-p">320 ₽</div></li>
     </ul></div>
 
     <!-- ЛЕНТА ЕДЫ -->
@@ -834,7 +906,7 @@ footer {
       <h2 class="SH rv d1">Найдите<br><em>нас</em></h2>
       <div class="ci-list" style="margin-top:28px">
         <div class="ci rv d1"><div class="ci-ic">✆</div><div><div class="ci-lb">Телефон</div><a href="tel:+79040206603" class="ci-vl">+7 (904) 020-66-03</a></div></div>
-        <div class="ci rv d2"><div class="ci-ic">✉</div><div><div class="ci-lb">Email</div><a href="mailto:manilov17kafe@gmail.com" class="ci-vl">manilov17kafe@gmail.com</a></div></div>
+        <div class="ci rv d2"><div class="ci-ic">✉</div><div><div class="ci-lb">Email</div><a href="/cdn-cgi/l/email-protection#1f727e71767370692e28747e797a5f78727e7673317c7072" class="ci-vl"><span class="__cf_email__" data-cfemail="a2cfc3cccbcecdd49395c9c3c4c7e2c5cfc3cbce8cc1cdcf">[email&#160;protected]</span></a></div></div>
         <div class="ci rv d3"><div class="ci-ic">◉</div><div><div class="ci-lb">Адрес</div><span class="ci-vl">Тверь, ул. Советская, 17</span></div></div>
         <div class="ci rv d4"><div class="ci-ic">◷</div><div><div class="ci-lb">Часы</div><span class="ci-vl">Вс–Чт 11–00 · Пт–Сб 11–01</span></div></div>
       </div>
@@ -859,7 +931,7 @@ footer {
   <div class="f-cp">© 2024 Кафе Манилов, Тверь</div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* ─── CURSOR (только мышь) ─── */
 const isMouse = window.matchMedia('(pointer: fine)').matches;
 if (isMouse) {
@@ -1003,9 +1075,9 @@ const phs = [
 const FT = document.getElementById('FT');
 if (FT) {
   [...phs, ...phs].forEach(n => {
-    const d = document.createElement('div');
-    d.className = 'fc';
-    d.innerHTML = '<img src="https://manilovtver.ru/wp-content/uploads/2022/05/' + n + '.jpeg" alt="" loading="lazy">';
+    const d = document.createElement("div");
+    d.className = "fc";
+    d.innerHTML = "<img src='https://manilovtver.ru/wp-content/uploads/2022/05/" + n + ".jpeg' alt='' loading='lazy'>";
     FT.appendChild(d);
   });
 }
