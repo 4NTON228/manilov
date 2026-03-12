@@ -281,8 +281,8 @@ h2.SH em { font-style: italic; color: var(--gold); }
 .ab-hr { width: 34px; height: 1px; background: var(--gl); margin: 26px 0; }
 .facts { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); }
 .fact { background: var(--bg2); padding: 20px 16px; }
-.fact-n { font-family: var(--serif); font-size: 2.4rem; font-weight: 300; color: var(--gold); line-height: 1; display: block; margin-bottom: 5px; font-variant-numeric: lining-nums tabular-nums; }
-.fact-l { font-size: .9rem; color: var(--ink3); line-height: 1.5; }
+.fact-n { font-family: var(--serif); font-size: clamp(1.6rem, 7vw, 2.4rem); font-weight: 300; color: var(--gold); line-height: 1; display: block; margin-bottom: 5px; font-variant-numeric: lining-nums tabular-nums; }
+.fact-l { font-size: clamp(.8rem, 3vw, .9rem); color: var(--ink3); line-height: 1.5; }
 
 /* ================================================
    МЕНЮ
@@ -373,7 +373,7 @@ h2.SH em { font-style: italic; color: var(--gold); }
 .hb { padding: 34px 20px; border-bottom: 1px solid rgba(255,255,255,.07); }
 .hb:last-child { border-bottom: none; }
 .hb-tag { font-size: .72rem; letter-spacing: .3em; text-transform: uppercase; color: rgba(255,255,255,.35); margin-bottom: 10px; }
-.hb-val { font-family: var(--serif); font-size: 1.8rem; font-weight: 300; color: var(--gl); line-height: 1.2; font-variant-numeric: lining-nums tabular-nums; }
+.hb-val { font-family: var(--serif); font-size: clamp(1.2rem, 5vw, 1.8rem); font-weight: 300; color: var(--gl); line-height: 1.2; font-variant-numeric: lining-nums tabular-nums; }
 .hb-note { font-size: 1rem; color: rgba(255,255,255,.45); margin-top: 6px; font-style: italic; font-family: var(--serif); }
 
 /* ================================================
@@ -436,7 +436,7 @@ h2.SH em { font-style: italic; color: var(--gold); }
 .ci:first-child { border-top: 1px solid var(--line); }
 .ci-ic { width: 52px; height: 52px; border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--gold); font-family: var(--serif); font-size: 1.4rem; }
 .ci-lb { font-size: .72rem; letter-spacing: .25em; text-transform: uppercase; color: var(--ink3); margin-bottom: 4px; }
-.ci-vl { font-family: var(--serif); font-size: clamp(1.1rem,4vw,1.3rem); color: var(--ink); display: block; }
+.ci-vl { font-family: var(--serif); font-size: clamp(1rem,4vw,1.25rem); color: var(--ink); display: block; font-variant-numeric: lining-nums tabular-nums; }
 .ci-vl:active { color: var(--gold); }
 .con-map { width: 100%; height: 260px; position: relative; overflow: hidden; }
 .con-map iframe { width: 100%; height: 100%; border: none; display: block; }
@@ -502,11 +502,9 @@ footer {
 
   /* Факты — 2 колонки */
   .facts { grid-template-columns: 1fr 1fr !important; gap: 20px !important; }
-  .fact-n { font-size: 2rem; }
 
   /* Часы — отступы */
   .hb { padding: 28px 20px; }
-  .hb-val { font-size: 1.6rem; }
 
   /* Контакты */
   .ci { padding: 18px 0; gap: 14px; }
