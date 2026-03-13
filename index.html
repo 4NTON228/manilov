@@ -112,11 +112,11 @@ button { font-family: var(--sans); }
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 700;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 12px 20px;
+  padding: 8px 16px;
   transition: padding .35s, background .35s, border .35s, box-shadow .35s;
 }
 nav.sc {
-  padding: 8px 20px;
+  padding: 6px 16px;
   background: rgba(250,248,244,.97);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -128,7 +128,7 @@ nav.sc {
   line-height: 1; text-decoration: none;
 }
 .logo-img-wrap {
-  width: 130px;
+  width: 90px;
 }
 .logo-img-wrap img { width: 100%; height: auto; display: block; object-fit: initial; }
 /* По умолчанию (прозрачный нав над фото) — белый, при скролле — золото */
@@ -221,11 +221,10 @@ nav.sc .logo-s { color: var(--gold); }
   display: flex; flex-direction: column; align-items: flex-start;
 }
 .hero-logo-wrap {
-  width: clamp(160px, 28vw, 260px);
+  width: clamp(130px, 22vw, 200px);
 }
 .hero-logo-wrap img {
   width: 100%; height: auto; display: block; object-fit: initial;
-  filter: drop-shadow(0 1px 6px rgba(0,0,0,.55));
 }
 .h-sub {
   font-family: var(--serif); font-style: italic;
@@ -503,7 +502,7 @@ footer {
   .h-btns { flex-direction: column; gap: 10px; }
 
   /* Логотип в герое — мобильный */
-  .hero-logo-wrap { width: clamp(140px, 48vw, 200px); }
+  .hero-logo-wrap { width: clamp(120px, 38vw, 170px); }
   /* Логотип в загрузчике — мобильный */
   .lw-img-wrap { width: clamp(140px, 42vw, 200px); }
   /* Логотип в навигации — мобильный */
@@ -536,7 +535,7 @@ footer {
   .nc-bd { padding: 18px 16px 22px; }
 
   /* Навигация */
-  nav { padding: 16px 20px; }
+  nav { padding: 10px 20px; }
 
   /* Футер */
   footer { padding: 32px 20px; gap: 16px; }
@@ -545,10 +544,10 @@ footer {
 
 @media (min-width: 600px) {
   .W { padding: 0 32px; }
-  nav { padding: 14px 32px; }
-  nav.sc { padding: 10px 32px; }
+  nav { padding: 10px 32px; }
+  nav.sc { padding: 7px 32px; }
   .h-body { padding: 0 32px 68px; }
-  .hero-logo-wrap { width: clamp(180px, 32vw, 240px); }
+  .hero-logo-wrap { width: clamp(140px, 24vw, 190px); }
   .lw-img-wrap { width: clamp(160px, 36vw, 240px); }
   .ab-photo img { aspect-ratio: 16/7; }
   .ab-body { padding: 56px 32px; }
@@ -582,8 +581,8 @@ footer {
 
   /* герой — горизонтальный layout */
   .h-body { padding: 0 64px 80px; display: flex; justify-content: space-between; align-items: flex-end; gap: 48px; }
-  .hero-logo-wrap { width: clamp(180px, 22vw, 260px); }
-  .logo-img-wrap { width: 120px; }
+  .hero-logo-wrap { width: clamp(150px, 16vw, 200px); }
+  .logo-img-wrap { width: 110px; }
   .h-right { max-width: 280px; text-align: right; flex-shrink: 0; }
   .h-sub { margin-bottom: 24px; max-width: 100%; }
   .h-cta { display: inline-block; }
@@ -709,7 +708,7 @@ footer {
     <div>
       <div class="hero-logo-block">
         <div class="hero-logo-wrap">
-          <img src="img/logo/logo-text.png" alt="Манилов">
+          <img src="img/logo/logo-oval.png" alt="Манилов">
         </div>
       </div>
       <p class="h-sub">«Для основательных людей, которые знают толк во всём и имеют вкус к изящному»</p>
