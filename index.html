@@ -1184,7 +1184,7 @@ if (FT) {
   [...phs, ...phs].forEach(n => {
     const d = document.createElement("div");
     d.className = "fc";
-    d.innerHTML = "<img src='" + n + "' alt='' loading='lazy'>";
+    d.innerHTML = "<img src='" + n + "' alt='' decoding='async'>";
     FT.appendChild(d);
   });
 }
