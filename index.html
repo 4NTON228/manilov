@@ -94,8 +94,8 @@ button { font-family: var(--sans); }
 /* --- Логотип в загрузчике --- */
 .lw-img-wrap {
   overflow: hidden;
-  width: clamp(200px, 52vw, 310px);
-  height: clamp(106px, 27.5vw, 164px); /* соотношение ~0.53 — обрезаем белое поле */
+  width: clamp(280px, 74vw, 440px);
+  height: clamp(148px, 39vw, 233px);
   opacity: 0;
   animation: fin .9s cubic-bezier(.76,0,.24,1) .2s forwards;
 }
@@ -132,11 +132,18 @@ nav.sc {
 }
 .logo-img-wrap {
   overflow: hidden;
-  width: 78px;
-  height: 36px; /* ~46% высоты рендеренного изображения — видна каллиграфия + завиток */
+  width: 115px;
+  height: 60px;
 }
 .logo-img-wrap img { width: 100%; height: auto; display: block; }
-.logo-s { font-family: var(--sans); font-size: .42rem; letter-spacing: .5em; text-transform: uppercase; color: var(--gold); font-weight: 300; margin-top: 3px; }
+/* По умолчанию (прозрачный нав над фото) — белый, при скролле — золото */
+.logo-s {
+  font-family: var(--sans); font-size: .42rem; letter-spacing: .5em;
+  text-transform: uppercase; font-weight: 300; margin-top: 4px;
+  color: rgba(255,255,255,.75);
+  transition: color .35s;
+}
+nav.sc .logo-s { color: var(--gold); }
 
 /* десктоп-ссылки — скрыты на мобильном */
 .nl { display: none; gap: 40px; list-style: none; }
@@ -219,7 +226,7 @@ nav.sc {
   font-family: var(--sans); font-weight: 300;
   font-size: clamp(.65rem, 1.6vw, .85rem);
   letter-spacing: .45em; text-transform: lowercase;
-  color: rgba(255,255,255,.5);
+  color: var(--gl);
   margin-bottom: .55em; display: block;
 }
 .hero-logo-wrap {
@@ -507,11 +514,11 @@ footer {
   .h-btns { flex-direction: column; gap: 10px; }
 
   /* Логотип в герое — мобильный */
-  .hero-logo-wrap { width: clamp(200px, 72vw, 290px); height: clamp(106px, 38vw, 154px); }
+  .hero-logo-wrap { width: clamp(230px, 80vw, 320px); height: clamp(122px, 42vw, 170px); }
   /* Логотип в загрузчике — мобильный */
-  .lw-img-wrap { width: clamp(180px, 62vw, 250px); height: clamp(95px, 33vw, 133px); }
+  .lw-img-wrap { width: clamp(240px, 78vw, 340px); height: clamp(127px, 41vw, 180px); }
   /* Логотип в навигации — мобильный */
-  .logo-img-wrap { width: 60px; height: 28px; }
+  .logo-img-wrap { width: 88px; height: 46px; }
 
   /* Цитата на герое */
   .h-sub { font-size: 1rem; }
@@ -552,8 +559,8 @@ footer {
   nav { padding: 22px 32px; }
   nav.sc { padding: 14px 32px; }
   .h-body { padding: 0 32px 68px; }
-  .hero-logo-wrap { width: clamp(260px, 52vw, 380px); height: clamp(138px, 27.5vw, 202px); }
-  .lw-img-wrap { width: clamp(220px, 46vw, 290px); height: clamp(117px, 24.4vw, 154px); }
+  .hero-logo-wrap { width: clamp(300px, 56vw, 420px); height: clamp(159px, 29.7vw, 223px); }
+  .lw-img-wrap { width: clamp(300px, 60vw, 400px); height: clamp(159px, 32vw, 212px); }
   .ab-photo img { aspect-ratio: 16/7; }
   .ab-body { padding: 56px 32px; }
   .int-hd { padding: 0 32px 48px; }
@@ -586,8 +593,8 @@ footer {
 
   /* герой — горизонтальный layout */
   .h-body { padding: 0 64px 80px; display: flex; justify-content: space-between; align-items: flex-end; gap: 48px; }
-  .hero-logo-wrap { width: clamp(320px, 36vw, 480px); height: clamp(170px, 19vw, 254px); }
-  .logo-img-wrap { width: 90px; height: 42px; }
+  .hero-logo-wrap { width: clamp(380px, 40vw, 540px); height: clamp(201px, 21.2vw, 286px); }
+  .logo-img-wrap { width: 130px; height: 68px; }
   .h-right { max-width: 280px; text-align: right; flex-shrink: 0; }
   .h-sub { margin-bottom: 24px; max-width: 100%; }
   .h-cta { display: inline-block; }
