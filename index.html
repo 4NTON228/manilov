@@ -92,9 +92,9 @@ button { font-family: var(--sans); }
 }
 #LDR.off { opacity: 0; visibility: hidden; pointer-events: none; }
 .lw {
-  font-family: var(--serif); font-weight: 400;
+  font-family: var(--serif); font-weight: 300; font-style: italic;
   font-size: clamp(3rem, 14vw, 7rem);
-  color: var(--ink); letter-spacing: .06em;
+  color: var(--ink); letter-spacing: .12em;
   overflow: hidden; line-height: 1;
 }
 .lw span { display: inline-block; transform: translateY(110%); animation: sup .85s cubic-bezier(.76,0,.24,1) .3s forwards; }
@@ -208,10 +208,10 @@ h1.ht {
   /* БЕЛЫЙ текст на тёмном оверлее — всегда читается */
   color: #ffffff;
   font-size: clamp(4rem, 19vw, 10rem);
-  line-height: .88; letter-spacing: -.02em;
+  line-height: .88; letter-spacing: .04em;
   margin-bottom: 18px;
 }
-h1.ht em { font-style: italic; color: var(--gl); display: block; }
+h1.ht em { font-style: italic; color: var(--gl); display: block; letter-spacing: .06em; }
 .h-sub {
   font-family: var(--serif); font-style: italic;
   font-size: clamp(.95rem, 3.5vw, 1.1rem);
