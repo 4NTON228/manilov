@@ -102,7 +102,6 @@ button { font-family: var(--sans); }
 .lw-img-wrap img {
   width: 100%; height: auto; display: block;
   object-fit: cover; object-position: center 8%;
-  mix-blend-mode: multiply;
 }
 .lb { width: 0; height: 1px; background: var(--gold); animation: bw .7s ease .85s forwards; }
 .ls { font-size: clamp(.45rem,.8vw,.6rem); letter-spacing: .5em; text-transform: uppercase; color: var(--gold); opacity: 0; animation: fin .4s ease 1.1s forwards; white-space: nowrap; }
@@ -136,7 +135,7 @@ nav.sc {
   width: 78px;
   height: 36px; /* ~46% высоты рендеренного изображения — видна каллиграфия + завиток */
 }
-.logo-img-wrap img { width: 100%; height: auto; display: block; mix-blend-mode: multiply; }
+.logo-img-wrap img { width: 100%; height: auto; display: block; }
 .logo-s { font-family: var(--sans); font-size: .42rem; letter-spacing: .5em; text-transform: uppercase; color: var(--gold); font-weight: 300; margin-top: 3px; }
 
 /* десктоп-ссылки — скрыты на мобильном */
@@ -231,9 +230,8 @@ nav.sc {
 .hero-logo-wrap img {
   width: 100%; height: auto; display: block;
   object-fit: cover; object-position: center 8%;
-  /* инвертируем → белый текст на чёрном фоне, screen убирает чёрный */
-  filter: brightness(0) invert(1) sepia(.4) saturate(2) brightness(1.2);
-  mix-blend-mode: screen;
+  /* инвертируем для тёмного фона hero → белая каллиграфия */
+  filter: brightness(0) invert(1) sepia(.3) saturate(1.5) brightness(1.1);
 }
 .h-sub {
   font-family: var(--serif); font-style: italic;
@@ -659,7 +657,7 @@ footer {
 <!-- ЗАГРУЗКА -->
 <div id="LDR">
   <div class="lw-img-wrap">
-    <img src="img/logo/logo-text.jpg" alt="Манилов">
+    <img src="img/logo/logo-text.png" alt="Манилов">
   </div>
   <div class="lb"></div>
   <div class="ls">Кафе · Тверь · Советская 17</div>
@@ -691,7 +689,7 @@ footer {
 <!-- НАВ -->
 <nav id="NAV">
   <a href="#" class="logo">
-    <div class="logo-img-wrap"><img src="img/logo/logo-text.jpg" alt="Манилов"></div>
+    <div class="logo-img-wrap"><img src="img/logo/logo-text.png" alt="Манилов"></div>
     <span class="logo-s">Кафе · Тверь</span>
   </a>
   <ul class="nl">
@@ -717,7 +715,7 @@ footer {
       <div class="hero-logo-block">
         <span class="hero-cafe-lbl">кафе</span>
         <div class="hero-logo-wrap">
-          <img src="img/logo/logo-text.jpg" alt="Манилов">
+          <img src="img/logo/logo-text.png" alt="Манилов">
         </div>
       </div>
       <p class="h-sub">«Для основательных людей, которые знают толк во всём и имеют вкус к изящному»</p>
