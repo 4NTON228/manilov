@@ -221,12 +221,11 @@ nav.sc .logo-s { color: var(--gold); }
   display: flex; flex-direction: column; align-items: flex-start;
 }
 .hero-logo-wrap {
-  width: clamp(260px, 58vw, 520px);
+  width: clamp(160px, 28vw, 260px);
 }
 .hero-logo-wrap img {
   width: 100%; height: auto; display: block; object-fit: initial;
-  filter: brightness(0) invert(1);
-  opacity: .92;
+  filter: drop-shadow(0 1px 6px rgba(0,0,0,.55));
 }
 .h-sub {
   font-family: var(--serif); font-style: italic;
@@ -504,7 +503,7 @@ footer {
   .h-btns { flex-direction: column; gap: 10px; }
 
   /* Логотип в герое — мобильный */
-  .hero-logo-wrap { width: clamp(200px, 65vw, 300px); }
+  .hero-logo-wrap { width: clamp(140px, 48vw, 200px); }
   /* Логотип в загрузчике — мобильный */
   .lw-img-wrap { width: clamp(140px, 42vw, 200px); }
   /* Логотип в навигации — мобильный */
@@ -549,7 +548,7 @@ footer {
   nav { padding: 14px 32px; }
   nav.sc { padding: 10px 32px; }
   .h-body { padding: 0 32px 68px; }
-  .hero-logo-wrap { width: clamp(280px, 52vw, 420px); }
+  .hero-logo-wrap { width: clamp(180px, 32vw, 240px); }
   .lw-img-wrap { width: clamp(160px, 36vw, 240px); }
   .ab-photo img { aspect-ratio: 16/7; }
   .ab-body { padding: 56px 32px; }
@@ -570,8 +569,8 @@ footer {
 ================================================ */
 @media (min-width: 900px) {
   .W { padding: 0 64px; }
-  nav { padding: 28px 64px; }
-  nav.sc { padding: 15px 64px; }
+  nav { padding: 18px 64px; }
+  nav.sc { padding: 10px 64px; }
   .nl { display: flex; }
   .nav-ph { display: block; }
   .brg { display: none; }
@@ -583,8 +582,8 @@ footer {
 
   /* герой — горизонтальный layout */
   .h-body { padding: 0 64px 80px; display: flex; justify-content: space-between; align-items: flex-end; gap: 48px; }
-  .hero-logo-wrap { width: clamp(340px, 36vw, 520px); }
-  .logo-img-wrap { width: 150px; }
+  .hero-logo-wrap { width: clamp(180px, 22vw, 260px); }
+  .logo-img-wrap { width: 120px; }
   .h-right { max-width: 280px; text-align: right; flex-shrink: 0; }
   .h-sub { margin-bottom: 24px; max-width: 100%; }
   .h-cta { display: inline-block; }
