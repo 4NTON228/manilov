@@ -132,8 +132,8 @@ nav.sc {
 }
 .logo-img-wrap {
   overflow: hidden;
-  width: 115px;
-  height: 60px;
+  width: 82px;
+  height: 43px;
 }
 .logo-img-wrap img { width: 100%; height: auto; display: block; }
 /* По умолчанию (прозрачный нав над фото) — белый, при скролле — золото */
@@ -221,24 +221,20 @@ nav.sc .logo-s { color: var(--gold); }
   padding: 0 20px 52px; width: 100%;
 }
 /* --- Логотип в герое --- */
-.hero-logo-block { margin-bottom: 20px; }
-.hero-cafe-lbl {
-  font-family: var(--sans); font-weight: 300;
-  font-size: clamp(.65rem, 1.6vw, .85rem);
-  letter-spacing: .45em; text-transform: lowercase;
-  color: var(--gl);
-  margin-bottom: .55em; display: block;
+.hero-logo-block {
+  margin-bottom: 20px;
+  display: flex; flex-direction: column; align-items: flex-start;
 }
 .hero-logo-wrap {
   overflow: hidden;
-  width: clamp(220px, 58vw, 460px);
-  height: clamp(116px, 30.7vw, 244px); /* ~0.53 от ширины */
+  width: clamp(280px, 72vw, 560px);
+  height: clamp(148px, 38vw, 297px);
 }
 .hero-logo-wrap img {
   width: 100%; height: auto; display: block;
-  object-fit: cover; object-position: center 8%;
-  /* инвертируем для тёмного фона hero → белая каллиграфия */
-  filter: brightness(0) invert(1) sepia(.3) saturate(1.5) brightness(1.1);
+  object-fit: cover; object-position: left 5%;
+  /* золотая каллиграфия на тёмном фоне */
+  filter: brightness(0) invert(1) sepia(1) saturate(4) hue-rotate(-8deg) brightness(.88);
 }
 .h-sub {
   font-family: var(--serif); font-style: italic;
@@ -514,11 +510,11 @@ footer {
   .h-btns { flex-direction: column; gap: 10px; }
 
   /* Логотип в герое — мобильный */
-  .hero-logo-wrap { width: clamp(230px, 80vw, 320px); height: clamp(122px, 42vw, 170px); }
+  .hero-logo-wrap { width: clamp(260px, 85vw, 360px); height: clamp(138px, 45vw, 191px); }
   /* Логотип в загрузчике — мобильный */
-  .lw-img-wrap { width: clamp(240px, 78vw, 340px); height: clamp(127px, 41vw, 180px); }
+  .lw-img-wrap { width: clamp(250px, 80vw, 350px); height: clamp(133px, 42vw, 186px); }
   /* Логотип в навигации — мобильный */
-  .logo-img-wrap { width: 88px; height: 46px; }
+  .logo-img-wrap { width: 72px; height: 38px; }
 
   /* Цитата на герое */
   .h-sub { font-size: 1rem; }
@@ -559,8 +555,8 @@ footer {
   nav { padding: 22px 32px; }
   nav.sc { padding: 14px 32px; }
   .h-body { padding: 0 32px 68px; }
-  .hero-logo-wrap { width: clamp(300px, 56vw, 420px); height: clamp(159px, 29.7vw, 223px); }
-  .lw-img-wrap { width: clamp(300px, 60vw, 400px); height: clamp(159px, 32vw, 212px); }
+  .hero-logo-wrap { width: clamp(340px, 62vw, 480px); height: clamp(180px, 32.9vw, 254px); }
+  .lw-img-wrap { width: clamp(320px, 65vw, 430px); height: clamp(170px, 34.5vw, 228px); }
   .ab-photo img { aspect-ratio: 16/7; }
   .ab-body { padding: 56px 32px; }
   .int-hd { padding: 0 32px 48px; }
@@ -593,8 +589,8 @@ footer {
 
   /* герой — горизонтальный layout */
   .h-body { padding: 0 64px 80px; display: flex; justify-content: space-between; align-items: flex-end; gap: 48px; }
-  .hero-logo-wrap { width: clamp(380px, 40vw, 540px); height: clamp(201px, 21.2vw, 286px); }
-  .logo-img-wrap { width: 130px; height: 68px; }
+  .hero-logo-wrap { width: clamp(420px, 44vw, 620px); height: clamp(222px, 23.3vw, 328px); }
+  .logo-img-wrap { width: 96px; height: 50px; }
   .h-right { max-width: 280px; text-align: right; flex-shrink: 0; }
   .h-sub { margin-bottom: 24px; max-width: 100%; }
   .h-cta { display: inline-block; }
@@ -720,7 +716,6 @@ footer {
   <div class="h-body">
     <div>
       <div class="hero-logo-block">
-        <span class="hero-cafe-lbl">кафе</span>
         <div class="hero-logo-wrap">
           <img src="img/logo/logo-text.png" alt="Манилов">
         </div>
