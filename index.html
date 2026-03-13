@@ -93,7 +93,7 @@ button { font-family: var(--sans); }
 #LDR.off { opacity: 0; visibility: hidden; pointer-events: none; }
 /* --- Логотип в загрузчике --- */
 .lw-img-wrap {
-  width: clamp(300px, 72vw, 500px);
+  width: clamp(200px, 50vw, 340px);
   opacity: 0;
   animation: fin .9s cubic-bezier(.76,0,.24,1) .2s forwards;
 }
@@ -112,11 +112,11 @@ button { font-family: var(--sans); }
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 700;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 18px 20px;
+  padding: 12px 20px;
   transition: padding .35s, background .35s, border .35s, box-shadow .35s;
 }
 nav.sc {
-  padding: 12px 20px;
+  padding: 8px 20px;
   background: rgba(250,248,244,.97);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -128,7 +128,7 @@ nav.sc {
   line-height: 1; text-decoration: none;
 }
 .logo-img-wrap {
-  width: 180px;
+  width: 130px;
 }
 .logo-img-wrap img { width: 100%; height: auto; display: block; }
 /* По умолчанию (прозрачный нав над фото) — белый, при скролле — золото */
@@ -221,7 +221,7 @@ nav.sc .logo-s { color: var(--gold); }
   display: flex; flex-direction: column; align-items: flex-start;
 }
 .hero-logo-wrap {
-  width: clamp(380px, 90vw, 800px);
+  width: clamp(260px, 58vw, 520px);
 }
 .hero-logo-wrap img {
   width: 100%; height: auto; display: block;
@@ -500,11 +500,11 @@ footer {
   .h-btns { flex-direction: column; gap: 10px; }
 
   /* Логотип в герое — мобильный */
-  .hero-logo-wrap { width: clamp(300px, 92vw, 420px); }
+  .hero-logo-wrap { width: clamp(200px, 65vw, 300px); }
   /* Логотип в загрузчике — мобильный */
-  .lw-img-wrap { width: clamp(260px, 80vw, 380px); }
+  .lw-img-wrap { width: clamp(180px, 56vw, 260px); }
   /* Логотип в навигации — мобильный */
-  .logo-img-wrap { width: 140px; }
+  .logo-img-wrap { width: 100px; }
 
   /* Цитата на герое */
   .h-sub { font-size: 1rem; }
@@ -542,11 +542,11 @@ footer {
 
 @media (min-width: 600px) {
   .W { padding: 0 32px; }
-  nav { padding: 22px 32px; }
-  nav.sc { padding: 14px 32px; }
+  nav { padding: 14px 32px; }
+  nav.sc { padding: 10px 32px; }
   .h-body { padding: 0 32px 68px; }
-  .hero-logo-wrap { width: clamp(420px, 82vw, 620px); }
-  .lw-img-wrap { width: clamp(340px, 65vw, 480px); }
+  .hero-logo-wrap { width: clamp(280px, 52vw, 420px); }
+  .lw-img-wrap { width: clamp(220px, 48vw, 340px); }
   .ab-photo img { aspect-ratio: 16/7; }
   .ab-body { padding: 56px 32px; }
   .int-hd { padding: 0 32px 48px; }
@@ -579,8 +579,8 @@ footer {
 
   /* герой — горизонтальный layout */
   .h-body { padding: 0 64px 80px; display: flex; justify-content: space-between; align-items: flex-end; gap: 48px; }
-  .hero-logo-wrap { width: clamp(520px, 52vw, 800px); }
-  .logo-img-wrap { width: 200px; }
+  .hero-logo-wrap { width: clamp(340px, 36vw, 520px); }
+  .logo-img-wrap { width: 150px; }
   .h-right { max-width: 280px; text-align: right; flex-shrink: 0; }
   .h-sub { margin-bottom: 24px; max-width: 100%; }
   .h-cta { display: inline-block; }
