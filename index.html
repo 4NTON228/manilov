@@ -222,21 +222,14 @@ nav.sc .logo-s { color: var(--gold); }
 }
 .hero-logo-wrap {
   width: clamp(130px, 22vw, 200px);
-  position: relative;
-}
-.hero-logo-wrap::before {
-  content: '';
-  position: absolute;
-  top: 14%; bottom: 15%;
-  left: 5%; right: 9%;
-  border-radius: 50%;
-  background: rgba(252,246,234,.95);
-  box-shadow: 0 4px 28px rgba(12,10,8,.22);
-  z-index: 0;
+  background: radial-gradient(
+    ellipse 43.1% 35.4% at 48.4% 49.2%,
+    rgba(252,246,234,.97) 82%,
+    transparent 84%
+  );
 }
 .hero-logo-wrap img {
   width: 100%; height: auto; display: block; object-fit: initial;
-  position: relative; z-index: 1;
 }
 .h-sub {
   font-family: var(--serif); font-style: italic;
